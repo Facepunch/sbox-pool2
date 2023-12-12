@@ -1,0 +1,18 @@
+{
+  "BaseSurface": null,
+  "AudioMaterial": null,
+  "Description": "",
+  "Friction": 0.4,
+  "Elasticity": 1,
+  "Density": 100,
+  "Thickness": 0,
+  "Dampening": 0,
+  "BounceThreshold": 0,
+  "ImpactEffects": {},
+  "ScrapeEffects": {
+    "RoughnessFactor": 0.25,
+    "RoughThreshold": 0.5
+  },
+  "Sounds": {},
+  "Breakables": {}
+}
