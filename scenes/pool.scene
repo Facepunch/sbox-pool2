@@ -42,6 +42,7 @@
     {
       "Id": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Name": "Floor",
+      "Position": "0,0,-17.00842",
       "Scale": "10,10,10",
       "Enabled": true,
       "Components": [
@@ -81,9 +82,27 @@
       ]
     },
     {
-      "Id": "c15986b4-a31e-4394-80a6-ff306b8752ef",
+      "Id": "10995fc2-f41b-4830-9b18-4847755e9cb7",
       "Name": "Table",
-      "Position": "-32.4731,-31.12474,99.96677",
+      "Position": "47.26353,-52.52924,53.8413",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "MapInstance",
+          "__enabled": true,
+          "MapName": "pool_lounge"
+        },
+        {
+          "__type": "MapObjectComponent",
+          "__enabled": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Id": "633a941a-062b-4fd7-ac1b-d5f78a8ee82e",
+      "Name": "Middle (1)",
+      "Position": "-1.178898,226.3555,25.88962",
       "Enabled": true,
       "Components": [
         {
@@ -92,9 +111,99 @@
           "BodyGroups": 18446744073709551615,
           "MaterialGroup": null,
           "MaterialOverride": null,
-          "Model": null,
+          "Model": "models/pool/border_cushion_straight_a.vmdl",
           "ShouldCastShadows": true,
           "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "54a53ff0-3b0d-4b36-a7c8-87551e7ddeed",
+      "Name": "Middle (5)",
+      "Position": "-1.178898,251.3194,25.88962",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/pool/border_pocket_concave_a.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "41843ec1-7350-4d0e-96f1-2280a1e0ba2d",
+      "Name": "Middle (3)",
+      "Position": "-1.178898,202.3639,25.88962",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/pool/border_pocket_straight_a.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "e79379b2-e218-46e3-a3a2-778c685e243e",
+      "Name": "Middle (2)",
+      "Position": "-1.201026,226.3555,25.88962",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/pool/table_cushion_straight_a.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.06019,0.24752,0.05637,1"
+        }
+      ]
+    },
+    {
+      "Id": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
+      "Name": "Middle (6)",
+      "Position": "-1.201026,251.3469,25.88962",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/pool/table_pocket_concave_a.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.06019,0.24752,0.05637,1"
+        }
+      ]
+    },
+    {
+      "Id": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
+      "Name": "Middle (4)",
+      "Position": "-1.201026,202.4022,25.88962",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/pool/table_pocket_straight_a.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "0.06019,0.24752,0.05637,1"
         }
       ]
     }
