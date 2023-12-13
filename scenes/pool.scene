@@ -365,9 +365,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -392,9 +399,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -419,9 +433,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -445,9 +466,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -472,9 +500,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -499,9 +534,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -544,9 +586,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -571,9 +620,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -597,9 +653,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -624,9 +687,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -650,9 +720,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_pocket_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         },
@@ -677,9 +754,16 @@
               "__type": "ModelCollider",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Model": "models/pool/table_pocket_straight_a.vmdl",
               "Static": true,
               "Surface": null
+            },
+            {
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
             }
           ]
         }
@@ -716,6 +800,10 @@
           "Radius": 30,
           "Static": false,
           "Surface": null
+        },
+        {
+          "__type": "ApplyRandomForce",
+          "__enabled": true
         }
       ]
     }
