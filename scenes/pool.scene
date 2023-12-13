@@ -43,7 +43,7 @@
       "Id": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Name": "Floor",
       "Position": "0,0,-17.00842",
-      "Scale": "10,10,10",
+      "Scale": "5,5,5",
       "Enabled": true,
       "Components": [
         {
@@ -51,7 +51,7 @@
           "__enabled": true,
           "BodyGroups": 18446744073709551615,
           "MaterialGroup": null,
-          "MaterialOverride": "materials/glitchvid/carpet/carpet_pattern01.vmat",
+          "MaterialOverride": "materials/glitchvid/carpet/carpet_pattern02.vmat",
           "Model": "models/dev/plane.vmdl",
           "ShouldCastShadows": true,
           "Tint": "1,1,1,1"
@@ -82,128 +82,495 @@
       ]
     },
     {
-      "Id": "10995fc2-f41b-4830-9b18-4847755e9cb7",
+      "Id": "f1d23e7b-ca1a-484e-99a9-597fecf92f77",
       "Name": "Table",
-      "Position": "47.26353,-52.52924,53.8413",
+      "Position": "0,0,11.35093",
       "Enabled": true,
-      "Components": [
+      "Children": [
         {
-          "__type": "MapInstance",
-          "__enabled": true,
-          "MapName": "pool_lounge"
+          "Id": "fe757346-7521-4352-bb49-fcc1e04fe582",
+          "Name": "TableCenterFelt",
+          "Position": "-1.341866,-0.9715881,-2.165106",
+          "Scale": "0.443472,0.9248635,1",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": "materials/pool_felt_tiling.vmat",
+              "Model": "models/dev/plane.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.07017,0.27723,0.06588,1"
+            }
+          ]
         },
         {
-          "__type": "MapObjectComponent",
-          "__enabled": true
-        }
-      ],
-      "Children": []
-    },
-    {
-      "Id": "633a941a-062b-4fd7-ac1b-d5f78a8ee82e",
-      "Name": "Middle (1)",
-      "Position": "-1.178898,226.3555,25.88962",
-      "Enabled": true,
-      "Components": [
+          "Id": "633a941a-062b-4fd7-ac1b-d5f78a8ee82e",
+          "Name": "TableBorder",
+          "Position": "-26.27406,23.11797,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/pool/border_cushion_straight_a.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "Id": "54a53ff0-3b0d-4b36-a7c8-87551e7ddeed",
-      "Name": "Middle (5)",
-      "Position": "-1.178898,251.3194,25.88962",
-      "Enabled": true,
-      "Components": [
+          "Id": "af905b3f-30d8-4566-9c5a-7f0245214f35",
+          "Name": "TableBorder",
+          "Position": "-26.27406,-24.86884,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/pool/border_pocket_concave_a.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "Id": "41843ec1-7350-4d0e-96f1-2280a1e0ba2d",
-      "Name": "Middle (3)",
-      "Position": "-1.178898,202.3639,25.88962",
-      "Enabled": true,
-      "Components": [
+          "Id": "fc841bca-7af7-4504-ba54-aa1f76e2d883",
+          "Name": "TableBorder",
+          "Position": "23.72466,-24.86884,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/pool/border_pocket_straight_a.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "Id": "e79379b2-e218-46e3-a3a2-778c685e243e",
-      "Name": "Middle (2)",
-      "Position": "-1.201026,226.3555,25.88962",
-      "Enabled": true,
-      "Components": [
+          "Id": "3219dfa9-8add-4840-ab04-154b07ca3995",
+          "Name": "TableBorder",
+          "Position": "23.72466,23.21497,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/pool/table_cushion_straight_a.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.06019,0.24752,0.05637,1"
-        }
-      ]
-    },
-    {
-      "Id": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
-      "Name": "Middle (6)",
-      "Position": "-1.201026,251.3469,25.88962",
-      "Enabled": true,
-      "Components": [
+          "Id": "54a53ff0-3b0d-4b36-a7c8-87551e7ddeed",
+          "Name": "CornerPocket",
+          "Position": "-26.27406,48.08186,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/pool/table_pocket_concave_a.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.06019,0.24752,0.05637,1"
-        }
-      ]
-    },
-    {
-      "Id": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
-      "Name": "Middle (4)",
-      "Position": "-1.201026,202.4022,25.88962",
-      "Enabled": true,
-      "Components": [
+          "Id": "625cd233-7958-4a32-97e5-465c027d9aa1",
+          "Name": "CornerPocket",
+          "Position": "23.63574,48.08186,-2.175486",
+          "Rotation": "0,0,0.7071061,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/pool/table_pocket_straight_a.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "0.06019,0.24752,0.05637,1"
+          "Id": "53338fc4-b15d-45a6-afde-bd653f0501c4",
+          "Name": "TableBorder",
+          "Position": "-1.336504,48.08186,-2.175486",
+          "Rotation": "0,-0,-0.707107,0.7071065",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "abd5d390-ccd5-4b2c-9c3e-c9241e000f95",
+          "Name": "TableBorder",
+          "Position": "-1.336504,-49.78104,-2.175486",
+          "Rotation": "0,0,0.707107,0.7071065",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "fda6f102-487c-4d11-ad08-6ac0329269de",
+          "Name": "CornerPocket",
+          "Position": "-26.27406,-49.77403,-2.175486",
+          "Rotation": "0,0,0.707107,0.7071065",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "960ae348-f4dc-4996-8a80-7e6286d50832",
+          "Name": "CornerPocket",
+          "Position": "23.69804,-49.77403,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "41843ec1-7350-4d0e-96f1-2280a1e0ba2d",
+          "Name": "MiddlePocket",
+          "Position": "-26.27406,-0.8736267,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_pocket_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "6a98b92b-0365-4d79-808e-f0601729f52c",
+          "Name": "MiddlePocket",
+          "Position": "23.61199,-0.8736267,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/border_pocket_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "e79379b2-e218-46e3-a3a2-778c685e243e",
+          "Name": "FeltBorder",
+          "Position": "-26.29619,23.11797,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "0f8fa5ad-00d4-4472-aa6b-992ba6fdfb21",
+          "Name": "FeltBorder",
+          "Position": "-1.299404,48.07347,-2.175486",
+          "Rotation": "0,0,0.7071061,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "9d70a422-ab95-4da3-a097-0362870825f4",
+          "Name": "FeltBorder",
+          "Position": "-1.299294,-49.80933,-2.175486",
+          "Rotation": "0,0,0.707107,0.7071065",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "c57df244-5dbf-4e5a-8b75-3e175dfbdcf6",
+          "Name": "FeltBorder",
+          "Position": "-26.29619,-24.83443,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "93992697-12b5-4eb3-9065-ee07fe7cc106",
+          "Name": "FeltBorder",
+          "Position": "23.64749,-24.83443,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "7d19085a-70d1-4052-a207-01397198c57f",
+          "Name": "FeltBorder",
+          "Position": "23.64749,23.14067,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "0466e699-7828-41c5-aeb3-ae39181e799c",
+          "Name": "Middle (7)",
+          "Position": "-26.29619,23.11797,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_cushion_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
+          "Name": "CornerPocketFelt",
+          "Position": "-26.29619,-49.78613,-2.175486",
+          "Rotation": "0,0,0.707107,0.7071065",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "48085d18-ab3c-46eb-80c9-b7011dedcbb6",
+          "Name": "CornerPocketFelt",
+          "Position": "23.70133,-49.78613,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "da3a45f9-3d63-427d-b4e7-9aee8739148b",
+          "Name": "CornerPocketFelt",
+          "Position": "-26.29625,48.08026,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "4772d817-a4dc-42fe-ad5b-1682c8a665d8",
+          "Name": "CornerPocketFelt",
+          "Position": "23.66652,48.08026,-2.175486",
+          "Rotation": "0,0,0.7071061,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_pocket_concave_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
+          "Name": "MiddlePocketFelt",
+          "Position": "-26.29619,-0.8353271,-2.175486",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_pocket_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
+        },
+        {
+          "Id": "0c658461-d054-4050-98ef-b5eb10682191",
+          "Name": "MiddlePocketFelt",
+          "Position": "23.66253,-0.8353271,-2.175486",
+          "Rotation": "0,0,1,-0.0000006397578",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/pool/table_pocket_straight_a.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "0.06019,0.24752,0.05637,1"
+            }
+          ]
         }
       ]
     }
@@ -220,6 +587,6 @@
   "Title": "minimal",
   "Description": "",
   "__references": [
-    "tridge.carpet_pattern01"
+    "tridge.carpet_pattern02"
   ]
 }
