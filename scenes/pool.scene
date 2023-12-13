@@ -105,10 +105,17 @@
               "Tint": "0.07017,0.27723,0.06588,1"
             },
             {
-              "__type": "ModelCollider",
+              "__type": "Rigidbody",
+              "__enabled": true,
+              "AngularDamping": 0,
+              "Gravity": false,
+              "LinearDamping": 0
+            },
+            {
+              "__type": "ColliderBoxComponent",
               "__enabled": true,
               "IsTrigger": false,
-              "Model": null,
+              "Scale": "100,100,0.01",
               "Static": true,
               "Surface": null
             }
@@ -675,6 +682,40 @@
               "Surface": null
             }
           ]
+        }
+      ]
+    },
+    {
+      "Id": "d27627f4-e046-4672-8232-1d7e35f93241",
+      "Name": "Sphere",
+      "Position": "0,0,23.01191",
+      "Scale": "0.04,0.04,0.04",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/dev/sphere.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Rigidbody",
+          "__enabled": true,
+          "AngularDamping": 0,
+          "Gravity": true,
+          "LinearDamping": 0
+        },
+        {
+          "__type": "ColliderSphereComponent",
+          "__enabled": true,
+          "IsTrigger": false,
+          "Radius": 30,
+          "Static": false,
+          "Surface": null
         }
       ]
     }
