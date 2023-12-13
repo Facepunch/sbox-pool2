@@ -61,8 +61,8 @@
     {
       "Id": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
       "Name": "Camera",
-      "Position": "-116.9319,-243.2814,254.4213",
-      "Rotation": "-0.2056158,0.322752,0.4964002,0.7791919",
+      "Position": "0,0,200",
+      "Rotation": "0.0000001788139,0.7071068,-0.0000007152557,0.7071068",
       "Enabled": true,
       "Components": [
         {
@@ -103,6 +103,14 @@
               "Model": "models/dev/plane.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.07017,0.27723,0.06588,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -345,6 +353,14 @@
               "Model": "models/pool/table_cushion_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -364,6 +380,14 @@
               "Model": "models/pool/table_cushion_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -383,6 +407,14 @@
               "Model": "models/pool/table_cushion_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -401,6 +433,14 @@
               "Model": "models/pool/table_cushion_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -420,6 +460,14 @@
               "Model": "models/pool/table_cushion_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -439,12 +487,20 @@
               "Model": "models/pool/table_cushion_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
         {
           "Id": "0466e699-7828-41c5-aeb3-ae39181e799c",
-          "Name": "Middle (7)",
+          "Name": "FeltBorder",
           "Position": "-26.29619,23.11797,-2.175486",
           "Enabled": true,
           "Components": [
@@ -476,6 +532,14 @@
               "Model": "models/pool/table_pocket_concave_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -495,6 +559,14 @@
               "Model": "models/pool/table_pocket_concave_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -513,6 +585,14 @@
               "Model": "models/pool/table_pocket_concave_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -532,6 +612,14 @@
               "Model": "models/pool/table_pocket_concave_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -550,6 +638,14 @@
               "Model": "models/pool/table_pocket_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         },
@@ -569,6 +665,14 @@
               "Model": "models/pool/table_pocket_straight_a.vmdl",
               "ShouldCastShadows": true,
               "Tint": "0.06019,0.24752,0.05637,1"
+            },
+            {
+              "__type": "ModelCollider",
+              "__enabled": true,
+              "IsTrigger": false,
+              "Model": null,
+              "Static": true,
+              "Surface": null
             }
           ]
         }
