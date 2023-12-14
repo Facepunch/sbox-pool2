@@ -998,6 +998,18 @@
           "__enabled": true
         }
       ]
+    },
+    {
+      "Id": "0138da53-2a7a-4671-90f6-c53d3c35a7b7",
+      "Name": "GameManager",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "GameManager",
+          "__enabled": true,
+          "BallPrefab": "prefabs/pool_ball.prefab"
+        }
+      ]
     }
   ],
   "SceneProperties": {

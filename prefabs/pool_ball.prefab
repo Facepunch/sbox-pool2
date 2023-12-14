@@ -1,8 +1,7 @@
 {
   "RootObject": {
-    "Id": "26f687f7-26be-4c85-b1a8-1a1a23ced6bd",
+    "Id": "720dfac9-ffce-4c01-8a60-9193233b5e75",
     "Name": "pool_ball",
-    "Position": "-10.09652,-32.14455,11.28582",
     "Enabled": true,
     "Components": [
       {
@@ -21,7 +20,7 @@
         "IsTrigger": false,
         "Model": "models/pool/pool_ball.vmdl",
         "Static": false,
-        "Surface": null
+        "Surface": "surfaces/pool.ball.surface"
       },
       {
         "__type": "Rigidbody",

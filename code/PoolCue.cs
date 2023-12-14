@@ -20,7 +20,7 @@ public class PoolCue : Component
 	{
 		if ( IsProxy ) return;
 		
-		var whiteBall = Scene.GetAllComponents<PoolBallSpawn>().FirstOrDefault( b => b.Type == PoolBallType.White );
+		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
 		
 		if ( !Input.Down( "attack1" ) )
@@ -31,7 +31,12 @@ public class PoolCue : Component
 			}
 			else
 			{
-				TakeShot( Transform.World, ShotPower );
+				if ( ShotPower >= 5f )
+				{
+					GameObject.Network.DropOwnership();
+					TakeShot( Transform.World, ShotPower );
+				}
+				
 				CuePullBackOffset = 0f;
 				IsMakingShot = false;
 				ShotPower = 0f;
@@ -45,11 +50,25 @@ public class PoolCue : Component
 		
 		Transform.Position = whiteBall.Transform.Position - Transform.Rotation.Forward * (1f + CuePullBackOffset + (CuePitch * 0.04f));
 	}
+	
+	private Vector3 DirectionTo( PoolBall ball )
+	{
+		return (ball.Transform.Position - Transform.Position.WithZ( ball.Transform.Position.z )).Normal;
+	}
 
 	[Authority]
 	private void TakeShot( Transform transform, float power )
 	{
 		Log.Info( "Wants to take a shot: " + transform.Position );
+
+		Transform.World = transform;
+
+		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
+		if ( !whiteBall.IsValid() ) return;
+		
+		var direction = DirectionTo( whiteBall );
+		var body = whiteBall.Components.Get<Rigidbody>();
+		body.ApplyImpulse( direction * power * 6f * body.PhysicsBody.Mass );
 	}
 
 	private void UpdatePowerSelection()
