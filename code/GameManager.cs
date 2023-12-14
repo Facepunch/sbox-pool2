@@ -19,6 +19,8 @@ public class GameManager : Component
 			ball.Type = spawn.Type;
 		}
 		
+		Scene.PhysicsWorld.SubSteps = 10;
+		
 		base.OnStart();
 	}
 }

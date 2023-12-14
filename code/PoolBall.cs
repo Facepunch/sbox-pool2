@@ -2,16 +2,20 @@
 
 namespace Facepunch.Pool;
 
-public class PoolBall : Component
+public class PoolBall : Component, Component.ICollisionListener
 {
 	[Property] public PoolBallType Type { get; set; }
 	[Property] public PoolBallNumber Number { get; set; }
+	
+	private float StartUpPosition { get; set; }
 
 	protected override void OnStart()
 	{
 		var body = Components.Get<Rigidbody>();
-		body.AngularDamping = 0.4f;
+		body.AngularDamping = 0.6f;
 		body.LinearDamping = 0.6f;
+
+		StartUpPosition = Transform.Position.z;
 		
 		base.OnStart();
 	}
@@ -22,6 +26,13 @@ public class PoolBall : Component
 
 		if ( renderer is not null )
 			renderer.MaterialGroup = GetMaterialGroup();
+
+		// Constantly set our Z velocity to zero.
+		var body = Components.Get<Rigidbody>();
+		body.Velocity = body.Velocity.WithZ( 0f );
+		
+		// Constantly keep up at the correct Z position.
+		Transform.Position = Transform.Position.WithZ( StartUpPosition );
 		
 		base.OnUpdate();
 	}
@@ -35,5 +46,26 @@ public class PoolBall : Component
 			PoolBallType.Stripes => ((int)Number + 8).ToString(),
 			_ => "default"
 		};
+	}
+
+	public void OnCollisionStart( Collision info )
+	{
+		var otherObject = info.Other.GameObject;
+		var otherBall = otherObject.Components.GetInDescendantsOrSelf<PoolBall>();
+
+		if ( otherBall.IsValid() )
+		{
+			
+		}
+	}
+
+	public void OnCollisionUpdate( Collision info )
+	{
+		
+	}
+
+	public void OnCollisionStop( CollisionStop info )
+	{
+		
 	}
 }
