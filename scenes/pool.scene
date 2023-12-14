@@ -71,11 +71,16 @@
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
+          "IsMainCamera": true,
           "Orthographic": false,
           "OrthographicHeight": 1204,
+          "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
           "TargetEye": "None",
+          "Viewport": {
+            "Size": "1,1"
+          },
           "ZFar": 10000,
           "ZNear": 10
         }
@@ -722,16 +727,6 @@
               "__enabled": true,
               "Number": "One",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "1",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -747,16 +742,6 @@
               "__enabled": true,
               "Number": "Two",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "2",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -772,16 +757,6 @@
               "__enabled": true,
               "Number": "Three",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "11",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -797,16 +772,6 @@
               "__enabled": true,
               "Number": "Seven",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "15",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -822,16 +787,6 @@
               "__enabled": true,
               "Number": "Seven",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "7",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -847,16 +802,6 @@
               "__enabled": true,
               "Number": "Six",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "14",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -872,16 +817,6 @@
               "__enabled": true,
               "Number": "Five",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "5",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -897,16 +832,6 @@
               "__enabled": true,
               "Number": "Six",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "6",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -922,16 +847,6 @@
               "__enabled": true,
               "Number": "One",
               "Type": "White"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "default",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -947,16 +862,6 @@
               "__enabled": true,
               "Number": "Four",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "12",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -972,16 +877,6 @@
               "__enabled": true,
               "Number": "Five",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "13",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -997,16 +892,6 @@
               "__enabled": true,
               "Number": "Four",
               "Type": "Black"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "8",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -1022,16 +907,6 @@
               "__enabled": true,
               "Number": "Three",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "3",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -1047,16 +922,6 @@
               "__enabled": true,
               "Number": "Four",
               "Type": "Spots"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "4",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -1072,16 +937,6 @@
               "__enabled": true,
               "Number": "Two",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "10",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -1097,16 +952,6 @@
               "__enabled": true,
               "Number": "One",
               "Type": "Stripes"
-            },
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": "9",
-              "MaterialOverride": null,
-              "Model": "models/pool/pool_ball.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "1,1,1,1"
             }
           ]
         }
