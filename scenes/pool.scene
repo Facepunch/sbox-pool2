@@ -88,40 +88,6 @@
       "Enabled": true,
       "Children": [
         {
-          "Id": "fe757346-7521-4352-bb49-fcc1e04fe582",
-          "Name": "TableCenterFelt",
-          "Position": "-1.341866,-0.9715881,-2.165106",
-          "Scale": "0.443472,0.9248635,1",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": "materials/pool_felt_tiling.vmat",
-              "Model": "models/dev/plane.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.07017,0.27723,0.06588,1"
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            },
-            {
-              "__type": "ColliderBoxComponent",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Scale": "100,100,0.01",
-              "Static": true,
-              "Surface": null
-            }
-          ]
-        },
-        {
           "Id": "633a941a-062b-4fd7-ac1b-d5f78a8ee82e",
           "Name": "TableBorder",
           "Position": "-26.27406,23.11797,-2.175486",
@@ -346,464 +312,803 @@
           ]
         },
         {
-          "Id": "e79379b2-e218-46e3-a3a2-778c685e243e",
-          "Name": "FeltBorder",
-          "Position": "-26.29619,23.11797,-2.175486",
+          "Id": "dbb39f62-8606-4126-930a-c1541f7b4e2f",
+          "Name": "Felt",
+          "Position": "0,0,0",
           "Enabled": true,
-          "Components": [
+          "Children": [
             {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "0c658461-d054-4050-98ef-b5eb10682191",
+              "Name": "MiddlePocketFelt",
+              "Position": "23.66253,-0.8353271,-2.175486",
+              "Rotation": "0,0,1,-0.0000006397578",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_pocket_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_pocket_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
+              "Id": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
+              "Name": "MiddlePocketFelt",
+              "Position": "-26.29619,-0.8353271,-2.175486",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_pocket_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_pocket_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "0f8fa5ad-00d4-4472-aa6b-992ba6fdfb21",
-          "Name": "FeltBorder",
-          "Position": "-1.299404,48.07347,-2.175486",
-          "Rotation": "0,0,0.7071061,-0.7071075",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "4772d817-a4dc-42fe-ad5b-1682c8a665d8",
+              "Name": "CornerPocketFelt",
+              "Position": "23.66652,48.08026,-2.175486",
+              "Rotation": "0,0,0.7071061,-0.7071075",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
+              "Id": "da3a45f9-3d63-427d-b4e7-9aee8739148b",
+              "Name": "CornerPocketFelt",
+              "Position": "-26.29625,48.08026,-2.175486",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "9d70a422-ab95-4da3-a097-0362870825f4",
-          "Name": "FeltBorder",
-          "Position": "-1.299294,-49.80933,-2.175486",
-          "Rotation": "0,0,0.707107,0.7071065",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "48085d18-ab3c-46eb-80c9-b7011dedcbb6",
+              "Name": "CornerPocketFelt",
+              "Position": "23.70133,-49.78613,-2.175486",
+              "Rotation": "0,0,1,-0.0000006397578",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
+              "Id": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
+              "Name": "CornerPocketFelt",
+              "Position": "-26.29619,-49.72971,-2.175486",
+              "Rotation": "0,0,0.707107,0.7071065",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_pocket_concave_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "c57df244-5dbf-4e5a-8b75-3e175dfbdcf6",
-          "Name": "FeltBorder",
-          "Position": "-26.29619,-24.83443,-2.175486",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "0466e699-7828-41c5-aeb3-ae39181e799c",
+              "Name": "FeltBorder",
+              "Position": "-26.29619,23.11797,-2.175486",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": false,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
+              "Id": "7d19085a-70d1-4052-a207-01397198c57f",
+              "Name": "FeltBorder",
+              "Position": "23.64749,23.14067,-2.175486",
+              "Rotation": "0,0,1,-0.0000006397578",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "93992697-12b5-4eb3-9065-ee07fe7cc106",
-          "Name": "FeltBorder",
-          "Position": "23.64749,-24.83443,-2.175486",
-          "Rotation": "0,0,1,-0.0000006397578",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "93992697-12b5-4eb3-9065-ee07fe7cc106",
+              "Name": "FeltBorder",
+              "Position": "23.64749,-24.83443,-2.175486",
+              "Rotation": "0,0,1,-0.0000006397578",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
+              "Id": "c57df244-5dbf-4e5a-8b75-3e175dfbdcf6",
+              "Name": "FeltBorder",
+              "Position": "-26.29619,-24.83443,-2.175486",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "7d19085a-70d1-4052-a207-01397198c57f",
-          "Name": "FeltBorder",
-          "Position": "23.64749,23.14067,-2.175486",
-          "Rotation": "0,0,1,-0.0000006397578",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "9d70a422-ab95-4da3-a097-0362870825f4",
+              "Name": "FeltBorder",
+              "Position": "-1.299294,-49.80933,-2.175486",
+              "Rotation": "0,0,0.707107,0.7071065",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
+              "Id": "0f8fa5ad-00d4-4472-aa6b-992ba6fdfb21",
+              "Name": "FeltBorder",
+              "Position": "-1.299404,48.07347,-2.175486",
+              "Rotation": "0,0,0.7071061,-0.7071075",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "0466e699-7828-41c5-aeb3-ae39181e799c",
-          "Name": "FeltBorder",
-          "Position": "-26.29619,23.11797,-2.175486",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_cushion_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
-            }
-          ]
-        },
-        {
-          "Id": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
-          "Name": "CornerPocketFelt",
-          "Position": "-26.29619,-49.78613,-2.175486",
-          "Rotation": "0,0,0.707107,0.7071065",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
+              "Id": "e79379b2-e218-46e3-a3a2-778c685e243e",
+              "Name": "FeltBorder",
+              "Position": "-26.29619,23.11797,-2.175486",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.06019,0.24752,0.05637,1"
+                },
+                {
+                  "__type": "ModelCollider",
+                  "__enabled": true,
+                  "IsTrigger": false,
+                  "Model": "models/pool/table_cushion_straight_a.vmdl",
+                  "Static": true,
+                  "Surface": null
+                }
+              ]
             },
             {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "Static": true,
-              "Surface": null
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "48085d18-ab3c-46eb-80c9-b7011dedcbb6",
-          "Name": "CornerPocketFelt",
-          "Position": "23.70133,-49.78613,-2.175486",
-          "Rotation": "0,0,1,-0.0000006397578",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
-            },
-            {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "Static": true,
-              "Surface": null
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "da3a45f9-3d63-427d-b4e7-9aee8739148b",
-          "Name": "CornerPocketFelt",
-          "Position": "-26.29625,48.08026,-2.175486",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
-            },
-            {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "Static": true,
-              "Surface": null
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "4772d817-a4dc-42fe-ad5b-1682c8a665d8",
-          "Name": "CornerPocketFelt",
-          "Position": "23.66652,48.08026,-2.175486",
-          "Rotation": "0,0,0.7071061,-0.7071075",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
-            },
-            {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_pocket_concave_a.vmdl",
-              "Static": true,
-              "Surface": null
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
-          "Name": "MiddlePocketFelt",
-          "Position": "-26.29619,-0.8353271,-2.175486",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_pocket_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
-            },
-            {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_pocket_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
-            }
-          ]
-        },
-        {
-          "Id": "0c658461-d054-4050-98ef-b5eb10682191",
-          "Name": "MiddlePocketFelt",
-          "Position": "23.66253,-0.8353271,-2.175486",
-          "Rotation": "0,0,1,-0.0000006397578",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "ModelRenderer",
-              "__enabled": true,
-              "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/pool/table_pocket_straight_a.vmdl",
-              "ShouldCastShadows": true,
-              "Tint": "0.06019,0.24752,0.05637,1"
-            },
-            {
-              "__type": "ModelCollider",
-              "__enabled": true,
-              "IsTrigger": false,
-              "Model": "models/pool/table_pocket_straight_a.vmdl",
-              "Static": true,
-              "Surface": null
-            },
-            {
-              "__type": "Rigidbody",
-              "__enabled": true,
-              "AngularDamping": 0,
-              "Gravity": false,
-              "LinearDamping": 0
+              "Id": "fe757346-7521-4352-bb49-fcc1e04fe582",
+              "Name": "TableCenterFelt",
+              "Position": "-1.341866,-0.9715881,-2.165106",
+              "Scale": "0.443472,0.9248635,1",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "__enabled": true,
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": null,
+                  "MaterialOverride": "materials/pool_felt_tiling.vmat",
+                  "Model": "models/dev/plane.vmdl",
+                  "ShouldCastShadows": true,
+                  "Tint": "0.07017,0.27723,0.06588,1"
+                }
+              ],
+              "Children": [
+                {
+                  "Id": "90fde5a8-a9f8-48d1-8311-b35079a7f5b6",
+                  "Name": "Collider",
+                  "Position": "0,0,-0.4",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ColliderBoxComponent",
+                      "__enabled": true,
+                      "IsTrigger": false,
+                      "Scale": "110,104,1",
+                      "Static": false,
+                      "Surface": "surfaces/pool.table.surface"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
       ]
     },
     {
-      "Id": "d27627f4-e046-4672-8232-1d7e35f93241",
-      "Name": "Sphere",
-      "Position": "0,0,23.01191",
-      "Scale": "0.04,0.04,0.04",
+      "Id": "3002509b-a7de-42f0-8826-d535a2951c41",
+      "Name": "Spawns",
+      "Position": "1.328095,0,0",
       "Enabled": true,
-      "Components": [
+      "Children": [
         {
-          "__type": "ModelRenderer",
-          "__enabled": true,
-          "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
-          "MaterialOverride": null,
-          "Model": "models/dev/sphere.vmdl",
-          "ShouldCastShadows": true,
-          "Tint": "1,1,1,1"
+          "Id": "d7d05367-b0e1-4c83-abe2-bc39eaaccb07",
+          "Name": "pool_ball_spawn",
+          "Position": "-7.224356,-32.96589,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "One",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "1",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
         },
         {
-          "__type": "Rigidbody",
-          "__enabled": true,
-          "AngularDamping": 0,
-          "Gravity": true,
-          "LinearDamping": 0
+          "Id": "35ebb3b4-d544-4abc-801b-1ee3c9d58ab8",
+          "Name": "pool_ball_spawn",
+          "Position": "-2.667427,-32.96589,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Two",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "2",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
         },
         {
-          "__type": "ColliderSphereComponent",
-          "__enabled": true,
-          "IsTrigger": false,
-          "Radius": 30,
-          "Static": false,
-          "Surface": null
+          "Id": "43de6a17-838c-4710-a8c5-99be7781da91",
+          "Name": "pool_ball_spawn",
+          "Position": "-0.4199877,-32.96589,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Three",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "11",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
         },
         {
-          "__type": "ApplyRandomForce",
-          "__enabled": true
+          "Id": "ac82f28a-d013-4ccd-8df1-d7d2d3631328",
+          "Name": "pool_ball_spawn",
+          "Position": "1.848227,-32.96589,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Seven",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "15",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "51894917-b15b-44bb-92f9-cf54f12e206a",
+          "Name": "pool_ball_spawn",
+          "Position": "0.7857501,-30.87121,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Seven",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "7",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "11fd7dfe-39a9-45db-8820-031a1845fd74",
+          "Name": "pool_ball_spawn",
+          "Position": "-0.3665184,-28.85188,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Six",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "14",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "57a61880-1809-43a0-b7b3-871d7f9dcf6a",
+          "Name": "pool_ball_spawn",
+          "Position": "-1.588024,-26.94562,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Five",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "5",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "e9d7e390-15c3-4fd3-b7bf-80ab9b9fbe9c",
+          "Name": "pool_ball_spawn",
+          "Position": "-2.766725,-25.06706,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Six",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "6",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "4b38563e-d646-4904-9b55-043440e0f6c5",
+          "Name": "pool_ball_spawn",
+          "Position": "-2.766725,26.37038,10.40563",
+          "Rotation": "0,0.7071061,0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "One",
+              "Type": "White"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "default",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "8fbb57cc-0f55-4eff-92d5-94fa9cb96dde",
+          "Name": "pool_ball_spawn",
+          "Position": "-1.479331,-30.84128,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Four",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "12",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "f8e7ff67-085c-4e87-b843-626e08eab021",
+          "Name": "pool_ball_spawn",
+          "Position": "-3.846803,-26.98253,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Five",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "13",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "5e52ea42-3914-4269-a67d-a8afff532e20",
+          "Name": "pool_ball_spawn",
+          "Position": "-2.697189,-28.90563,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Four",
+              "Type": "Black"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "8",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "64ab0027-91cf-4ec3-8336-8346479826e2",
+          "Name": "pool_ball_spawn",
+          "Position": "-3.831185,-31.02594,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Three",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "3",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "8f2a560a-e32d-4fb9-a17b-927da1b76ed8",
+          "Name": "pool_ball_spawn",
+          "Position": "-4.955243,-28.99923,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Four",
+              "Type": "Spots"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "4",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "3a0f830d-70d0-40f5-84f4-b5f9875be8c4",
+          "Name": "pool_ball_spawn",
+          "Position": "-6.110745,-30.97427,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "Two",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "10",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "d13e059e-fd0f-48b7-83cf-3da3a7eb2947",
+          "Name": "pool_ball_spawn",
+          "Position": "-4.958337,-32.96589,10.40563",
+          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "PoolBallSpawn",
+              "__enabled": true,
+              "Number": "One",
+              "Type": "Stripes"
+            },
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": "9",
+              "MaterialOverride": null,
+              "Model": "models/pool/pool_ball.vmdl",
+              "ShouldCastShadows": true,
+              "Tint": "1,1,1,1"
+            }
+          ]
         }
       ]
     }

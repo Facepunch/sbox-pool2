@@ -1,0 +1,45 @@
+{
+  "RootObject": {
+    "Id": "26f687f7-26be-4c85-b1a8-1a1a23ced6bd",
+    "Name": "pool_ball",
+    "Position": "-10.09652,-32.14455,11.28582",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "ModelRenderer",
+        "__enabled": true,
+        "BodyGroups": 18446744073709551615,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/pool/pool_ball.vmdl",
+        "ShouldCastShadows": true,
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "ModelCollider",
+        "__enabled": true,
+        "IsTrigger": false,
+        "Model": "models/pool/pool_ball.vmdl",
+        "Static": false,
+        "Surface": null
+      },
+      {
+        "__type": "Rigidbody",
+        "__enabled": true,
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0
+      },
+      {
+        "__type": "PoolBall",
+        "__enabled": true,
+        "Number": "One",
+        "Type": "Spots"
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

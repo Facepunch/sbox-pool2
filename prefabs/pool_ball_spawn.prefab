@@ -1,0 +1,19 @@
+{
+  "RootObject": {
+    "Id": "26f687f7-26be-4c85-b1a8-1a1a23ced6bd",
+    "Name": "pool_ball_spawn",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "PoolBallSpawn",
+        "__enabled": true,
+        "Number": 0,
+        "Type": "Spots"
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}
