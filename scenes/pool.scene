@@ -61,7 +61,7 @@
     {
       "Id": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
       "Name": "Camera",
-      "Position": "0,0,200",
+      "Position": "0,0,150",
       "Rotation": "0.0000001788139,0.7071068,-0.0000007152557,0.7071068",
       "Enabled": true,
       "Components": [
@@ -954,6 +954,48 @@
               "Type": "Stripes"
             }
           ]
+        }
+      ]
+    },
+    {
+      "Id": "60e03606-2247-46a2-bb4f-47a44b968488",
+      "Name": "Cue",
+      "Position": "-1.40999,27.73989,10.44003",
+      "Rotation": "-0.05216909,-0.05216918,0.705179,-0.7051804",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "__enabled": true,
+          "BodyGroups": 18446744073709551615,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/pool/pool_cue_b.vmdl",
+          "ShouldCastShadows": true,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "PoolCue",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "acda060c-7461-48f3-ba12-6520a2a90e79",
+      "Name": "UI",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "CursorController",
+          "__enabled": true
         }
       ]
     }
