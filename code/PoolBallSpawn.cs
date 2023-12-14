@@ -24,6 +24,7 @@ public class PoolBallSpawn : Component
 		
 		var so = Gizmo.Draw.Model( model, global::Transform.Zero );
 		so.SetMaterialGroup( GetMaterialGroup() );
+		so.ColorTint = Color.White.WithAlpha( 0.5f );
 		
 		base.DrawGizmos();
 	}
