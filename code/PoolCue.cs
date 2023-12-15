@@ -72,7 +72,7 @@ public class PoolCue : Component
 		var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
 		var cursorPlaneEndPos = Camera.Position + cursorDirection * 350f;
 		var distanceToCue = cursorPlaneEndPos.Distance( Transform.Position - Transform.Rotation.Forward * 100f );
-		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * 1f;
+		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * 0.2f;
 
 		if ( !IsMakingShot )
 		{
