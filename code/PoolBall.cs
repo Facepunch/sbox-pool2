@@ -9,6 +9,11 @@ public class PoolBall : Component, Component.ICollisionListener
 	
 	private float StartUpPosition { get; set; }
 
+	public void OnEnterPocket( BallPocket pocket )
+	{
+		
+	}
+
 	protected override void OnStart()
 	{
 		var body = Components.Get<Rigidbody>();

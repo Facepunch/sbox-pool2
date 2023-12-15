@@ -1008,6 +1008,139 @@
           "BallPrefab": "prefabs/pool_ball.prefab"
         }
       ]
+    },
+    {
+      "Id": "5daf40d5-bfbe-4f63-a338-c1567c4b7b76",
+      "Name": "Pockets",
+      "Enabled": true,
+      "Children": [
+        {
+          "Id": "bef30778-3ae5-46fe-a999-55709dad2bd3",
+          "Name": "Pocket",
+          "Position": "23.89012,-50.51053,8.090955",
+          "Tags": "pocket",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Radius": 3,
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "BallPocket",
+              "__enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "cd3d8681-3393-43f2-af8a-dbf3ddee2c8e",
+          "Name": "Pocket",
+          "Position": "-26.45412,-50.08778,8.090955",
+          "Tags": "pocket",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Radius": 3,
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "BallPocket",
+              "__enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "2a6c3028-6210-43b4-92ec-b76bd897a396",
+          "Name": "Pocket",
+          "Position": "-28.68695,-0.6329605,8.090955",
+          "Tags": "pocket",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Radius": 3,
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "BallPocket",
+              "__enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "138a8366-9085-45c8-b94a-344177620a2b",
+          "Name": "Pocket",
+          "Position": "-26.72132,48.79945,8.090955",
+          "Tags": "pocket",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Radius": 3,
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "BallPocket",
+              "__enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "ac5f112b-87fe-4cb7-8383-75ad60104f23",
+          "Name": "Pocket",
+          "Position": "24.25116,48.79945,8.090955",
+          "Tags": "pocket",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Radius": 3,
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "BallPocket",
+              "__enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "a135435a-50fb-45c3-8e9c-c75960113233",
+          "Name": "Pocket",
+          "Position": "26.61688,-0.8635703,8.090955",
+          "Tags": "pocket",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ColliderSphereComponent",
+              "__enabled": true,
+              "IsTrigger": true,
+              "Radius": 3,
+              "Static": false,
+              "Surface": null
+            },
+            {
+              "__type": "BallPocket",
+              "__enabled": true
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {

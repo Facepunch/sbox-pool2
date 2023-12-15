@@ -4,7 +4,7 @@ using Sandbox;
 
 namespace Facepunch.Pool;
 
-public class PoolCue : Component
+public class PoolCue : Component, INetworkSerializable
 {
 	private float CuePullBackOffset { get; set; }
 	private float LastPowerDistance { get; set; }
@@ -14,6 +14,16 @@ public class PoolCue : Component
 	private float CuePitch { get; set; }
 	private float CueYaw { get; set; }
 	private float ShotPower { get; set; }
+	
+	public void Write( ref ByteStream stream )
+	{
+		
+	}
+
+	public void Read( ByteStream stream )
+	{
+		
+	}
 	
 	protected override void OnUpdate()
 	{
