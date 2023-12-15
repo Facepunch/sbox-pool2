@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Sandbox;
+using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
@@ -27,12 +28,20 @@ public class PoolCue : Component, INetworkSerializable
 	
 	protected override void OnUpdate()
 	{
-		if ( IsProxy ) return;
-		
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
-		
-		if ( !Input.Down( "attack1" ) )
+
+		if ( !Network.IsOwner )
+		{
+			// If we don't own the cue right now (it isn't our turn), we can't control it.
+			return;
+		}
+
+		if ( Input.Down( "attack1" ) )
+		{
+			UpdatePowerSelection();
+		}
+		else
 		{
 			if ( !IsMakingShot )
 			{
@@ -42,20 +51,15 @@ public class PoolCue : Component, INetworkSerializable
 			{
 				if ( ShotPower >= 5f )
 				{
-					GameObject.Network.DropOwnership();
 					TakeShot( Transform.World, ShotPower );
 				}
-				
+			
 				CuePullBackOffset = 0f;
 				IsMakingShot = false;
 				ShotPower = 0f;
 			}
 		}
-		else
-		{
-			UpdatePowerSelection();
-		}
-		
+			
 		Transform.Position = whiteBall.Transform.Position - Transform.Rotation.Forward * (1f + CuePullBackOffset + (CuePitch * 0.04f));
 	}
 	
@@ -64,17 +68,22 @@ public class PoolCue : Component, INetworkSerializable
 		return (ball.Transform.Position - Transform.Position.WithZ( ball.Transform.Position.z )).Normal;
 	}
 
-	[Authority]
+	[Broadcast]
 	private void TakeShot( Transform transform, float power )
 	{
-		Transform.World = transform;
-
+		Network.DropOwnership();
+		
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
 		
-		var direction = DirectionTo( whiteBall );
-		var body = whiteBall.Components.Get<Rigidbody>();
-		body.ApplyImpulse( direction * power * 6f * body.PhysicsBody.Mass );
+		if ( GameNetworkSystem.IsHost )
+		{
+			Transform.World = transform;
+		
+			var direction = DirectionTo( whiteBall );
+			var body = whiteBall.Components.Get<Rigidbody>();
+			body.ApplyImpulse( direction * power * 6f * body.PhysicsBody.Mass );
+		}
 	}
 
 	private void UpdatePowerSelection()

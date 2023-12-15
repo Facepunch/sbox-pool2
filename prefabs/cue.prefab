@@ -1,0 +1,29 @@
+{
+  "RootObject": {
+    "Id": "60e03606-2247-46a2-bb4f-47a44b968488",
+    "Name": "Cue",
+    "Position": "-1.40999,27.73989,10.44003",
+    "Rotation": "-0.05216909,-0.05216918,0.705179,-0.7051804",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "ModelRenderer",
+        "__enabled": true,
+        "BodyGroups": 18446744073709551615,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/pool/pool_cue_b.vmdl",
+        "ShouldCastShadows": true,
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "PoolCue",
+        "__enabled": true
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}
