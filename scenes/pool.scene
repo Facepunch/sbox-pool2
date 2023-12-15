@@ -78,9 +78,7 @@
           "RenderExcludeTags": "",
           "RenderTags": "",
           "TargetEye": "None",
-          "Viewport": {
-            "Size": "1,1"
-          },
+          "Viewport": "0,0,1,1",
           "ZFar": 10000,
           "ZNear": 10
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Metrics;
 using System.Linq;
 using Sandbox;
 
@@ -45,7 +44,6 @@ public class PoolCue : Component
 		else
 		{
 			UpdatePowerSelection();
-			IsMakingShot = true;
 		}
 		
 		Transform.Position = whiteBall.Transform.Position - Transform.Rotation.Forward * (1f + CuePullBackOffset + (CuePitch * 0.04f));
@@ -59,8 +57,6 @@ public class PoolCue : Component
 	[Authority]
 	private void TakeShot( Transform transform, float power )
 	{
-		Log.Info( "Wants to take a shot: " + transform.Position );
-
 		Transform.World = transform;
 
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
@@ -76,7 +72,7 @@ public class PoolCue : Component
 		var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
 		var cursorPlaneEndPos = Camera.Position + cursorDirection * 350f;
 		var distanceToCue = cursorPlaneEndPos.Distance( Transform.Position - Transform.Rotation.Forward * 100f );
-		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * Time.Delta * 20f;
+		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * 1f;
 
 		if ( !IsMakingShot )
 		{
@@ -87,6 +83,7 @@ public class PoolCue : Component
 		CuePullBackOffset = Math.Clamp( CuePullBackOffset + cuePullBackDelta, 0f, 8f );
 		LastPowerDistance = distanceToCue;
 		ShotPower = CuePullBackOffset.AsPercentMinMax( 0f, 8f );
+		IsMakingShot = true;
 	}
 
 	private void UpdateDirection( Vector3 centerPosition )
