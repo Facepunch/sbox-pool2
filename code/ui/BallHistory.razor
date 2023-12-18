@@ -7,11 +7,13 @@
 @attribute [StyleSheet( "/ui/BallHistory.scss" )]
 @inherits Panel
 
-<root class="@GetHiddenClass()">
+@if ( !GameState.Instance.IsValid() ) return;
+
+<root class="@GetRootClass()">
     @for (var i = 0; i < 15; i++)
     {
-        if ( i < Items.Count ) {
-            <BallHistoryItem BallType=@Items[i].BallType BallNumber=@Items[i].BallNumber></BallHistoryItem>
+        if ( i < GameState.Instance.PotHistory.Count ) {
+            <BallHistoryItem BallType=@GameState.Instance.PotHistory[i].Type BallNumber=@GameState.Instance.PotHistory[i].Number></BallHistoryItem>
         } else {
             <BallHistoryItem BallType=@PoolBallType.White></BallHistoryItem>
         }
@@ -20,50 +22,12 @@
 
 @code
 {
-    public static BallHistory Current;
-
-    public BallHistory()
-    {
-        Current = this;
-    }
-
-    private List<BallHistoryItem> Items { get; set; } = new();
-
-    public void AddBall( PoolBall ball )
-    {
-        Items.Add( new()
-        {
-            BallType = ball.Type,
-            BallNumber = ball.Number
-        } );
-    }
-
-    public void AddByType( PoolBallType type, PoolBallNumber number )
-    {
-        Items.Add( new()
-        {
-            BallType = type,
-            BallNumber = number
-        } );
-    }
-
-    public void Clear()
-    {
-        Items.Clear();
-    }
-
     protected override int BuildHash()
     {
-        return HashCode.Combine( Items.Count );
+        return HashCode.Combine( GameState.Instance?.PotHistory.Count ?? 0,  GameState.Instance?.State );
     }
 
-    protected override void OnAfterTreeRender( bool firstTime )
-    {
-	    GameState.Instance.UpdatePotHistory();
-        base.OnAfterTreeRender( firstTime );
-    }
-
-    private string GetHiddenClass()
+    private string GetRootClass()
     {
 	    return GameState.Instance.State != RoundState.Playing ? "hidden" : string.Empty;
     }

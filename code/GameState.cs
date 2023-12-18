@@ -217,17 +217,6 @@ public class GameState : Component, INetworkSerializable
 		}
 	}
 
-	public void UpdatePotHistory()
-	{
-		if ( BallHistory.Current == null )
-			return;
-
-		BallHistory.Current.Clear();
-
-		foreach ( var item in PotHistory )
-			BallHistory.Current.AddByType( item.Type, item.Number );
-	}
-
 	protected override void OnFixedUpdate()
 	{
 		if ( GameNetworkSystem.IsHost && State == RoundState.Playing )
