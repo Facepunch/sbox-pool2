@@ -133,7 +133,7 @@ public class PoolPlayer : Component, INetworkSerializable
 
 	protected override void OnUpdate()
 	{
-		if ( IsLocalPlayer && IsPlacingWhiteBall)
+		if ( IsLocalPlayer && IsPlacingWhiteBall )
 		{
 			var whiteBall = GameManager.Instance.WhiteBall;
 			if ( whiteBall.IsValid() )

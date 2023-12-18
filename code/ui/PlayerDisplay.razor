@@ -32,7 +32,7 @@
 
     private string GetRootClass()
     {
-	    return GameState.Instance.State != RoundState.Playing ? "hidden" : string.Empty;
+	    return GameState.Instance?.State != RoundState.Playing ? "hidden" : string.Empty;
     }
 
     private float GetBarWidthPercent()

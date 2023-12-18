@@ -32,8 +32,10 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void StartPlacing()
 	{
 		Assert.True( GameNetworkSystem.IsHost );
+		
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = false;
+		physics.PhysicsBody.MotionEnabled = false;
 		physics.PhysicsBody.Enabled = false;
 	}
 
@@ -98,6 +100,7 @@ public class PoolBall : Component, Component.ICollisionListener
 		
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = true;
+		physics.PhysicsBody.MotionEnabled = true;
 		physics.PhysicsBody.Enabled = true;
 		physics.AngularVelocity = Vector3.Zero;
 		physics.Velocity = Vector3.Zero;
@@ -105,7 +108,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	}
 	
 	[Authority]
-	public void TryMoveTo( Vector3 worldPos )
+	public void TryMoveTo( Vector3 position )
 	{
 		/*
 		var worldOBB = CollisionBounds + worldPos;
@@ -125,7 +128,10 @@ public class PoolBall : Component, Component.ICollisionListener
 
 		//if ( within.ContainsXY( worldOBB ) )
 		//{
-			Transform.Position = worldPos.WithZ( Transform.Position.z );
+		Transform.Position = position.WithZ( Transform.Position.z );
+		
+		var rigidbody = Components.Get<Rigidbody>();
+		rigidbody.PhysicsBody.Position = Transform.Position;
 		//}
 	}
 
