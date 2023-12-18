@@ -142,27 +142,6 @@ public class PoolBall : Component, Component.ICollisionListener
 
 	protected override void OnUpdate()
 	{
-		if ( Type == PoolBallType.White )
-		{
-			// I hate all of this right now.
-			var player = PoolPlayer.LocalPlayer;
-			if ( player.IsValid() && player.IsPlacingWhiteBall )
-			{
-				var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
-				var cursorTrace = Scene.Trace.Ray( Camera.Main.Position, Camera.Main.Position + cursorDirection * 1000f ).Run();
-
-				/*
-				var whiteArea = PoolGame.Entity.WhiteArea;
-				var whiteAreaWorldOBB = whiteArea.CollisionBounds.ToWorldSpace( whiteArea );
-				*/
-				
-				TryMoveTo( cursorTrace.EndPosition );
-
-				if ( Input.Released( "attack1" ) )
-					player.StopPlacingWhiteBall();
-			}
-		}
-		
 		var renderer = Components.Get<ModelRenderer>();
 
 		if ( renderer is not null )

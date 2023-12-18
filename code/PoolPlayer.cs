@@ -18,6 +18,7 @@ public class PoolPlayer : Component, INetworkSerializable
 	public TimeSince TimeSinceWhiteStruck { get; private set; }
 	public bool HasStruckWhiteBall { get; private set; }
 	public EloScore Elo { get; private set; }
+	public bool IsLocalPlayer => ConnectionId == Connection.Local.Id;
 	public bool IsPlacingWhiteBall { get; private set; }
 	public bool HasSecondShot { get; set; }
 	public bool DidHitOwnBall { get; set; }
@@ -129,7 +130,32 @@ public class PoolPlayer : Component, INetworkSerializable
 		TimeSinceWhiteStruck = 0f;
 		HasStruckWhiteBall = true;
 	}
-	
+
+	protected override void OnUpdate()
+	{
+		if ( IsLocalPlayer && IsPlacingWhiteBall )
+		{
+			var whiteBall = GameManager.Instance.WhiteBall;
+			if ( whiteBall.IsValid() )
+			{
+				var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
+				var cursorTrace = Scene.Trace.Ray( Camera.Main.Position, Camera.Main.Position + cursorDirection * 1000f ).Run();
+
+				/*
+				var whiteArea = PoolGame.Entity.WhiteArea;
+				var whiteAreaWorldOBB = whiteArea.CollisionBounds.ToWorldSpace( whiteArea );
+				*/
+				
+				whiteBall.TryMoveTo( cursorTrace.EndPosition );
+
+				if ( Input.Released( "attack1" ) )
+					StopPlacingWhiteBall();
+			}
+		}
+		
+		base.OnUpdate();
+	}
+
 	protected override void OnEnabled()
 	{
 		Elo = new();
