@@ -42,12 +42,7 @@ public class GameManager : Component, Component.INetworkListener
 	public void AddToast( ulong steamId, string text, string iconClass = "" )
 	{
 		var player = Players.FirstOrDefault( p => p.SteamId == steamId );
-		
-		if ( player.IsValid() )
-		{
-			Log.Warning( "Player was NULL in GameManager.AddToast!" );
-			return;
-		}
+		if ( !player.IsValid() ) return;
 
 		ToastList.Current.AddItem( player, text, iconClass );
 	}
