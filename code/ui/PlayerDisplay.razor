@@ -1,0 +1,66 @@
+﻿@using Sandbox;
+@using Sandbox.UI;
+@using System;
+
+@namespace Facepunch.Pool
+@attribute [StyleSheet( "/ui/PlayerDisplay.scss" )]
+@inherits Panel
+
+<root class="@GetRootClass()">
+    <PlayerDisplayItem class="one" Player=@GameState.Instance.PlayerOne>
+
+    </PlayerDisplayItem>
+
+    <PlayerDisplayItem class="two" Player=@GameState.Instance.PlayerTwo>
+
+    </PlayerDisplayItem>
+
+    <div class="time-remaining-number @GetTimeBarClass()">
+        <label class="time-remaining-label">@GetTimeLeft()</label>
+    </div>
+
+    <div class="time-bar-wrapper @GetTimeBarClass()">
+        <div class="time-remaining">
+            <div @ref="Bar" class="time-remaining-progress"></div>
+        </div>
+    </div>
+</root>
+
+@code
+{
+    private Panel Bar { get; set; }
+
+    private string GetRootClass()
+    {
+	    return GameState.Instance.State != RoundState.Playing ? "hidden" : string.Empty;
+    }
+
+    private float GetBarWidthPercent()
+    {
+        return (100f / 30f) * GetTimeLeft();
+    }
+
+    private string GetTimeBarClass()
+    {
+        if ( GameState.Instance.State != RoundState.Playing )
+	        return string.Empty;
+        
+        return GameState.Instance.TimeLeftSeconds < 5 ? "low" : string.Empty;
+    }
+
+    private int GetTimeLeft()
+    {
+	    return GameState.Instance.State == RoundState.Playing ? GameState.Instance.TimeLeftSeconds : 0;
+    }
+
+    public override void Tick()
+    {
+        Bar.Style.Width = Length.Percent(GetBarWidthPercent());
+        base.Tick();
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine( GameState.Instance.PlayerOne, GameState.Instance.PlayerTwo, GameState.Instance.TimeLeftSeconds );
+    }
+}

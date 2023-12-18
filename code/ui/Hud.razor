@@ -1,0 +1,51 @@
+﻿@using Sandbox;
+
+@namespace Facepunch.Pool
+@inherits PanelComponent
+
+<style>
+	.hud {
+    	transition: background-color 0.2s ease-in;
+    	pointer-events: none;
+    	position: absolute;
+    	left: 0px;
+    	top: 0px;
+    	width: 100%;
+    	height: 100%;
+    }
+    
+    .header {
+    	align-items: center;
+    	justify-content: center;
+    	position: absolute;
+    	top: 64px;
+    	left: 0;
+    	right: 0;
+    }
+    
+    .footer {
+    	display: flex;
+    	flex-direction: row;
+    	justify-content: flex-end;
+    	padding-left: 10%;
+    	padding-right: 10%;
+    	position: absolute;
+    	bottom: 64px;
+    	left: 0;
+    	right: 0;
+    	height: 60px;
+    }
+</style>
+
+<root class="hud">
+    <div class="header">
+         <PlayerDisplay></PlayerDisplay>
+    </div>
+
+    <div class="footer">
+	    <ToastList></ToastList>
+	    <BallHistory></BallHistory>
+    </div>
+    
+    <CursorController></CursorController>
+</root>

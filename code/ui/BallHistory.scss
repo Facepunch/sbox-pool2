@@ -1,0 +1,111 @@
+﻿ballhistory {
+    background-color: #1A202B;
+    box-shadow: 0 10px 20px rgba(#000,0.7);
+    border-radius: 30px;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px 8px 4px;
+    transition: all 2s ease-in-out;
+
+    &:intro {
+        opacity: 0;
+        top: -20px;
+    }
+
+
+    ballhistoryitem {
+        height: 32px;
+        width: 32px;
+        margin-left: 8px;
+
+        .icon {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            height: 32px;
+            width: 32px;
+            opacity: 1;
+            transition: all 2s ease-in-out;
+
+
+            &:intro {
+                opacity: 0;
+                right: -20px;
+            }
+
+            &.none {
+                background-image: url(/ui/pool/balls/ball-unset.png);
+                background-size: 100%;
+            }
+
+
+            &.spots_1 {
+                background-image: url(/ui/pool/balls/small/ball-spots-1.png);
+            }
+
+            &.spots_2 {
+                background-image: url(/ui/pool/balls/small/ball-spots-2.png);
+            }
+
+            &.spots_3 {
+                background-image: url(/ui/pool/balls/small/ball-spots-3.png);
+            }
+
+            &.spots_4 {
+                background-image: url(/ui/pool/balls/small/ball-spots-4.png);
+            }
+
+            &.spots_5 {
+                background-image: url(/ui/pool/balls/small/ball-spots-5.png);
+            }
+
+            &.spots_6 {
+                background-image: url(/ui/pool/balls/small/ball-spots-6.png);
+            }
+
+            &.spots_7 {
+                background-image: url(/ui/pool/balls/small/ball-spots-7.png);
+            }
+
+            &.stripes_1 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-1.png);
+            }
+
+            &.stripes_2 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-2.png);
+            }
+
+            &.stripes_3 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-3.png);
+            }
+
+            &.stripes_4 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-4.png);
+            }
+
+            &.stripes_5 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-5.png);
+            }
+
+            &.stripes_6 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-6.png);
+            }
+
+            &.stripes_7 {
+                background-image: url(/ui/pool/balls/small/ball-stripes-7.png);
+            }
+
+            &.black {
+                background-image: url(/ui/pool/balls/small/ball-black.png);
+            }
+        }
+    }
+
+    &.no-ball {
+        background-color: red;
+    }
+
+    &.hidden {
+        display: none;
+    }
+}

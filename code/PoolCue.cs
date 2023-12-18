@@ -7,6 +7,8 @@ namespace Facepunch.Pool;
 
 public class PoolCue : Component, INetworkSerializable
 {
+	public static PoolCue Instance { get; private set; }
+	
 	private float CuePullBackOffset { get; set; }
 	private float LastPowerDistance { get; set; }
 	private float MaxCuePitch { get; set; } = 17f;
@@ -16,16 +18,22 @@ public class PoolCue : Component, INetworkSerializable
 	private float CueYaw { get; set; }
 	private float ShotPower { get; set; }
 	
-	public void Write( ref ByteStream stream )
+	void INetworkSerializable.Write( ref ByteStream stream )
 	{
 		
 	}
 
-	public void Read( ByteStream stream )
+	void INetworkSerializable.Read( ByteStream stream )
 	{
 		
 	}
-	
+
+	protected override void OnEnabled()
+	{
+		Instance = this;
+		base.OnEnabled();
+	}
+
 	protected override void OnUpdate()
 	{
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
@@ -36,6 +44,9 @@ public class PoolCue : Component, INetworkSerializable
 			// If we don't own the cue right now (it isn't our turn), we can't control it.
 			return;
 		}
+
+		var player = PoolPlayer.LocalPlayer;
+		if ( !player.IsValid() || player.IsPlacingWhiteBall ) return;
 
 		if ( Input.Down( "attack1" ) )
 		{
@@ -75,15 +86,17 @@ public class PoolCue : Component, INetworkSerializable
 		
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
+		if ( !GameNetworkSystem.IsHost ) return;
+
+		var player = GameManager.Instance.Players.FirstOrDefault( p => p.IsTurn );
+			
+		Transform.World = transform;
 		
-		if ( GameNetworkSystem.IsHost )
-		{
-			Transform.World = transform;
-		
-			var direction = DirectionTo( whiteBall );
-			var body = whiteBall.Components.Get<Rigidbody>();
-			body.ApplyImpulse( direction * power * 6f * body.PhysicsBody.Mass );
-		}
+		var direction = DirectionTo( whiteBall );
+		var body = whiteBall.Components.Get<Rigidbody>();
+		body.ApplyImpulse( direction * power * 6f * body.PhysicsBody.Mass );
+
+		player.StikeWhiteBall();
 	}
 
 	private void UpdatePowerSelection()
@@ -91,7 +104,7 @@ public class PoolCue : Component, INetworkSerializable
 		var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
 		var cursorPlaneEndPos = Camera.Position + cursorDirection * 350f;
 		var distanceToCue = cursorPlaneEndPos.Distance( Transform.Position - Transform.Rotation.Forward * 100f );
-		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * 0.2f;
+		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * Time.Delta * 20f;
 
 		if ( !IsMakingShot )
 		{

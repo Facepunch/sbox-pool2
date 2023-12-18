@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sbox-inventory-system" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sbox-persistence" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sbox-projectiles" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sbox-puppet" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sbox-radial-menu" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../sbox-time-system" vcs="Git" />
   </component>
 </project>

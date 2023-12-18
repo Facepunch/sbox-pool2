@@ -1,0 +1,82 @@
+﻿@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.UI.Construct;
+@using System;
+
+@namespace Facepunch.Pool
+@attribute [StyleSheet( "/ui/summary/WinSummary.scss" )]
+@inherits Panel
+
+<root>
+	<RankIcon class="left-rank" Rank=@Elo.GetRank( PreviousScore ) Level=@Elo.GetLevel( PreviousScore )></RankIcon>
+	<RankIcon class="right-rank" Rank=@Elo.GetRank( NextScore ) Level=@Elo.GetLevel( NextScore )></RankIcon>
+
+	<div class="rank-bg">
+		<div class="rank-progress" @ref="BarProgress"></div>
+		<div class="rank-delta" @ref="BarDelta"></div>
+	</div>
+</root>
+
+@code
+{
+	public int Rating { get; set; }
+	public int Delta { get; set; }
+
+	private int PreviousScore { get; set; }
+	private int NextScore { get; set; }
+	private int Progress { get; set; }
+
+	private Panel BarProgress { get; set; }
+	private Panel BarDelta { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		var realNextScore = Elo.GetNextLevelRating( Rating );
+		
+		PreviousScore = Math.Max( Rating - Delta, 0 );
+
+		if ( realNextScore >= PreviousScore )
+		{
+			// Conna: we went down a rank.
+			NextScore = realNextScore;
+			Progress = 100 - (NextScore - Rating);
+			
+			Log.Info( $"Down Rank! Previous: {PreviousScore} Next: {NextScore} Progress: {Progress} Delta: {Delta}" );
+		}
+		else
+		{
+			NextScore = Elo.GetNextLevelRating( PreviousScore );
+
+			if ( Rating >= NextScore )
+			{
+				// Conna: we went up a rank.
+				Progress = 100 - (realNextScore - Rating);
+				Log.Info( $"Up Rank! Previous: {PreviousScore} Next: {NextScore} Progress: {Progress} Delta: {Delta}" );
+			}
+			else
+			{
+				Progress = 100 - (NextScore - PreviousScore);
+				Log.Info( $"Same Rank! Previous: {PreviousScore} Next: {NextScore} Progress: {Progress} Delta: {Delta}" );
+
+				if ( Delta < 0 )
+					Progress += Delta;
+			}
+		}
+
+		base.OnParametersSet();
+	}
+
+	protected override void OnAfterTreeRender( bool firstTime )
+	{
+		BarProgress.Style.Width = Length.Percent( Progress );
+		BarDelta.Style.Width = Length.Percent( Math.Min( Math.Abs( Delta ), 100 - Progress ) );
+		BarDelta.SetClass( "loss", Delta < 0 );
+
+		base.OnAfterTreeRender( firstTime );
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( Rating, Delta );
+	}
+}

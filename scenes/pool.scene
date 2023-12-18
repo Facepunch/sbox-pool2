@@ -692,8 +692,9 @@
                   "Enabled": true,
                   "Components": [
                     {
-                      "__type": "ColliderBoxComponent",
+                      "__type": "BoxCollider",
                       "__enabled": true,
+                      "Center": "0,0,0",
                       "IsTrigger": false,
                       "Scale": "110,104,1",
                       "Static": false,
@@ -969,7 +970,7 @@
           "ZIndex": 100
         },
         {
-          "__type": "CursorController",
+          "__type": "Hud",
           "__enabled": true
         }
       ]
@@ -1000,8 +1001,9 @@
           "Enabled": true,
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "SphereCollider",
               "__enabled": true,
+              "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
               "Static": false,
@@ -1021,8 +1023,9 @@
           "Enabled": true,
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "SphereCollider",
               "__enabled": true,
+              "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
               "Static": false,
@@ -1042,8 +1045,9 @@
           "Enabled": true,
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "SphereCollider",
               "__enabled": true,
+              "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
               "Static": false,
@@ -1063,8 +1067,9 @@
           "Enabled": true,
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "SphereCollider",
               "__enabled": true,
+              "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
               "Static": false,
@@ -1084,8 +1089,9 @@
           "Enabled": true,
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "SphereCollider",
               "__enabled": true,
+              "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
               "Static": false,
@@ -1105,8 +1111,9 @@
           "Enabled": true,
           "Components": [
             {
-              "__type": "ColliderSphereComponent",
+              "__type": "SphereCollider",
               "__enabled": true,
+              "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
               "Static": false,
