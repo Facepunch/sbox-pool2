@@ -36,17 +36,26 @@ public class PoolCue : Component, INetworkSerializable
 
 	protected override void OnUpdate()
 	{
-		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
-		if ( !whiteBall.IsValid() ) return;
+		var currentPlayer = GameState.Instance.CurrentPlayer;
+		var renderer = Components.Get<ModelRenderer>( true );
 
+		if ( !currentPlayer.IsValid() || currentPlayer.IsPlacingWhiteBall || currentPlayer.HasStruckWhiteBall )
+			renderer.Enabled = false;
+		else
+			renderer.Enabled = true;
+		
 		if ( !Network.IsOwner )
 		{
 			// If we don't own the cue right now (it isn't our turn), we can't control it.
 			return;
 		}
 
-		var player = PoolPlayer.LocalPlayer;
-		if ( !player.IsValid() || player.IsPlacingWhiteBall ) return;
+		var localPlayer = PoolPlayer.LocalPlayer;
+		if ( !localPlayer.IsValid() ) return;
+		if ( localPlayer.IsPlacingWhiteBall ) return;
+		
+		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
+		if ( !whiteBall.IsValid() ) return;
 
 		if ( Input.Down( "attack1" ) )
 		{

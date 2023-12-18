@@ -131,9 +131,9 @@ public class PoolBall : Component, Component.ICollisionListener
 
 	protected override void OnStart()
 	{
-		var body = Components.Get<Rigidbody>();
-		body.AngularDamping = 0.6f;
-		body.LinearDamping = 0.6f;
+		var physics = Components.Get<Rigidbody>();
+		physics.AngularDamping = 0.6f;
+		physics.LinearDamping = 0.6f;
 
 		StartUpPosition = Transform.Position.z;
 		
@@ -177,15 +177,12 @@ public class PoolBall : Component, Component.ICollisionListener
 		
 		var otherObject = info.Other.GameObject;
 		var otherBall = otherObject.Components.GetInDescendantsOrSelf<PoolBall>();
+		if ( !otherBall.IsValid() ) return;
 
-		if ( otherBall.IsValid() )
-		{
-			LastStriker = GameState.Instance.CurrentPlayer;
-			
-			GameState.Instance.OnBallHitOtherBall( this, otherBall );
+		LastStriker = GameState.Instance.CurrentPlayer;
+		GameState.Instance.OnBallHitOtherBall( this, otherBall );
 
-			PlayCollideSound( info.Contact.NormalSpeed );
-		}
+		PlayCollideSound( info.Contact.NormalSpeed );
 	}
 
 	public void OnCollisionUpdate( Collision info )
@@ -205,7 +202,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	}
 
 	[Broadcast]
-	public void PlayCollideSound( float speed )
+	private void PlayCollideSound( float speed )
 	{
 		var sound = Sound.Play( "ball-collide" );
 		sound.Pitch = Game.Random.Float( 0.9f, 1f );
