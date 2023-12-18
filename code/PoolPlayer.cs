@@ -174,6 +174,7 @@ public class PoolPlayer : Component, INetworkSerializable
 		stream.Write( DidHitOwnBall );
 		stream.Write( DidPotBall );
 		stream.Write( IsPlacingWhiteBall );
+		stream.Write( BallType );
 	}
 
 	void INetworkSerializable.Read( ByteStream stream )
@@ -188,5 +189,6 @@ public class PoolPlayer : Component, INetworkSerializable
 		DidHitOwnBall = stream.Read<bool>();
 		DidPotBall = stream.Read<bool>();
 		IsPlacingWhiteBall = stream.Read<bool>();
+		BallType = stream.Read<PoolBallType>();
 	}
 }
