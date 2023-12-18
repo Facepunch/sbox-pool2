@@ -133,7 +133,7 @@ public class PoolPlayer : Component, INetworkSerializable
 
 	protected override void OnUpdate()
 	{
-		if ( IsLocalPlayer && IsPlacingWhiteBall )
+		if ( IsLocalPlayer && IsPlacingWhiteBall)
 		{
 			var whiteBall = GameManager.Instance.WhiteBall;
 			if ( whiteBall.IsValid() )
@@ -164,7 +164,7 @@ public class PoolPlayer : Component, INetworkSerializable
 
 	void INetworkSerializable.Write( ref ByteStream stream )
 	{
-		stream.Write( Connection.Id );
+		stream.Write( ConnectionId );
 		stream.Write( SteamName );
 		stream.Write( SteamId );
 		stream.Write( HasSecondShot );

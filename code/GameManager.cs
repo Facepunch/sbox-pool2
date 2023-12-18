@@ -28,6 +28,7 @@ public class GameManager : Component, Component.INetworkListener
 
 		player.SteamName = connection.DisplayName ?? "local";
 		player.SteamId = connection.SteamId;
+		player.ConnectionId = connection.Id;
 		player.Connection = connection;
 		player.Network.Spawn();
 
@@ -52,9 +53,7 @@ public class GameManager : Component, Component.INetworkListener
 		Assert.True( GameNetworkSystem.IsHost );
 		
 		if ( shouldAnimate )
-		{
 			await ball.AnimateIntoPocket();
-		}
 
 		var spawners = Scene.GetAllComponents<PoolBallSpawn>();
 

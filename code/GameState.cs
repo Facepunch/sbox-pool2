@@ -32,7 +32,6 @@ public class GameState : Component, INetworkSerializable
 	public PoolPlayer CurrentPlayer { get; internal set; }
 
 	public RealTimeUntil PlayerTurnEndTime { get; private set; }
-	public TimeSince TimeSinceTurnTaken { get; private set; }
 	public int TimeLeftSeconds { get; private set; }
 	public RoundState State { get; private set; }
 	
@@ -42,9 +41,9 @@ public class GameState : Component, INetworkSerializable
 
 	void INetworkSerializable.Write( ref ByteStream stream )
 	{
-		stream.Write( PlayerOne?.SteamId ?? 0 );
-		stream.Write( PlayerTwo?.SteamId ?? 0 );
-		stream.Write( CurrentPlayer?.SteamId ?? 0 );
+		stream.Write( PlayerOne?.ConnectionId ?? Guid.Empty );
+		stream.Write( PlayerTwo?.ConnectionId ?? Guid.Empty );
+		stream.Write( CurrentPlayer?.ConnectionId ?? Guid.Empty );
 		stream.Write( TimeLeftSeconds );
 		stream.Write( State );
 		stream.Write( PotHistory.Count );
@@ -57,13 +56,13 @@ public class GameState : Component, INetworkSerializable
 
 	void INetworkSerializable.Read( ByteStream stream )
 	{
-		var playerOneId = stream.Read<ulong>();
-		var playerTwoId = stream.Read<ulong>();
-		var currentPlayerId = stream.Read<ulong>();
+		var playerOneId = stream.Read<Guid>();
+		var playerTwoId = stream.Read<Guid>();
+		var currentPlayerId = stream.Read<Guid>();
 
-		PlayerOne = GameManager.Instance.Players.FirstOrDefault( p => p.SteamId == playerOneId );
-		PlayerTwo = GameManager.Instance.Players.FirstOrDefault( p => p.SteamId == playerTwoId );
-		CurrentPlayer = GameManager.Instance.Players.FirstOrDefault( p => p.SteamId == currentPlayerId );
+		PlayerOne = GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == playerOneId );
+		PlayerTwo = GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == playerTwoId );
+		CurrentPlayer = GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == currentPlayerId );
 		State = stream.Read<RoundState>();
 		TimeLeftSeconds = stream.Read<int>();
 
@@ -97,31 +96,29 @@ public class GameState : Component, INetworkSerializable
 
 		if ( ball.LastStriker == null || !ball.LastStriker.IsValid() )
 		{
-			if ( ball.Type == PoolBallType.White )
+			switch ( ball.Type )
 			{
-				_ = GameManager.Instance.RespawnBallAsync( ball, true );
-			}
-			else if ( ball.Type == PoolBallType.Black )
-			{
-				_ = GameManager.Instance.RespawnBallAsync( ball, true );
-			}
-			else
-			{
-				var player = GetBallPlayer( ball );
-
-				if ( player != null && player.IsValid() )
-				{
-					var currentPlayer = GameState.Instance.CurrentPlayer;
-
-					if ( currentPlayer == player )
-						player.HasSecondShot = true;
-
-					DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
-				}
-
-				_ = GameManager.Instance.RemoveBallAsync( ball, true );
+				case PoolBallType.White:
+					_ = GameManager.Instance.RespawnBallAsync( ball, true );
+					return;
+				case PoolBallType.Black:
+					_ = GameManager.Instance.RespawnBallAsync( ball, true );
+					return;
 			}
 
+			var player = GetBallPlayer( ball );
+
+			if ( player != null && player.IsValid() )
+			{
+				var currentPlayer = GameState.Instance.CurrentPlayer;
+
+				if ( currentPlayer == player )
+					player.HasSecondShot = true;
+
+				DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
+			}
+
+			_ = GameManager.Instance.RemoveBallAsync( ball, true );
 			return;
 		}
 
@@ -132,20 +129,18 @@ public class GameState : Component, INetworkSerializable
 		}
 		else if ( ball.Type == ball.LastStriker.BallType )
 		{
-			if ( GameState.Instance.CurrentPlayer == ball.LastStriker )
+			if ( CurrentPlayer == ball.LastStriker )
 			{
 				ball.LastStriker.HasSecondShot = true;
 				ball.LastStriker.DidHitOwnBall = true;
 			}
 
 			DoPlayerPotBall( ball.LastStriker, ball, BallPotType.Normal );
-
 			_ = GameManager.Instance.RemoveBallAsync( ball, true );
 		}
 		else if ( ball.Type == PoolBallType.Black )
 		{
 			DoPlayerPotBall( ball.LastStriker, ball, BallPotType.Normal );
-
 			_ = GameManager.Instance.RemoveBallAsync( ball, true );
 		}
 		else
@@ -219,20 +214,43 @@ public class GameState : Component, INetworkSerializable
 
 	protected override void OnFixedUpdate()
 	{
-		if ( GameNetworkSystem.IsHost && State == RoundState.Playing )
+		base.OnFixedUpdate();
+
+		if ( !GameNetworkSystem.IsHost || State != RoundState.Playing )
+			return;
+
+		if ( CurrentPlayer.IsValid() && CurrentPlayer.HasStruckWhiteBall &&
+		     CurrentPlayer.TimeSinceWhiteStruck > 3f )
 		{
-			if ( CurrentPlayer.IsValid() && CurrentPlayer.HasStruckWhiteBall &&
-			     CurrentPlayer.TimeSinceWhiteStruck > 3f )
+			var whiteBall = GameManager.Instance.WhiteBall;
+			if ( whiteBall.IsValid() && whiteBall.Network.IsOwner )
 			{
-				var whiteBall = GameManager.Instance.WhiteBall;
-				if ( whiteBall.IsValid() && whiteBall.Network.IsOwner )
-				{
-					CheckForStoppedBalls();
-				}
+				CheckForStoppedBalls();
 			}
 		}
-		
-		base.OnFixedUpdate();
+			
+		var timeLeft = MathF.Max( PlayerTurnEndTime, 0f );
+			
+		if ( !CurrentPlayer.IsValid() )
+			return;
+
+		if ( CurrentPlayer.HasStruckWhiteBall )
+			return;
+
+		TimeLeftSeconds = timeLeft.CeilToInt();
+
+		/*
+		if ( timeLeft <= 4f && ClockTickingSound == null )
+		{
+			ClockTickingSound = currentPlayer.PlaySound( "clock-ticking" );
+			ClockTickingSound.Value.SetVolume( 0.5f );
+		}
+		*/
+
+		if ( timeLeft <= 0f )
+		{
+			EndTurn();
+		}
 	}
 
 	private bool ShouldIncreaseTimeScale()
