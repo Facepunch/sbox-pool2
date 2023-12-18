@@ -33,12 +33,12 @@ public class GameState : Component, INetworkSerializable
 
 	public RealTimeUntil PlayerTurnEndTime { get; private set; }
 	public TimeSince TimeSinceTurnTaken { get; private set; }
-	public bool DidClaimThisTurn { get; private set; }
-	public bool HasPlayedFastForwardSound { get; private set; }
-	public bool IsFastForwarding { get; private set; }
 	public int TimeLeftSeconds { get; private set; }
-
 	public RoundState State { get; private set; }
+	
+	private bool DidClaimThisTurn { get; set; }
+	private bool HasPlayedFastForwardSound { get; set; }
+	private bool IsFastForwarding { get; set; }
 
 	void INetworkSerializable.Write( ref ByteStream stream )
 	{
