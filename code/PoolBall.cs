@@ -39,12 +39,12 @@ public class PoolBall : Component, Component.ICollisionListener
 
 	public string GetIconClass()
 	{
-		if ( Type == PoolBallType.Black )
-			return "black";
-		else if ( Type == PoolBallType.White )
-			return "white";
-
-		return $"{ Type.ToString().ToLower() }_{ (int)Number }";
+		return Type switch
+		{
+			PoolBallType.Black => "black",
+			PoolBallType.White => "white",
+			_ => $"{Type.ToString().ToLower()}_{(int)Number}"
+		};
 	}
 
 	public bool CanPlayerHit( PoolPlayer player )

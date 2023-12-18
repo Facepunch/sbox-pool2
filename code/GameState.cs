@@ -107,7 +107,7 @@ public class GameState : Component, INetworkSerializable
 			}
 			else
 			{
-				var player = GameState.Instance.GetBallPlayer( ball );
+				var player = GetBallPlayer( ball );
 
 				if ( player != null && player.IsValid() )
 				{
