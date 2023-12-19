@@ -61,10 +61,13 @@ public class PoolPlayer : Component, INetworkSerializable
 			StartPlacingWhiteBall();
 	}
 	
-	[Authority]
+	[Broadcast]
 	public void SendSoundToOwner( string soundName )
 	{
-		Sound.Play( soundName );
+		if ( IsLocalPlayer )
+		{
+			Sound.Play( soundName );
+		}
 	}
 	
 	[Broadcast]
