@@ -12,8 +12,7 @@ public class BallPocket : Component, Component.ITriggerListener
 		var ball = other.GameObject.Components.GetInParentOrSelf<PoolBall>();
 		if ( !ball.IsValid() ) return;
 		if ( ball.IsAnimating ) return;
-
-		Log.Info( ball.Type + " hit a pocket" );
+		
 		ball.OnEnterPocket( this );
 	}
 
