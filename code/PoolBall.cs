@@ -6,27 +6,23 @@ using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
-public class PoolBall : Component, Component.ICollisionListener
+public class PoolBall : Component, Component.ICollisionListener, INetworkSerializable
 {
 	[Property] public PoolBallType Type { get; set; }
 	[Property] public PoolBallNumber Number { get; set; }
-	public PoolPlayer LastStriker { get; private set; }
+	public PoolPlayer LastStriker { get; set; }
 	public bool IsAnimating { get; private set; }
-	public BallPocket LastPocket { get; private set; }
 	
+	private BallPocket LastPocket { get; set; }
 	private float StartUpPosition { get; set; }
+	private float RenderAlpha { get; set; }
 
 	public void OnEnterPocket( BallPocket pocket )
 	{
-		if ( IsAnimating ) return;
-
+		Assert.True( GameNetworkSystem.IsHost );
+		
 		LastPocket = pocket;
 		GameState.Instance.OnBallEnterPocket( this, pocket );
-	}
-	
-	public void ResetLastStriker()
-	{
-		LastStriker = null;
 	}
 
 	public void StartPlacing()
@@ -37,6 +33,21 @@ public class PoolBall : Component, Component.ICollisionListener
 		physics.PhysicsBody.EnableSolidCollisions = false;
 		physics.PhysicsBody.MotionEnabled = false;
 		physics.PhysicsBody.Enabled = false;
+	}
+
+	public void Respawn( Vector3 position )
+	{
+		RenderAlpha = 1f;
+		Transform.Scale = 1f;
+		Transform.Position = position;
+
+		var renderer = Components.Get<ModelRenderer>();
+		renderer.Tint = renderer.Tint.WithAlpha( RenderAlpha );
+
+		var physics = Components.Get<Rigidbody>();
+		physics.AngularVelocity = Vector3.Zero;
+		physics.Velocity = Vector3.Zero;
+		physics.ClearForces();
 	}
 
 	public string GetIconClass()
@@ -66,8 +77,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	{
 		Assert.True( GameNetworkSystem.IsHost );
 		Assert.True( !IsAnimating );
-
-		var renderer = Components.Get<ModelRenderer>();
+		
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = false;
 		physics.PhysicsBody.MotionEnabled = false;
@@ -79,12 +89,12 @@ public class PoolBall : Component, Component.ICollisionListener
 		{
 			await Task.Delay( 30 );
 
-			renderer.Tint = renderer.Tint.WithAlpha( renderer.Tint.a.LerpTo( 0f, Time.Delta * 5f ) );
+			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
 			
 			if ( LastPocket != null && LastPocket.IsValid() )
 				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
 
-			if ( renderer.Tint.a.AlmostEqual( 0f ) )
+			if ( RenderAlpha.AlmostEqual( 0f ) )
 				break;
 		}
 
@@ -142,6 +152,7 @@ public class PoolBall : Component, Component.ICollisionListener
 		physics.LinearDamping = 0.6f;
 
 		StartUpPosition = Transform.Position.z;
+		RenderAlpha = 1f;
 		
 		base.OnStart();
 	}
@@ -151,7 +162,10 @@ public class PoolBall : Component, Component.ICollisionListener
 		var renderer = Components.Get<ModelRenderer>();
 
 		if ( renderer is not null )
+		{
 			renderer.MaterialGroup = GetMaterialGroup();
+			renderer.Tint = renderer.Tint.WithAlpha( RenderAlpha );
+		}
 
 		if ( Network.IsOwner )
 		{
@@ -176,8 +190,18 @@ public class PoolBall : Component, Component.ICollisionListener
 			_ => "default"
 		};
 	}
+	
+	void INetworkSerializable.Write( ref ByteStream stream )
+	{
+		stream.Write( RenderAlpha );
+	}
 
-	public void OnCollisionStart( Collision info )
+	void INetworkSerializable.Read( ByteStream stream )
+	{
+		RenderAlpha = stream.Read<float>();
+	}
+
+	void ICollisionListener.OnCollisionStart( Collision info )
 	{
 		if ( !GameNetworkSystem.IsHost ) return;
 		
@@ -191,12 +215,12 @@ public class PoolBall : Component, Component.ICollisionListener
 		PlayCollideSound( info.Contact.NormalSpeed );
 	}
 
-	public void OnCollisionUpdate( Collision info )
+	void ICollisionListener.OnCollisionUpdate( Collision info )
 	{
 		
 	}
 
-	public void OnCollisionStop( CollisionStop info )
+	void ICollisionListener.OnCollisionStop( CollisionStop info )
 	{
 		
 	}

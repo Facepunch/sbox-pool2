@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
@@ -6,12 +7,14 @@ public class BallPocket : Component, Component.ITriggerListener
 {
 	void ITriggerListener.OnTriggerEnter( Collider other )
 	{
-		var ball = other.GameObject.Components.GetInParentOrSelf<PoolBall>();
+		if ( !GameNetworkSystem.IsHost ) return;
 		
-		if ( ball.IsValid() )
-		{
-			ball.OnEnterPocket( this );
-		}
+		var ball = other.GameObject.Components.GetInParentOrSelf<PoolBall>();
+		if ( !ball.IsValid() ) return;
+		if ( ball.IsAnimating ) return;
+
+		Log.Info( ball.Type + " hit a pocket" );
+		ball.OnEnterPocket( this );
 	}
 
 	void ITriggerListener.OnTriggerExit( Collider other )

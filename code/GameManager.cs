@@ -60,21 +60,9 @@ public class GameManager : Component, Component.INetworkListener
 		foreach ( var spawner in spawners )
 		{
 			if ( spawner.Type != ball.Type || spawner.Number != ball.Number )
-			{
 				continue;
-			}
 
-			ball.Transform.Scale = 1f;
-			ball.Transform.Position = spawner.Transform.Position;
-
-			var renderer = ball.Components.Get<ModelRenderer>();
-			renderer.Tint = renderer.Tint.WithAlpha( 1f );
-
-			var physics = ball.Components.Get<Rigidbody>();
-			physics.AngularVelocity = Vector3.Zero;
-			physics.Velocity = Vector3.Zero;
-			physics.ClearForces();
-
+			ball.Respawn( spawner.Transform.Position );
 			return;
 		}
 	}

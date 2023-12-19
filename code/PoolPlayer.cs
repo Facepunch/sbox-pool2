@@ -12,11 +12,11 @@ public class PoolPlayer : Component, INetworkSerializable
 		GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == Connection.Local.Id );
 	
 	public PoolBallType BallType { get; set; }
-	public FoulReason FoulReason { get; set; }
+	public FoulReason FoulReason { get; private set; }
 	public Connection Connection { get; set; }
 	public Guid ConnectionId { get; set; }
-	public TimeSince TimeSinceWhiteStruck { get; private set; }
-	public bool HasStruckWhiteBall { get; private set; }
+	public TimeSince TimeSinceWhiteStruck { get; set; }
+	public bool HasStruckWhiteBall { get; set; }
 	public EloScore Elo { get; private set; }
 	public bool IsLocalPlayer => ConnectionId == Connection.Local.Id;
 	public bool IsPlacingWhiteBall { get; private set; }
@@ -124,13 +124,6 @@ public class PoolPlayer : Component, INetworkSerializable
 		IsTurn = false;
 	}
 
-	public void StikeWhiteBall()
-	{
-		Assert.True( GameNetworkSystem.IsHost );
-		TimeSinceWhiteStruck = 0f;
-		HasStruckWhiteBall = true;
-	}
-
 	protected override void OnUpdate()
 	{
 		if ( IsLocalPlayer && IsPlacingWhiteBall )
@@ -159,6 +152,9 @@ public class PoolPlayer : Component, INetworkSerializable
 	protected override void OnEnabled()
 	{
 		Elo = new();
+		Score = 0;
+		BallType = PoolBallType.White;
+		
 		base.OnEnabled();
 	}
 
@@ -174,7 +170,7 @@ public class PoolPlayer : Component, INetworkSerializable
 		stream.Write( DidHitOwnBall );
 		stream.Write( DidPotBall );
 		stream.Write( IsPlacingWhiteBall );
-		stream.Write( BallType );
+		stream.Write( (int)BallType );
 	}
 
 	void INetworkSerializable.Read( ByteStream stream )
@@ -189,6 +185,6 @@ public class PoolPlayer : Component, INetworkSerializable
 		DidHitOwnBall = stream.Read<bool>();
 		DidPotBall = stream.Read<bool>();
 		IsPlacingWhiteBall = stream.Read<bool>();
-		BallType = stream.Read<PoolBallType>();
+		BallType = (PoolBallType)stream.Read<int>();
 	}
 }

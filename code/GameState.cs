@@ -155,7 +155,7 @@ public class GameState : Component, INetworkSerializable
 				ball.LastStriker.DidHitOwnBall = true;
 				ball.LastStriker.BallType = ball.Type;
 
-				var otherPlayer = GameState.Instance.GetOtherPlayer( ball.LastStriker );
+				var otherPlayer = GetOtherPlayer( ball.LastStriker );
 				otherPlayer.BallType =
 					(ball.Type == PoolBallType.Spots ? PoolBallType.Stripes : PoolBallType.Spots);
 
@@ -291,13 +291,18 @@ public class GameState : Component, INetworkSerializable
 		}
 
 		foreach ( var ball in GameManager.Instance.Balls )
-			ball.ResetLastStriker();
+		{
+			ball.LastStriker = null;
+		}
 
 		if ( !didHitAnyBall )
 			currentPlayer.Foul( FoulReason.HitNothing );
 
 		if ( currentPlayer.IsPlacingWhiteBall )
+		{
+			_ = GameManager.Instance.RespawnBallAsync( GameManager.Instance.WhiteBall );
 			currentPlayer.StopPlacingWhiteBall();
+		}
 
 		var otherPlayer = GetOtherPlayer( currentPlayer );
 		var blackBall = GameManager.Instance.BlackBall;

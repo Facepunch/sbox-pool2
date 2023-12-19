@@ -9,6 +9,8 @@ public class PoolCue : Component, INetworkSerializable
 {
 	public static PoolCue Instance { get; private set; }
 	
+	private TimeSince TimeSinceWhiteStruck { get; set; }
+	private Vector3 LastWhiteBallPosition { get; set; }
 	private float CuePullBackOffset { get; set; }
 	private float LastPowerDistance { get; set; }
 	private float MaxCuePitch { get; set; } = 17f;
@@ -40,13 +42,23 @@ public class PoolCue : Component, INetworkSerializable
 		var renderer = Components.Get<ModelRenderer>( true );
 
 		if ( !currentPlayer.IsValid() || currentPlayer.IsPlacingWhiteBall || currentPlayer.HasStruckWhiteBall )
-			renderer.Enabled = false;
+			FadeTo( 0f, 4f );
 		else
-			renderer.Enabled = true;
+			FadeTo( 1f, 8f );
+		
+		// Don't render entirely if we're placing the white ball.
+		renderer.SceneObject.RenderingEnabled = !currentPlayer.IsPlacingWhiteBall;
 		
 		if ( !Network.IsOwner )
 		{
 			// If we don't own the cue right now (it isn't our turn), we can't control it.
+			return;
+		}
+
+		if ( TimeSinceWhiteStruck < 2f )
+		{
+			// We recently struck the white ball so let's just interpolate the cue forward.
+			Transform.Position = LastWhiteBallPosition - Transform.Rotation.Forward * (1f + (CuePitch * 0.04f));
 			return;
 		}
 
@@ -69,18 +81,18 @@ public class PoolCue : Component, INetworkSerializable
 			}
 			else
 			{
-				if ( ShotPower >= 5f )
-				{
-					TakeShot( Transform.World, ShotPower );
-				}
-			
-				CuePullBackOffset = 0f;
-				IsMakingShot = false;
-				ShotPower = 0f;
+				TakeShot( Transform.World, ShotPower );
+				return;
 			}
 		}
 			
 		Transform.Position = whiteBall.Transform.Position - Transform.Rotation.Forward * (1f + CuePullBackOffset + (CuePitch * 0.04f));
+	}
+
+	private void FadeTo( float opacity, float speed )
+	{
+		var renderer = Components.Get<ModelRenderer>( true );
+		renderer.Tint = renderer.Tint.WithAlpha( renderer.Tint.a.LerpTo( opacity, Time.Delta * speed ) );
 	}
 	
 	private Vector3 DirectionTo( PoolBall ball )
@@ -91,21 +103,32 @@ public class PoolCue : Component, INetworkSerializable
 	[Broadcast]
 	private void TakeShot( Transform transform, float power )
 	{
-		Network.DropOwnership();
+		if ( Network.IsOwner )
+		{
+			CuePullBackOffset = 0f;
+			IsMakingShot = false;
+			ShotPower = 0f;
+		}
 		
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
+		
+		var currentPlayer = GameState.Instance.CurrentPlayer;
+		if ( !currentPlayer.IsValid() ) return;
+		
+		currentPlayer.TimeSinceWhiteStruck = 0f;
+		currentPlayer.HasStruckWhiteBall = true;
+		
+		TimeSinceWhiteStruck = 0f;
+		LastWhiteBallPosition = whiteBall.Transform.Position;
+		
 		if ( !GameNetworkSystem.IsHost ) return;
-
-		var player = GameManager.Instance.Players.FirstOrDefault( p => p.IsTurn );
-			
+		
 		Transform.World = transform;
 		
 		var direction = DirectionTo( whiteBall );
 		var body = whiteBall.Components.Get<Rigidbody>();
 		body.ApplyImpulse( direction * power * 6f * body.PhysicsBody.Mass );
-
-		player.StikeWhiteBall();
 	}
 
 	private void UpdatePowerSelection()
