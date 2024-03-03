@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Sandbox;
 using Sandbox.Diagnostics;
@@ -21,59 +20,28 @@ public struct PotHistoryItem
 	public PoolBallType Type { get; set; }
 }
 
-public class GameState : Component, INetworkSerializable
+public class GameState : Component
 {
 	public static GameState Instance { get; private set; }
 
-	public List<PotHistoryItem> PotHistory { get; private set; }
+	[Sync] public NetList<PotHistoryItem> PotHistory { get; private set; }
 
-	public PoolPlayer PlayerOne { get; private set; }
-	public PoolPlayer PlayerTwo { get; private set; }
-	public PoolPlayer CurrentPlayer { get; internal set; }
+	[Sync] private Guid PlayerOneId { get; set; } 
+	[Sync] private Guid PlayerTwoId { get; set; }
+	[Sync] private Guid CurrentPlayerId { get; set; }
+
+	public PoolPlayer PlayerOne => Scene?.Directory.FindByGuid( PlayerOneId )?.Components.Get<PoolPlayer>();
+	public PoolPlayer PlayerTwo => Scene?.Directory.FindByGuid( PlayerTwoId )?.Components.Get<PoolPlayer>();
+	public PoolPlayer CurrentPlayer => Scene?.Directory.FindByGuid( CurrentPlayerId )?.Components.Get<PoolPlayer>();
 
 	public RealTimeUntil PlayerTurnEndTime { get; private set; }
-	public int TimeLeftSeconds { get; private set; }
-	public RoundState State { get; private set; }
+	
+	[Sync] public int TimeLeftSeconds { get; private set; }
+	[Sync] public RoundState State { get; private set; }
 	
 	private bool DidClaimThisTurn { get; set; }
 	private bool HasPlayedFastForwardSound { get; set; }
 	private bool IsFastForwarding { get; set; }
-
-	void INetworkSerializable.Write( ref ByteStream stream )
-	{
-		stream.Write( PlayerOne?.ConnectionId ?? Guid.Empty );
-		stream.Write( PlayerTwo?.ConnectionId ?? Guid.Empty );
-		stream.Write( CurrentPlayer?.ConnectionId ?? Guid.Empty );
-		stream.Write( TimeLeftSeconds );
-		stream.Write( State );
-		stream.Write( PotHistory.Count );
-
-		foreach ( var p in PotHistory )
-		{
-			stream.Write( p );
-		}
-	}
-
-	void INetworkSerializable.Read( ByteStream stream )
-	{
-		var playerOneId = stream.Read<Guid>();
-		var playerTwoId = stream.Read<Guid>();
-		var currentPlayerId = stream.Read<Guid>();
-
-		PlayerOne = GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == playerOneId );
-		PlayerTwo = GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == playerTwoId );
-		CurrentPlayer = GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == currentPlayerId );
-		State = stream.Read<RoundState>();
-		TimeLeftSeconds = stream.Read<int>();
-
-		var potHistoryCount = stream.Read<int>();
-		PotHistory.Clear();
-
-		for ( var i = 0; i < potHistoryCount; i++ )
-		{
-			PotHistory.Add( stream.Read<PotHistoryItem>() );
-		}
-	}
 
 	public PoolPlayer GetBallPlayer( PoolBall ball )
 	{
@@ -88,9 +56,14 @@ public class GameState : Component, INetworkSerializable
 		return player == PlayerOne ? PlayerTwo : PlayerOne;
 	}
 
+	public void SetCurrentPlayer( PoolPlayer player )
+	{
+		CurrentPlayerId = player.GameObject.Id;
+	}
+
 	public void OnBallEnterPocket( PoolBall ball, BallPocket pocket )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 
 		ball.PlayPocketSound();
 
@@ -177,7 +150,7 @@ public class GameState : Component, INetworkSerializable
 
 	public void OnBallHitOtherBall( PoolBall ball, PoolBall other )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 
 		if ( ball.Type != PoolBallType.White ) return;
 
@@ -216,7 +189,7 @@ public class GameState : Component, INetworkSerializable
 	{
 		base.OnFixedUpdate();
 
-		if ( !GameNetworkSystem.IsHost || State != RoundState.Playing )
+		if ( !Networking.IsHost || State != RoundState.Playing )
 			return;
 
 		if ( CurrentPlayer.IsValid() && CurrentPlayer.HasStruckWhiteBall &&
@@ -265,7 +238,7 @@ public class GameState : Component, INetworkSerializable
 
 	private void EndTurn()
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 
 		var currentPlayer = CurrentPlayer;
 
@@ -378,15 +351,16 @@ public class GameState : Component, INetworkSerializable
 
 	public void StartGame()
 	{
-		Assert.True( GameNetworkSystem.IsHost );
-		
-		PlayerOne = GameManager.Instance.Players.ElementAt( 0 );
-		PlayerTwo = GameManager.Instance.Players.ElementAt( 1 );
+		Assert.True( Networking.IsHost );
+
+		var players = GameManager.Instance.Players.ToList();
+		PlayerOneId = players[0].GameObject.Id;
+		PlayerTwoId = players[1].GameObject.Id;
 
 		var startingPlayer = PlayerTwo;
 		
 		var cue = CreateCue();
-		cue.Network.AssignOwnership( startingPlayer.Connection );
+		cue.Network.AssignOwnership( Networking.FindConnection( startingPlayer.Network.OwnerId ) );
 
 		startingPlayer.StartTurn();
 		startingPlayer.StartPlacingWhiteBall();
@@ -436,10 +410,10 @@ public class GameState : Component, INetworkSerializable
 	
 	private PoolCue CreateCue()
 	{
-		var cueObject = SceneUtility.Instantiate( GameManager.Instance.CuePrefab );
+		var cueObject = GameManager.Instance.CuePrefab.Clone();
 		var cue = cueObject.Components.Get<PoolCue>();
 		cueObject.BreakFromPrefab();
-		cueObject.Network.Spawn();
+		cueObject.NetworkSpawn();
 		return cue;
 	}
 }

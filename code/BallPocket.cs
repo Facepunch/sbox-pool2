@@ -7,7 +7,7 @@ public class BallPocket : Component, Component.ITriggerListener
 {
 	void ITriggerListener.OnTriggerEnter( Collider other )
 	{
-		if ( !GameNetworkSystem.IsHost ) return;
+		if ( !Networking.IsHost ) return;
 		
 		var ball = other.GameObject.Components.GetInParentOrSelf<PoolBall>();
 		if ( !ball.IsValid() ) return;

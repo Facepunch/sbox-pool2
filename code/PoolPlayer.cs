@@ -6,27 +6,26 @@ using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
-public class PoolPlayer : Component, INetworkSerializable
+public class PoolPlayer : Component
 {
 	public static PoolPlayer LocalPlayer =>
-		GameManager.Instance.Players.FirstOrDefault( p => p.ConnectionId == Connection.Local.Id );
+		GameManager.Instance.Players.FirstOrDefault( p => p.IsLocalPlayer );
 	
-	public PoolBallType BallType { get; set; }
-	public FoulReason FoulReason { get; private set; }
-	public Connection Connection { get; set; }
-	public Guid ConnectionId { get; set; }
 	public TimeSince TimeSinceWhiteStruck { get; set; }
-	public bool HasStruckWhiteBall { get; set; }
 	public EloScore Elo { get; private set; }
-	public bool IsLocalPlayer => ConnectionId == Connection.Local.Id;
-	public bool IsPlacingWhiteBall { get; private set; }
-	public bool HasSecondShot { get; set; }
-	public bool DidHitOwnBall { get; set; }
-	public bool DidPotBall { get; set; }
-	public bool IsTurn { get; private set; }
-	public string SteamName { get; set; }
-	public ulong SteamId { get; set; }
-	public int Score { get; set; }
+	public bool IsLocalPlayer => Network.IsOwner;
+	
+	[HostSync] public PoolBallType BallType { get; set; }
+	[HostSync] public FoulReason FoulReason { get; private set; }
+	[HostSync] public bool HasStruckWhiteBall { get; set; }
+	[HostSync] public bool IsPlacingWhiteBall { get; private set; }
+	[HostSync] public bool HasSecondShot { get; set; }
+	[HostSync] public bool DidHitOwnBall { get; set; }
+	[HostSync] public bool DidPotBall { get; set; }
+	[HostSync] public bool IsTurn { get; private set; }
+	[HostSync] public string SteamName { get; set; }
+	[HostSync] public ulong SteamId { get; set; }
+	[HostSync] public int Score { get; set; }
 	
 	public int BallsLeft
 	{
@@ -39,16 +38,15 @@ public class PoolPlayer : Component, INetworkSerializable
 	
 	public void StartTurn( bool hasSecondShot = false, bool showMessage = true )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		if ( showMessage )
 			GameManager.Instance.AddToast( SteamId, $"{ SteamName } has started their turn" );
 
 		SendSoundToOwner( "ding" );
 
-		PoolCue.Instance.Network.AssignOwnership( Connection );
-
-		GameState.Instance.CurrentPlayer = this;
+		PoolCue.Instance.Network.AssignOwnership( Networking.FindConnection( Network.OwnerId ) );
+		GameState.Instance.SetCurrentPlayer( this );
 
 		HasStruckWhiteBall = false;
 		HasSecondShot = hasSecondShot;
@@ -78,7 +76,7 @@ public class PoolPlayer : Component, INetworkSerializable
 
 	public void StartPlacingWhiteBall()
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		var whiteBall = GameManager.Instance.WhiteBall;
 
@@ -92,9 +90,11 @@ public class PoolPlayer : Component, INetworkSerializable
 		IsPlacingWhiteBall = true;
 	}
 
-	[Authority]
+	[Broadcast]
 	public void StopPlacingWhiteBall()
 	{
+		if ( !Networking.IsHost ) return;
+		
 		var whiteBall = GameManager.Instance.WhiteBall;
 
 		if ( whiteBall.IsValid() )
@@ -107,7 +107,7 @@ public class PoolPlayer : Component, INetworkSerializable
 
 	public void Foul( FoulReason reason )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		if ( FoulReason != FoulReason.None ) return;
 
@@ -131,11 +131,13 @@ public class PoolPlayer : Component, INetworkSerializable
 	{
 		if ( IsLocalPlayer && IsPlacingWhiteBall )
 		{
+			Log.Info( "Why do we wanna move the white ball?" );
 			var whiteBall = GameManager.Instance.WhiteBall;
 			if ( whiteBall.IsValid() )
 			{
-				var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
-				var cursorTrace = Scene.Trace.Ray( Camera.Main.Position, Camera.Main.Position + cursorDirection * 1000f ).Run();
+				var camera = Scene.Camera;
+				var cursorDirection = Mouse.Visible ? camera.ScreenPixelToRay( Mouse.Position ).Forward : camera.Transform.Rotation.Forward;
+				var cursorTrace = Scene.Trace.Ray( camera.Transform.Position, camera.Transform.Position + cursorDirection * 1000f ).Run();
 
 				/*
 				var whiteArea = PoolGame.Entity.WhiteArea;
@@ -159,35 +161,5 @@ public class PoolPlayer : Component, INetworkSerializable
 		BallType = PoolBallType.White;
 		
 		base.OnEnabled();
-	}
-
-	void INetworkSerializable.Write( ref ByteStream stream )
-	{
-		stream.Write( ConnectionId );
-		stream.Write( SteamName );
-		stream.Write( SteamId );
-		stream.Write( HasSecondShot );
-		stream.Write( HasStruckWhiteBall );
-		stream.Write( IsTurn );
-		stream.Write( FoulReason );
-		stream.Write( DidHitOwnBall );
-		stream.Write( DidPotBall );
-		stream.Write( IsPlacingWhiteBall );
-		stream.Write( (int)BallType );
-	}
-
-	void INetworkSerializable.Read( ByteStream stream )
-	{
-		ConnectionId = stream.Read<Guid>();
-		SteamName = stream.Read<string>();
-		SteamId = stream.Read<ulong>();
-		HasSecondShot = stream.Read<bool>();
-		HasStruckWhiteBall = stream.Read<bool>();
-		IsTurn = stream.Read<bool>();
-		FoulReason = stream.Read<FoulReason>();
-		DidHitOwnBall = stream.Read<bool>();
-		DidPotBall = stream.Read<bool>();
-		IsPlacingWhiteBall = stream.Read<bool>();
-		BallType = (PoolBallType)stream.Read<int>();
 	}
 }

@@ -19,7 +19,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 
 	public void OnEnterPocket( BallPocket pocket )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		LastPocket = pocket;
 		GameState.Instance.OnBallEnterPocket( this, pocket );
@@ -27,7 +27,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 
 	public void StartPlacing()
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = false;
@@ -75,7 +75,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 
 	public async Task AnimateIntoPocket()
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		Assert.True( !IsAnimating );
 		
 		var physics = Components.Get<Rigidbody>();
@@ -106,7 +106,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 
 	public void StopPlacing()
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = true;
@@ -117,9 +117,11 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 		physics.ClearForces();
 	}
 	
-	[Authority]
+	[Broadcast]
 	public void TryMoveTo( Vector3 position )
 	{
+		if ( !Networking.IsHost ) return;
+		
 		/*
 		var worldOBB = CollisionBounds + worldPos;
 
@@ -203,7 +205,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 
 	void ICollisionListener.OnCollisionStart( Collision info )
 	{
-		if ( !GameNetworkSystem.IsHost ) return;
+		if ( !Networking.IsHost ) return;
 		
 		var otherObject = info.Other.GameObject;
 		var otherBall = otherObject.Components.GetInDescendantsOrSelf<PoolBall>();

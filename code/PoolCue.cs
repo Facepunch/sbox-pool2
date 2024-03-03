@@ -5,7 +5,7 @@ using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
-public class PoolCue : Component, INetworkSerializable
+public class PoolCue : Component
 {
 	public static PoolCue Instance { get; private set; }
 	
@@ -19,16 +19,6 @@ public class PoolCue : Component, INetworkSerializable
 	private float CuePitch { get; set; }
 	private float CueYaw { get; set; }
 	private float ShotPower { get; set; }
-	
-	void INetworkSerializable.Write( ref ByteStream stream )
-	{
-		
-	}
-
-	void INetworkSerializable.Read( ByteStream stream )
-	{
-		
-	}
 
 	protected override void OnEnabled()
 	{
@@ -39,6 +29,8 @@ public class PoolCue : Component, INetworkSerializable
 	protected override void OnUpdate()
 	{
 		var currentPlayer = GameState.Instance.CurrentPlayer;
+		if ( !currentPlayer.IsValid() ) return;
+		
 		var renderer = Components.Get<ModelRenderer>( true );
 
 		if ( !currentPlayer.IsValid() || currentPlayer.IsPlacingWhiteBall || currentPlayer.HasStruckWhiteBall )
@@ -122,7 +114,7 @@ public class PoolCue : Component, INetworkSerializable
 		TimeSinceWhiteStruck = 0f;
 		LastWhiteBallPosition = whiteBall.Transform.Position;
 		
-		if ( !GameNetworkSystem.IsHost ) return;
+		if ( !Networking.IsHost ) return;
 		
 		Transform.World = transform;
 		
@@ -133,8 +125,9 @@ public class PoolCue : Component, INetworkSerializable
 
 	private void UpdatePowerSelection()
 	{
-		var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
-		var cursorPlaneEndPos = Camera.Position + cursorDirection * 350f;
+		var camera = Scene.Camera;
+		var cursorDirection = Mouse.Visible ? camera.ScreenPixelToRay( Mouse.Position ).Forward : camera.Transform.Rotation.Forward;
+		var cursorPlaneEndPos = camera.Transform.Position + cursorDirection * 350f;
 		var distanceToCue = cursorPlaneEndPos.Distance( Transform.Position - Transform.Rotation.Forward * 100f );
 		var cuePullBackDelta = (LastPowerDistance - distanceToCue) * Time.Delta * 20f;
 
@@ -152,9 +145,10 @@ public class PoolCue : Component, INetworkSerializable
 
 	private void UpdateDirection( Vector3 centerPosition )
 	{
-		var cursorDirection = Mouse.Visible ? Screen.GetDirection( Mouse.Position ) : Camera.Rotation.Forward;
+		var camera = Scene.Camera;
+		var cursorDirection = Mouse.Visible ? camera.ScreenPixelToRay( Mouse.Position ).Forward : camera.Transform.Rotation.Forward;
 		var tablePlane = new Plane( centerPosition, Vector3.Up );
-		var hitPos = tablePlane.Trace( new( Camera.Position, cursorDirection ) );
+		var hitPos = tablePlane.Trace( new( camera.Transform.Position, cursorDirection ) );
 		if ( !hitPos.HasValue ) return;
 
 		var aimDir = (hitPos.Value - centerPosition).WithZ( 0 ).Normal;

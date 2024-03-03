@@ -28,11 +28,7 @@ public class GameManager : Component, Component.INetworkListener
 
 		player.SteamName = connection.DisplayName ?? "local";
 		player.SteamId = connection.SteamId;
-		player.ConnectionId = connection.Id;
-		player.Connection = connection;
-		player.Network.Spawn();
-
-		playerObject.Parent = Scene;
+		playerObject.NetworkSpawn( connection );
 
 		if ( Players.Count() != 2 ) return;
 		
@@ -50,7 +46,7 @@ public class GameManager : Component, Component.INetworkListener
 	
 	public async Task RespawnBallAsync( PoolBall ball, bool shouldAnimate = false )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		if ( shouldAnimate )
 			await ball.AnimateIntoPocket();
@@ -69,7 +65,7 @@ public class GameManager : Component, Component.INetworkListener
 
 	public async Task RemoveBallAsync( PoolBall ball, bool shouldAnimate = false )
 	{
-		Assert.True( GameNetworkSystem.IsHost );
+		Assert.True( Networking.IsHost );
 		
 		if ( shouldAnimate )
 			await ball.AnimateIntoPocket();
@@ -86,13 +82,13 @@ public class GameManager : Component, Component.INetworkListener
 
 	protected override void OnStart()
 	{
-		if ( GameNetworkSystem.IsHost )
+		if ( Networking.IsHost )
 		{
 			var spawns = Scene.GetAllComponents<PoolBallSpawn>();
 
 			foreach ( var spawn in spawns )
 			{
-				var ballObject = SceneUtility.Instantiate( BallPrefab );
+				var ballObject = BallPrefab.Clone();
 				var ball = ballObject.Components.Get<PoolBall>();
 			
 				ball.Transform.World = spawn.Transform.World;
@@ -100,14 +96,13 @@ public class GameManager : Component, Component.INetworkListener
 				ball.Type = spawn.Type;
 
 				ballObject.BreakFromPrefab();
-				ballObject.Network.Spawn();
+				ballObject.NetworkSpawn();
 			}
 			
 			var stateObject = new GameObject();
-			var state = stateObject.Components.Create<GameState>();
-			stateObject.Parent = Scene;
-		
-			state.Network.Spawn();
+			stateObject.Name = "State";
+			stateObject.Components.Create<GameState>();
+			stateObject.NetworkSpawn();
 		}
 		
 		Scene.PhysicsWorld.SubSteps = 10;

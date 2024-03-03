@@ -53,7 +53,7 @@ public class EloScore
 	public async void Initialize( PoolPlayer player )
 	{
 		var leaderboard = Leaderboards.Get( "elo" );
-		leaderboard.TargetSteamId = (long)player.Connection.SteamId;
+		leaderboard.TargetSteamId = (long)player.Network.OwnerConnection.SteamId;
 		leaderboard.MaxEntries = 1;
 		await leaderboard.Refresh();
 
@@ -65,7 +65,7 @@ public class EloScore
 		
 		var entry = leaderboard.Entries.FirstOrDefault();
 
-		if ( entry.SteamId == (long)player.Connection.SteamId )
+		if ( entry.SteamId == (long)player.Network.OwnerConnection.SteamId )
 		{
 			Rating = Math.Max( (int)entry.Value, 1000 );
 		}
