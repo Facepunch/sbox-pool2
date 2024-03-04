@@ -16,7 +16,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	
 	private BallPocket LastPocket { get; set; }
 	private float StartUpPosition { get; set; }
-	private float RenderAlpha { get; set; }
+	[Sync] private float RenderAlpha { get; set; }
 
 	public void OnEnterPocket( BallPocket pocket )
 	{
@@ -174,17 +174,6 @@ public class PoolBall : Component, Component.ICollisionListener
 			_ => "default"
 		};
 	}
-
-	/* OBSOLETE
-	void INetworkSerializable.Write( ref ByteStream stream )
-	{
-		stream.Write( RenderAlpha );
-	}
-
-	void INetworkSerializable.Read( ByteStream stream )
-	{
-		RenderAlpha = stream.Read<float>();
-	} */
 
 	void ICollisionListener.OnCollisionStart( Collision info )
 	{

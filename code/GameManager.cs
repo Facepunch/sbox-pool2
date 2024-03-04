@@ -18,6 +18,19 @@ public class GameManager : Component, Component.INetworkListener
 	
 	[Property] public GameObject BallPrefab { get; set; }
 	[Property] public GameObject CuePrefab { get; set; }
+	
+	protected override async Task OnLoad()
+	{
+		if ( Scene.IsEditor )
+			return;
+
+		if ( !GameNetworkSystem.IsActive )
+		{
+			LoadingScreen.Title = "Creating Lobby";
+			await Task.DelayRealtimeSeconds( 0.1f );
+			GameNetworkSystem.CreateLobby();
+		}
+	}
 
 	void INetworkListener.OnActive( Connection connection )
 	{
@@ -75,7 +88,6 @@ public class GameManager : Component, Component.INetworkListener
 	protected override void OnAwake()
 	{
 		Instance = this;
-		
 		base.OnAwake();
 	}
 
