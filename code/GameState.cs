@@ -360,7 +360,7 @@ public class GameState : Component
 		var startingPlayer = PlayerTwo;
 		
 		var cue = CreateCue();
-		cue.Network.AssignOwnership( Networking.FindConnection( startingPlayer.Network.OwnerId ) );
+		cue.Network.AssignOwnership( Connection.Find( startingPlayer.Network.OwnerId ) );
 
 		startingPlayer.StartTurn();
 		startingPlayer.StartPlacingWhiteBall();

@@ -45,7 +45,7 @@ public class PoolPlayer : Component
 
 		SendSoundToOwner( "ding" );
 
-		PoolCue.Instance.Network.AssignOwnership( Networking.FindConnection( Network.OwnerId ) );
+		PoolCue.Instance.Network.AssignOwnership( Connection.Find( Network.OwnerId ) );
 		GameState.Instance.SetCurrentPlayer( this );
 
 		HasStruckWhiteBall = false;

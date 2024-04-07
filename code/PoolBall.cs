@@ -6,7 +6,7 @@ using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
-public class PoolBall : Component, Component.ICollisionListener, INetworkSerializable
+public class PoolBall : Component, Component.ICollisionListener
 {
 	[Property] public PoolBallType Type { get; set; }
 	[Property] public PoolBallNumber Number { get; set; }
@@ -15,7 +15,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 	
 	private BallPocket LastPocket { get; set; }
 	private float StartUpPosition { get; set; }
-	private float RenderAlpha { get; set; }
+	[Sync] private float RenderAlpha { get; set; }
 
 	public void OnEnterPocket( BallPocket pocket )
 	{
@@ -192,7 +192,8 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 			_ => "default"
 		};
 	}
-	
+
+	/* OBSOLETE
 	void INetworkSerializable.Write( ref ByteStream stream )
 	{
 		stream.Write( RenderAlpha );
@@ -201,7 +202,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 	void INetworkSerializable.Read( ByteStream stream )
 	{
 		RenderAlpha = stream.Read<float>();
-	}
+	} */
 
 	void ICollisionListener.OnCollisionStart( Collision info )
 	{
