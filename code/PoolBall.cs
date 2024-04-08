@@ -20,7 +20,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void OnEnterPocket( BallPocket pocket )
 	{
 		Assert.True( Networking.IsHost );
-		
+		return; // Currently crashes, will analyze call stack later - ladd
 		LastPocket = pocket;
 		GameState.Instance.OnBallEnterPocket( this, pocket );
 	}
@@ -28,11 +28,14 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void StartPlacing()
 	{
 		Assert.True( Networking.IsHost );
-		
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = false;
 		physics.PhysicsBody.MotionEnabled = false;
-		physics.PhysicsBody.Enabled = false;
+		/* TODO: Disable collisions for pool ball so user doesn't activate penalties on collisions
+		 *		 mutating physics.PhysicsBody.Enabled causes a host crash due to one of the following conditions from this exception on the host "System.ArgumentOutOfRangeException"
+		 *		 1. Race condition: Network is attempting to sync the compontent but is unable to
+		 *		 2. VooDoo magic: I hate networking code and yet I write more and more as.
+		 */
 	}
 
 	public void Respawn( Vector3 position )
@@ -111,7 +114,7 @@ public class PoolBall : Component, Component.ICollisionListener
 		var physics = Components.Get<Rigidbody>();
 		physics.PhysicsBody.EnableSolidCollisions = true;
 		physics.PhysicsBody.MotionEnabled = true;
-		physics.PhysicsBody.Enabled = true;
+		// TODO: See StartPlacing() !!! - ladd
 		physics.AngularVelocity = Vector3.Zero;
 		physics.Velocity = Vector3.Zero;
 		physics.ClearForces();

@@ -352,7 +352,6 @@ public class GameState : Component
 	public void StartGame()
 	{
 		Assert.True( Networking.IsHost );
-
 		var players = GameManager.Instance.Players.ToList();
 		PlayerOneId = players[0].GameObject.Id;
 		PlayerTwoId = players[1].GameObject.Id;
