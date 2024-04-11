@@ -67,33 +67,32 @@ public class GameState : Component
 
 		ball.PlayPocketSound();
 
-		if ( ball.LastStriker == null || !ball.LastStriker.IsValid() )
+		if ( !ball.LastStriker.IsValid() )
+		{ return; }
+
+		switch ( ball.Type )
 		{
-			switch ( ball.Type )
-			{
-				case PoolBallType.White:
-					_ = GameManager.Instance.RespawnBallAsync( ball, true );
-					return;
-				case PoolBallType.Black:
-					_ = GameManager.Instance.RespawnBallAsync( ball, true );
-					return;
-			}
-
-			var player = GetBallPlayer( ball );
-
-			if ( player != null && player.IsValid() )
-			{
-				var currentPlayer = GameState.Instance.CurrentPlayer;
-
-				if ( currentPlayer == player )
-					player.HasSecondShot = true;
-
-				DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
-			}
-
-			_ = GameManager.Instance.RemoveBallAsync( ball, true );
-			return;
+			case PoolBallType.White:
+				_ = GameManager.Instance.RespawnBallAsync( ball ); // Don't care about animating right now
+				return;
+			case PoolBallType.Black:
+				_ = GameManager.Instance.RespawnBallAsync( ball );
+				return;
 		}
+		
+		var player = GetBallPlayer( ball );
+
+		if ( player != null && player.IsValid() )
+		{
+			var currentPlayer = GameState.Instance.CurrentPlayer;
+
+			if ( currentPlayer == player )
+				player.HasSecondShot = true;
+
+			DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
+		}
+		
+		_ = GameManager.Instance.RemoveBallAsync( ball, true );
 
 		if ( ball.Type == PoolBallType.White )
 		{
@@ -376,9 +375,16 @@ public class GameState : Component
 		
 		base.OnAwake();
 	}
-	
+
 	private void DoPlayerPotBall( PoolPlayer player, PoolBall ball, BallPotType type )
 	{
+		// Prevents duplication bug
+		if ( PotHistory.Count != 0 && PotHistory[PotHistory.Count-1].Number == ball.Number)
+		{
+			return;
+		}
+		
+
 		player.DidPotBall = true;
 
 		PotHistory.Add( new()

@@ -16,12 +16,11 @@ public class PoolBall : Component, Component.ICollisionListener
 	
 	private BallPocket LastPocket { get; set; }
 	private float StartUpPosition { get; set; }
-	[Sync] private float RenderAlpha { get; set; }
+	private float RenderAlpha { get; set; }
 
 	public void OnEnterPocket( BallPocket pocket )
 	{
 		Assert.True( Networking.IsHost );
-		return; // Currently crashes, will analyze call stack later - ladd
 		LastPocket = pocket;
 		GameState.Instance.OnBallEnterPocket( this, pocket );
 	}
@@ -78,6 +77,7 @@ public class PoolBall : Component, Component.ICollisionListener
 
 	public async Task AnimateIntoPocket()
 	{
+		return;
 		Assert.True( Networking.IsHost );
 		Assert.True( !IsAnimating );
 		
@@ -89,16 +89,19 @@ public class PoolBall : Component, Component.ICollisionListener
 
 		while ( true )
 		{
-			await Task.Delay( 30 );
+			// I don't know why but this causes a crash on the host instantly.
+			await Task.Delay( 30 ); 
 
 			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
-			
+
+			// So does attempting to mutate the position - ladd
 			if ( LastPocket != null && LastPocket.IsValid() )
 				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
 
 			if ( RenderAlpha.AlmostEqual( 0f ) )
 				break;
 		}
+		
 
 		Physics.PhysicsBody.Enabled = true;
 		Physics.PhysicsBody.EnableSolidCollisions = true;
