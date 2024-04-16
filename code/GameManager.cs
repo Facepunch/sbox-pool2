@@ -29,7 +29,6 @@ public class GameManager : Component, Component.INetworkListener
 		player.SteamName = connection.DisplayName ?? "local";
 		player.SteamId = connection.SteamId;
 		playerObject.NetworkSpawn( connection );
-
 		if ( Players.Count() != 2 ) return;
 		
 		GameState.Instance.StartGame();

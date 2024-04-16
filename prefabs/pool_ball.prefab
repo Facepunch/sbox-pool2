@@ -1,44 +1,57 @@
 {
   "RootObject": {
-    "Id": "720dfac9-ffce-4c01-8a60-9193233b5e75",
+    "__guid": "4343e712-2bf9-4cc1-9c75-07ab5b669327",
     "Name": "pool_ball",
     "Enabled": true,
+    "NetworkMode": 1,
     "Components": [
       {
-        "__type": "ModelRenderer",
-        "__enabled": true,
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "24a79087-f28c-488d-8bc5-dc22936f24cb",
         "BodyGroups": 18446744073709551615,
-        "MaterialGroup": null,
-        "MaterialOverride": null,
         "Model": "models/pool/pool_ball.vmdl",
-        "ShouldCastShadows": true,
+        "RenderType": "On",
         "Tint": "1,1,1,1"
       },
       {
-        "__type": "ModelCollider",
-        "__enabled": true,
+        "__type": "Sandbox.ModelCollider",
+        "__guid": "d3f7320f-8244-4486-928e-fd330165f447",
         "IsTrigger": false,
         "Model": "models/pool/pool_ball.vmdl",
         "Static": false,
         "Surface": "surfaces/pool.ball.surface"
       },
       {
-        "__type": "Rigidbody",
-        "__enabled": true,
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "834f5e10-3ea0-4ad2-93be-dfb13c27cba5",
         "AngularDamping": 0,
         "Gravity": true,
-        "LinearDamping": 0
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
       },
       {
-        "__type": "PoolBall",
-        "__enabled": true,
+        "__type": "Facepunch.Pool.PoolBall",
+        "__guid": "1cdd5a66-efda-4917-b928-635b6b1e4d21",
         "Number": "One",
+        "Physics": {
+          "_type": "component",
+          "component_id": "834f5e10-3ea0-4ad2-93be-dfb13c27cba5",
+          "go": "4343e712-2bf9-4cc1-9c75-07ab5b669327",
+          "component_type": "Rigidbody"
+        },
         "Type": "Spots"
       }
-    ]
+    ],
+    "Children": []
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
   "__references": []
 }

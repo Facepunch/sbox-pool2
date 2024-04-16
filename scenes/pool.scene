@@ -1,15 +1,17 @@
 {
-  "Id": "cf44dc2c-69a3-421b-b722-97c726633f22",
+  "__guid": "cf44dc2c-69a3-421b-b722-97c726633f22",
   "GameObjects": [
     {
-      "Id": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
+      "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
       "Name": "Sun",
       "Rotation": "-0.0000000377291,0.6329893,0.0000000000000005185386,0.774161",
       "Tags": "light_directional,light",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
-          "__type": "DirectionalLight",
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "6807bdbd-7e4a-4ef0-91a8-52081e8695a3",
           "FogMode": "Enabled",
           "FogStrength": 1,
           "LightColor": "0.91373,0.98039,1,1",
@@ -19,40 +21,51 @@
       ]
     },
     {
-      "Id": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
+      "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
       "Name": "2D Skybox",
       "Tags": "skybox",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
-          "__type": "SkyBox2D",
+          "__type": "Sandbox.SkyBox2D",
+          "__guid": "46e47f2b-9a2e-4195-b145-f7bc9780d48b",
           "SkyMaterial": "materials/skybox/light_test_sky_sunny02.vmat",
           "Tint": "1,1,1,1"
         },
         {
-          "__type": "EnvmapProbe",
+          "__type": "Sandbox.EnvmapProbe",
+          "__guid": "f61fe90b-adce-45c9-a868-52862554326c",
+          "Texture": "textures/cubemaps/default2.vtex",
           "Bounds": {
             "Mins": "-512,-512,-512",
             "Maxs": "512,512,512"
           },
+          "DelayBetweenUpdates": 0.1,
           "Feathering": 0.02,
+          "FrameInterval": 5,
+          "MaxDistance": 512,
           "Projection": "Sphere",
-          "Texture": "textures/cubemaps/default2.vtex",
-          "TintColor": "1,1,1,1"
+          "RenderDynamically": false,
+          "TintColor": "1,1,1,1",
+          "UpdateStrategy": "OnEnabled",
+          "ZFar": 4096,
+          "ZNear": 16
         }
       ]
     },
     {
-      "Id": "6ad70641-3c6c-4402-9c85-9a4969af4764",
+      "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Name": "Floor",
       "Position": "0,0,-17.00842",
       "Scale": "5,5,5",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
-          "__type": "ModelRenderer",
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "1350f413-14b1-4f8f-8b01-70de9d24da92",
           "BodyGroups": 18446744073709551615,
-          "MaterialGroup": null,
           "MaterialOverride": "materials/glitchvid/carpet/carpet_pattern02.vmat",
           "Model": "models/dev/plane.vmdl",
           "RenderType": "On",
@@ -61,14 +74,16 @@
       ]
     },
     {
-      "Id": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
       "Name": "Camera",
       "Position": "0,0,150",
       "Rotation": "0.0000001788139,0.7071068,-0.0000007152557,0.7071068",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
-          "__type": "CameraComponent",
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "d8266e58-fa8c-47cb-b9e0-3f4c01fe88ab",
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
@@ -86,22 +101,23 @@
       ]
     },
     {
-      "Id": "f1d23e7b-ca1a-484e-99a9-597fecf92f77",
+      "__guid": "f1d23e7b-ca1a-484e-99a9-597fecf92f77",
       "Name": "Table",
       "Position": "0,0,11.35093",
       "Enabled": true,
+      "NetworkMode": 2,
       "Children": [
         {
-          "Id": "633a941a-062b-4fd7-ac1b-d5f78a8ee82e",
+          "__guid": "633a941a-062b-4fd7-ac1b-d5f78a8ee82e",
           "Name": "TableBorder",
           "Position": "-26.27406,23.11797,-2.175486",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "6714122a-6565-4cf0-833d-7bc028413c19",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_cushion_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -109,16 +125,16 @@
           ]
         },
         {
-          "Id": "af905b3f-30d8-4566-9c5a-7f0245214f35",
+          "__guid": "af905b3f-30d8-4566-9c5a-7f0245214f35",
           "Name": "TableBorder",
           "Position": "-26.27406,-24.86884,-2.175486",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "fd56f747-3dee-40c1-b3eb-b911d0413e7f",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_cushion_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -126,17 +142,17 @@
           ]
         },
         {
-          "Id": "fc841bca-7af7-4504-ba54-aa1f76e2d883",
+          "__guid": "fc841bca-7af7-4504-ba54-aa1f76e2d883",
           "Name": "TableBorder",
           "Position": "23.72466,-24.86884,-2.175486",
           "Rotation": "0,0,1,-0.0000006397578",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "2a9faf04-b55d-44db-a51f-2a9fea6885ce",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_cushion_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -144,17 +160,17 @@
           ]
         },
         {
-          "Id": "3219dfa9-8add-4840-ab04-154b07ca3995",
+          "__guid": "3219dfa9-8add-4840-ab04-154b07ca3995",
           "Name": "TableBorder",
           "Position": "23.72466,23.21497,-2.175486",
           "Rotation": "0,0,1,-0.0000006397578",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "daa82bd8-4fa6-43a7-974d-1b58108ad50d",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_cushion_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -162,16 +178,16 @@
           ]
         },
         {
-          "Id": "54a53ff0-3b0d-4b36-a7c8-87551e7ddeed",
+          "__guid": "54a53ff0-3b0d-4b36-a7c8-87551e7ddeed",
           "Name": "CornerPocket",
           "Position": "-26.27406,48.08186,-2.175486",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "c34dcec9-728e-45c7-9ab8-c0405533b7ce",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_pocket_concave_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -179,17 +195,17 @@
           ]
         },
         {
-          "Id": "625cd233-7958-4a32-97e5-465c027d9aa1",
+          "__guid": "625cd233-7958-4a32-97e5-465c027d9aa1",
           "Name": "CornerPocket",
           "Position": "23.63574,48.08186,-2.175486",
           "Rotation": "0,0,0.7071061,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "3287f5ae-6fb9-4fbd-912c-506f53f2fea5",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_pocket_concave_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -197,17 +213,17 @@
           ]
         },
         {
-          "Id": "53338fc4-b15d-45a6-afde-bd653f0501c4",
+          "__guid": "53338fc4-b15d-45a6-afde-bd653f0501c4",
           "Name": "TableBorder",
           "Position": "-1.336504,48.08186,-2.175486",
           "Rotation": "0,-0,-0.707107,0.7071065",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "d0272d99-cccd-4919-b7a0-6adf50680116",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_cushion_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -215,17 +231,17 @@
           ]
         },
         {
-          "Id": "abd5d390-ccd5-4b2c-9c3e-c9241e000f95",
+          "__guid": "abd5d390-ccd5-4b2c-9c3e-c9241e000f95",
           "Name": "TableBorder",
           "Position": "-1.336504,-49.78104,-2.175486",
           "Rotation": "0,0,0.707107,0.7071065",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "d1f69719-714d-43d6-9090-eb5352631891",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_cushion_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -233,17 +249,17 @@
           ]
         },
         {
-          "Id": "fda6f102-487c-4d11-ad08-6ac0329269de",
+          "__guid": "fda6f102-487c-4d11-ad08-6ac0329269de",
           "Name": "CornerPocket",
           "Position": "-26.27406,-49.77403,-2.175486",
           "Rotation": "0,0,0.707107,0.7071065",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "faeea036-00f6-4c12-b51c-2790cb1291f7",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_pocket_concave_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -251,17 +267,17 @@
           ]
         },
         {
-          "Id": "960ae348-f4dc-4996-8a80-7e6286d50832",
+          "__guid": "960ae348-f4dc-4996-8a80-7e6286d50832",
           "Name": "CornerPocket",
           "Position": "23.69804,-49.77403,-2.175486",
           "Rotation": "0,0,1,-0.0000006397578",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "c4dad657-aabd-4ebf-b58f-9af8331a703e",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_pocket_concave_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -269,16 +285,16 @@
           ]
         },
         {
-          "Id": "41843ec1-7350-4d0e-96f1-2280a1e0ba2d",
+          "__guid": "41843ec1-7350-4d0e-96f1-2280a1e0ba2d",
           "Name": "MiddlePocket",
           "Position": "-26.27406,-0.8736267,-2.175486",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "9d22b9f0-a53b-4a13-8197-cf58f4943190",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_pocket_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -286,17 +302,17 @@
           ]
         },
         {
-          "Id": "6a98b92b-0365-4d79-808e-f0601729f52c",
+          "__guid": "6a98b92b-0365-4d79-808e-f0601729f52c",
           "Name": "MiddlePocket",
           "Position": "23.61199,-0.8736267,-2.175486",
           "Rotation": "0,0,1,-0.0000006397578",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "d1ebdef8-c6bf-4b56-853e-fcd13eddd44b",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
               "Model": "models/pool/border_pocket_straight_a.vmdl",
               "RenderType": "On",
               "Tint": "1,1,1,1"
@@ -304,342 +320,344 @@
           ]
         },
         {
-          "Id": "dbb39f62-8606-4126-930a-c1541f7b4e2f",
+          "__guid": "dbb39f62-8606-4126-930a-c1541f7b4e2f",
           "Name": "Felt",
           "Position": "0,0,0",
           "Enabled": true,
+          "NetworkMode": 2,
           "Children": [
             {
-              "Id": "0c658461-d054-4050-98ef-b5eb10682191",
+              "__guid": "0c658461-d054-4050-98ef-b5eb10682191",
               "Name": "MiddlePocketFelt",
               "Position": "23.66253,-0.8353271,-2.175486",
               "Rotation": "0,0,1,-0.0000006397578",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "1a9d7d76-a7cc-47ec-a214-97f5a9ac5c41",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_pocket_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "8fb0c98a-a40b-49d7-8c11-8d7472716f40",
                   "IsTrigger": false,
                   "Model": "models/pool/table_pocket_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
+              "__guid": "d1372d7e-434f-4595-9006-ef5cf31b76eb",
               "Name": "MiddlePocketFelt",
               "Position": "-26.29619,-0.8353271,-2.175486",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "864c2bc0-08c9-463f-87a3-f6ae2f1c4ecf",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_pocket_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "c0045060-e00b-4eee-93dd-bbf5f96535ae",
                   "IsTrigger": false,
                   "Model": "models/pool/table_pocket_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "4772d817-a4dc-42fe-ad5b-1682c8a665d8",
+              "__guid": "4772d817-a4dc-42fe-ad5b-1682c8a665d8",
               "Name": "CornerPocketFelt",
               "Position": "23.66652,48.08026,-2.175486",
               "Rotation": "0,0,0.7071061,-0.7071075",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "3ddb1246-5ba1-4758-912f-6bf23f75d720",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "c20d10e0-17b1-4d3b-87c7-8d35f5e78a1a",
                   "IsTrigger": false,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "da3a45f9-3d63-427d-b4e7-9aee8739148b",
+              "__guid": "da3a45f9-3d63-427d-b4e7-9aee8739148b",
               "Name": "CornerPocketFelt",
               "Position": "-26.29625,48.08026,-2.175486",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "68b11718-4a95-4e2f-8e93-255420035f67",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "b71c305e-d43d-4e7b-9299-b28096ceb549",
                   "IsTrigger": false,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "48085d18-ab3c-46eb-80c9-b7011dedcbb6",
+              "__guid": "48085d18-ab3c-46eb-80c9-b7011dedcbb6",
               "Name": "CornerPocketFelt",
               "Position": "23.70133,-49.78613,-2.175486",
               "Rotation": "0,0,1,-0.0000006397578",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "4a1c322e-1534-4a6f-8e65-bbf397dd2c58",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "a9aa8d19-4b12-4ce1-ad38-9c9e001157f4",
                   "IsTrigger": false,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
+              "__guid": "fa7a6c09-3c1e-4f61-ba7e-10cebc497fbf",
               "Name": "CornerPocketFelt",
               "Position": "-26.29619,-49.72971,-2.175486",
               "Rotation": "0,0,0.707107,0.7071065",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "01172f4f-4f47-4b60-b186-6a9a119b5d59",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "955565e0-4148-4037-81ee-3d3964812289",
                   "IsTrigger": false,
                   "Model": "models/pool/table_pocket_concave_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "0466e699-7828-41c5-aeb3-ae39181e799c",
+              "__guid": "0466e699-7828-41c5-aeb3-ae39181e799c",
               "Name": "FeltBorder",
               "Position": "-26.29619,23.11797,-2.175486",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "8d152303-607a-43c0-a5ac-e4c08991f94f",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "00bd5a26-31ee-48c8-ad90-6bcb5ca9fa21",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": false,
-                  "Surface": null
+                  "Static": false
                 }
               ]
             },
             {
-              "Id": "7d19085a-70d1-4052-a207-01397198c57f",
+              "__guid": "7d19085a-70d1-4052-a207-01397198c57f",
               "Name": "FeltBorder",
               "Position": "23.64749,23.14067,-2.175486",
               "Rotation": "0,0,1,-0.0000006397578",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "a8b21cd9-d701-4dc0-995e-b0d2dc2a502b",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "63e3ed18-c090-41a5-ac27-5add9c342878",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "93992697-12b5-4eb3-9065-ee07fe7cc106",
+              "__guid": "93992697-12b5-4eb3-9065-ee07fe7cc106",
               "Name": "FeltBorder",
               "Position": "23.64749,-24.83443,-2.175486",
               "Rotation": "0,0,1,-0.0000006397578",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "4524465b-5f15-4a5b-b7d3-d8dbfe20f4df",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "bae7039a-1ab4-4edb-be48-f7c19cc2a76c",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "c57df244-5dbf-4e5a-8b75-3e175dfbdcf6",
+              "__guid": "c57df244-5dbf-4e5a-8b75-3e175dfbdcf6",
               "Name": "FeltBorder",
               "Position": "-26.29619,-24.83443,-2.175486",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "ad41a39d-4f3d-4181-9b52-5d663b276831",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "d434b17f-bd3a-406f-b032-85a0e6721e74",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "9d70a422-ab95-4da3-a097-0362870825f4",
+              "__guid": "9d70a422-ab95-4da3-a097-0362870825f4",
               "Name": "FeltBorder",
               "Position": "-1.299294,-49.80933,-2.175486",
               "Rotation": "0,0,0.707107,0.7071065",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "a32df991-6eb4-478d-8ab2-a44dbd6d9158",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "270f44de-e009-41bc-8976-500fb871f86d",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "0f8fa5ad-00d4-4472-aa6b-992ba6fdfb21",
+              "__guid": "0f8fa5ad-00d4-4472-aa6b-992ba6fdfb21",
               "Name": "FeltBorder",
               "Position": "-1.299404,48.07347,-2.175486",
               "Rotation": "0,0,0.7071061,-0.7071075",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "60e1618c-ea3b-4ddc-8b0d-92903a12adeb",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "1b91258c-b13b-40f9-8458-3bd34d7ea278",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "e79379b2-e218-46e3-a3a2-778c685e243e",
+              "__guid": "e79379b2-e218-46e3-a3a2-778c685e243e",
               "Name": "FeltBorder",
               "Position": "-26.29619,23.11797,-2.175486",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "c104d890-4221-4dfe-bb90-6db6428bfb09",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
-                  "MaterialOverride": null,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
                   "RenderType": "On",
                   "Tint": "0.06019,0.24752,0.05637,1"
                 },
                 {
-                  "__type": "ModelCollider",
+                  "__type": "Sandbox.ModelCollider",
+                  "__guid": "d572c401-da3e-487d-8a8a-0fd028d2ffdb",
                   "IsTrigger": false,
                   "Model": "models/pool/table_cushion_straight_a.vmdl",
-                  "Static": true,
-                  "Surface": null
+                  "Static": true
                 }
               ]
             },
             {
-              "Id": "fe757346-7521-4352-bb49-fcc1e04fe582",
+              "__guid": "fe757346-7521-4352-bb49-fcc1e04fe582",
               "Name": "TableCenterFelt",
               "Position": "-1.341866,-0.9715881,-2.165106",
               "Scale": "0.443472,0.9248635,1",
               "Enabled": true,
+              "NetworkMode": 2,
               "Components": [
                 {
-                  "__type": "ModelRenderer",
+                  "__type": "Sandbox.ModelRenderer",
+                  "__guid": "d8a028ed-5883-479a-acb0-b893a2f045c5",
                   "BodyGroups": 18446744073709551615,
-                  "MaterialGroup": null,
                   "MaterialOverride": "materials/pool_felt_tiling.vmat",
                   "Model": "models/dev/plane.vmdl",
                   "RenderType": "On",
@@ -648,13 +666,15 @@
               ],
               "Children": [
                 {
-                  "Id": "90fde5a8-a9f8-48d1-8311-b35079a7f5b6",
+                  "__guid": "90fde5a8-a9f8-48d1-8311-b35079a7f5b6",
                   "Name": "Collider",
                   "Position": "0,0,-0.4",
                   "Enabled": true,
+                  "NetworkMode": 2,
                   "Components": [
                     {
-                      "__type": "BoxCollider",
+                      "__type": "Sandbox.BoxCollider",
+                      "__guid": "0caf51ba-0bcd-4421-a630-0aa4d7d92005",
                       "Center": "0,0,0",
                       "IsTrigger": false,
                       "Scale": "110,104,1",
@@ -670,230 +690,263 @@
       ]
     },
     {
-      "Id": "3002509b-a7de-42f0-8826-d535a2951c41",
+      "__guid": "3002509b-a7de-42f0-8826-d535a2951c41",
       "Name": "Spawns",
       "Position": "1.328095,0,0",
       "Enabled": true,
+      "NetworkMode": 2,
       "Children": [
         {
-          "Id": "d7d05367-b0e1-4c83-abe2-bc39eaaccb07",
+          "__guid": "d7d05367-b0e1-4c83-abe2-bc39eaaccb07",
           "Name": "pool_ball_spawn",
           "Position": "-7.224356,-32.96589,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "54f5ca9b-73b4-4d71-9369-ca28b03b306a",
               "Number": "One",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "35ebb3b4-d544-4abc-801b-1ee3c9d58ab8",
+          "__guid": "35ebb3b4-d544-4abc-801b-1ee3c9d58ab8",
           "Name": "pool_ball_spawn",
-          "Position": "-2.667427,-32.96589,10.40563",
-          "Rotation": "-0,0.7071061,-0,-0.7071075",
+          "Position": "-24.99424,-46.42825,10.40567",
+          "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "9899a1cc-5edc-439f-a955-4936c930d856",
               "Number": "Two",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "43de6a17-838c-4710-a8c5-99be7781da91",
+          "__guid": "43de6a17-838c-4710-a8c5-99be7781da91",
           "Name": "pool_ball_spawn",
           "Position": "-0.4199877,-32.96589,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "b2d1265b-48eb-41cc-8ab7-03bc8234c123",
               "Number": "Three",
               "Type": "Stripes"
             }
           ]
         },
         {
-          "Id": "ac82f28a-d013-4ccd-8df1-d7d2d3631328",
+          "__guid": "ac82f28a-d013-4ccd-8df1-d7d2d3631328",
           "Name": "pool_ball_spawn",
           "Position": "1.848227,-32.96589,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "cd5daee8-247a-4d15-9bbe-d34cddd7c52a",
               "Number": "Seven",
               "Type": "Stripes"
             }
           ]
         },
         {
-          "Id": "51894917-b15b-44bb-92f9-cf54f12e206a",
+          "__guid": "51894917-b15b-44bb-92f9-cf54f12e206a",
           "Name": "pool_ball_spawn",
           "Position": "0.7857501,-30.87121,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "15fef3c1-89a7-4cc9-a7df-f81f1afb8283",
               "Number": "Seven",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "11fd7dfe-39a9-45db-8820-031a1845fd74",
+          "__guid": "11fd7dfe-39a9-45db-8820-031a1845fd74",
           "Name": "pool_ball_spawn",
           "Position": "-0.3665184,-28.85188,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "5be2783c-e005-404a-b8a1-6904f6c5035e",
               "Number": "Six",
               "Type": "Stripes"
             }
           ]
         },
         {
-          "Id": "57a61880-1809-43a0-b7b3-871d7f9dcf6a",
+          "__guid": "57a61880-1809-43a0-b7b3-871d7f9dcf6a",
           "Name": "pool_ball_spawn",
           "Position": "-1.588024,-26.94562,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "be1e0035-25b5-4e1f-bfc0-56b77fba3b7e",
               "Number": "Five",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "e9d7e390-15c3-4fd3-b7bf-80ab9b9fbe9c",
+          "__guid": "e9d7e390-15c3-4fd3-b7bf-80ab9b9fbe9c",
           "Name": "pool_ball_spawn",
           "Position": "-2.766725,-25.06706,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "cd6cb99a-8f69-4881-8c6d-a22fbb7c05d7",
               "Number": "Six",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "4b38563e-d646-4904-9b55-043440e0f6c5",
+          "__guid": "4b38563e-d646-4904-9b55-043440e0f6c5",
           "Name": "pool_ball_spawn",
           "Position": "-2.766725,26.37038,10.40563",
           "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "3d8f7c43-4a06-4c7f-9aeb-42d267a175b0",
               "Number": "One",
               "Type": "White"
             }
           ]
         },
         {
-          "Id": "8fbb57cc-0f55-4eff-92d5-94fa9cb96dde",
+          "__guid": "8fbb57cc-0f55-4eff-92d5-94fa9cb96dde",
           "Name": "pool_ball_spawn",
           "Position": "-1.479331,-30.84128,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "deaec340-2f6b-4e1f-985c-300b9643d7a6",
               "Number": "Four",
               "Type": "Stripes"
             }
           ]
         },
         {
-          "Id": "f8e7ff67-085c-4e87-b843-626e08eab021",
+          "__guid": "f8e7ff67-085c-4e87-b843-626e08eab021",
           "Name": "pool_ball_spawn",
           "Position": "-3.846803,-26.98253,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "a5553994-925b-474c-abd2-1ccb2e52b420",
               "Number": "Five",
               "Type": "Stripes"
             }
           ]
         },
         {
-          "Id": "5e52ea42-3914-4269-a67d-a8afff532e20",
+          "__guid": "5e52ea42-3914-4269-a67d-a8afff532e20",
           "Name": "pool_ball_spawn",
           "Position": "-2.697189,-28.90563,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "c89b5c86-7b48-4b0f-a8b5-31dfc629edc3",
               "Number": "Four",
               "Type": "Black"
             }
           ]
         },
         {
-          "Id": "64ab0027-91cf-4ec3-8336-8346479826e2",
+          "__guid": "64ab0027-91cf-4ec3-8336-8346479826e2",
           "Name": "pool_ball_spawn",
           "Position": "-3.831185,-31.02594,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "523028f6-1b04-4bcf-869a-453a5b73d1ee",
               "Number": "Three",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "8f2a560a-e32d-4fb9-a17b-927da1b76ed8",
+          "__guid": "8f2a560a-e32d-4fb9-a17b-927da1b76ed8",
           "Name": "pool_ball_spawn",
           "Position": "-4.955243,-28.99923,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "b4c7aa0e-82f4-4a63-a669-f9766721dfb8",
               "Number": "Four",
               "Type": "Spots"
             }
           ]
         },
         {
-          "Id": "3a0f830d-70d0-40f5-84f4-b5f9875be8c4",
+          "__guid": "3a0f830d-70d0-40f5-84f4-b5f9875be8c4",
           "Name": "pool_ball_spawn",
           "Position": "-6.110745,-30.97427,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "ad110d99-47c1-45b6-ab88-0b9d4ef76fc5",
               "Number": "Two",
               "Type": "Stripes"
             }
           ]
         },
         {
-          "Id": "d13e059e-fd0f-48b7-83cf-3da3a7eb2947",
+          "__guid": "d13e059e-fd0f-48b7-83cf-3da3a7eb2947",
           "Name": "pool_ball_spawn",
           "Position": "-4.958337,-32.96589,10.40563",
           "Rotation": "-0,0.7071061,-0,-0.7071075",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "PoolBallSpawn",
+              "__type": "Facepunch.Pool.PoolBallSpawn",
+              "__guid": "ffdadfa6-ca14-488b-8de0-f339f4d7c86d",
               "Number": "One",
               "Type": "Stripes"
             }
@@ -902,29 +955,34 @@
       ]
     },
     {
-      "Id": "acda060c-7461-48f3-ba12-6520a2a90e79",
+      "__guid": "acda060c-7461-48f3-ba12-6520a2a90e79",
       "Name": "UI",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
-          "__type": "ScreenPanel",
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "94765f15-0354-4e12-a494-59f2bc9b2b86",
           "AutoScreenScale": true,
           "Opacity": 1,
           "Scale": 1,
           "ZIndex": 100
         },
         {
-          "__type": "Hud"
+          "__type": "Facepunch.Pool.Hud",
+          "__guid": "e229942b-505b-450b-970e-a130a52aa8e0"
         }
       ]
     },
     {
-      "Id": "0138da53-2a7a-4671-90f6-c53d3c35a7b7",
+      "__guid": "0138da53-2a7a-4671-90f6-c53d3c35a7b7",
       "Name": "GameManager",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
-          "__type": "GameManager",
+          "__type": "Facepunch.Pool.GameManager",
+          "__guid": "29508540-defd-42ae-9db5-88bafa22d6ba",
           "BallPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/pool_ball.prefab"
@@ -937,127 +995,141 @@
       ]
     },
     {
-      "Id": "5daf40d5-bfbe-4f63-a338-c1567c4b7b76",
+      "__guid": "5daf40d5-bfbe-4f63-a338-c1567c4b7b76",
       "Name": "Pockets",
+      "Position": "0,0,-1.525986",
       "Enabled": true,
+      "NetworkMode": 2,
       "Children": [
         {
-          "Id": "bef30778-3ae5-46fe-a999-55709dad2bd3",
+          "__guid": "bef30778-3ae5-46fe-a999-55709dad2bd3",
           "Name": "Pocket",
           "Position": "23.89012,-50.51053,8.090955",
           "Tags": "pocket",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "SphereCollider",
+              "__type": "Sandbox.SphereCollider",
+              "__guid": "ae6f659a-8898-4b04-a1d6-5af5a5b439c3",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
-              "__type": "BallPocket"
+              "__type": "Facepunch.Pool.BallPocket",
+              "__guid": "e872db0b-9899-4e1a-97e0-de5dfb4afc8b"
             }
           ]
         },
         {
-          "Id": "cd3d8681-3393-43f2-af8a-dbf3ddee2c8e",
+          "__guid": "cd3d8681-3393-43f2-af8a-dbf3ddee2c8e",
           "Name": "Pocket",
           "Position": "-26.45412,-50.08778,8.090955",
           "Tags": "pocket",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "SphereCollider",
+              "__type": "Sandbox.SphereCollider",
+              "__guid": "c31d6c4c-36d1-49e3-abe0-1394387400b7",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
-              "__type": "BallPocket"
+              "__type": "Facepunch.Pool.BallPocket",
+              "__guid": "df1d11f1-5b24-4661-a704-2af360b6d80e"
             }
           ]
         },
         {
-          "Id": "2a6c3028-6210-43b4-92ec-b76bd897a396",
+          "__guid": "2a6c3028-6210-43b4-92ec-b76bd897a396",
           "Name": "Pocket",
           "Position": "-28.68695,-0.6329605,8.090955",
           "Tags": "pocket",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "SphereCollider",
+              "__type": "Sandbox.SphereCollider",
+              "__guid": "8cddd572-14dd-4a07-9ca4-8e9756de0a0c",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
-              "__type": "BallPocket"
+              "__type": "Facepunch.Pool.BallPocket",
+              "__guid": "c781318a-b464-4c44-b514-7c53dbcc0c8e"
             }
           ]
         },
         {
-          "Id": "138a8366-9085-45c8-b94a-344177620a2b",
+          "__guid": "138a8366-9085-45c8-b94a-344177620a2b",
           "Name": "Pocket",
           "Position": "-26.72132,48.79945,8.090955",
           "Tags": "pocket",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "SphereCollider",
+              "__type": "Sandbox.SphereCollider",
+              "__guid": "62079194-8e4f-4b98-bfe9-1f475ae5d57f",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
-              "__type": "BallPocket"
+              "__type": "Facepunch.Pool.BallPocket",
+              "__guid": "054922fc-efa8-44aa-a619-2c9fdb809c01"
             }
           ]
         },
         {
-          "Id": "ac5f112b-87fe-4cb7-8383-75ad60104f23",
+          "__guid": "ac5f112b-87fe-4cb7-8383-75ad60104f23",
           "Name": "Pocket",
           "Position": "24.25116,48.79945,8.090955",
           "Tags": "pocket",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "SphereCollider",
+              "__type": "Sandbox.SphereCollider",
+              "__guid": "87b21870-59af-4885-9931-1ef33cebd27b",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
-              "__type": "BallPocket"
+              "__type": "Facepunch.Pool.BallPocket",
+              "__guid": "4dad6c08-03f7-445f-9605-86793e07f46c"
             }
           ]
         },
         {
-          "Id": "a135435a-50fb-45c3-8e9c-c75960113233",
+          "__guid": "a135435a-50fb-45c3-8e9c-c75960113233",
           "Name": "Pocket",
           "Position": "26.61688,-0.8635703,8.090955",
           "Tags": "pocket",
           "Enabled": true,
+          "NetworkMode": 2,
           "Components": [
             {
-              "__type": "SphereCollider",
+              "__type": "Sandbox.SphereCollider",
+              "__guid": "1ed0ffe4-583a-489a-909e-58b0c374a345",
               "Center": "0,0,0",
               "IsTrigger": true,
               "Radius": 3,
-              "Static": false,
-              "Surface": null
+              "Static": false
             },
             {
-              "__type": "BallPocket"
+              "__type": "Facepunch.Pool.BallPocket",
+              "__guid": "6adf7082-203a-4914-b5f4-f27449c90793"
             }
           ]
         }
@@ -1087,7 +1159,9 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-03-03T21:43:00.5711706\u002B00:00",
+  "LastSaved": "2024-04-10T21:42:00.9622265-06:00",
+  "ResourceVersion": 1,
+  "__version": 1,
   "__references": [
     "tridge.carpet_pattern02"
   ]

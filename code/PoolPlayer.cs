@@ -45,7 +45,7 @@ public class PoolPlayer : Component
 
 		SendSoundToOwner( "ding" );
 
-		PoolCue.Instance.Network.AssignOwnership( Networking.FindConnection( Network.OwnerId ) );
+		PoolCue.Instance.Network.AssignOwnership( Connection.Find( Network.OwnerId ) );
 		GameState.Instance.SetCurrentPlayer( this );
 
 		HasStruckWhiteBall = false;
@@ -79,12 +79,11 @@ public class PoolPlayer : Component
 		Assert.True( Networking.IsHost );
 		
 		var whiteBall = GameManager.Instance.WhiteBall;
-
+		
 		if ( whiteBall != null && whiteBall.IsValid() )
 		{
 			whiteBall.StartPlacing();
 		}
-
 		_ = GameManager.Instance.RespawnBallAsync( whiteBall );
 
 		IsPlacingWhiteBall = true;
@@ -131,7 +130,7 @@ public class PoolPlayer : Component
 	{
 		if ( IsLocalPlayer && IsPlacingWhiteBall )
 		{
-			Log.Info( "Why do we wanna move the white ball?" );
+			//Log.Info( "Why do we wanna move the white ball?" ); // what a philosophical question - ladd
 			var whiteBall = GameManager.Instance.WhiteBall;
 			if ( whiteBall.IsValid() )
 			{

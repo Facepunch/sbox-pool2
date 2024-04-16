@@ -6,10 +6,11 @@ using Sandbox.Network;
 
 namespace Facepunch.Pool;
 
-public class PoolBall : Component, Component.ICollisionListener, INetworkSerializable
+public class PoolBall : Component, Component.ICollisionListener
 {
 	[Property] public PoolBallType Type { get; set; }
 	[Property] public PoolBallNumber Number { get; set; }
+	[Property] public Rigidbody Physics { get; set; }
 	public PoolPlayer LastStriker { get; set; }
 	public bool IsAnimating { get; private set; }
 	
@@ -20,7 +21,6 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 	public void OnEnterPocket( BallPocket pocket )
 	{
 		Assert.True( Networking.IsHost );
-		
 		LastPocket = pocket;
 		GameState.Instance.OnBallEnterPocket( this, pocket );
 	}
@@ -28,11 +28,14 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 	public void StartPlacing()
 	{
 		Assert.True( Networking.IsHost );
-		
-		var physics = Components.Get<Rigidbody>();
-		physics.PhysicsBody.EnableSolidCollisions = false;
-		physics.PhysicsBody.MotionEnabled = false;
-		physics.PhysicsBody.Enabled = false;
+		Physics.PhysicsBody.EnableSolidCollisions = false;
+		Physics.PhysicsBody.MotionEnabled = false;
+		Physics.Enabled = false;
+		/* TODO: Disable collisions for pool ball so user doesn't activate penalties on collisions
+		 *		 mutating physics.PhysicsBody.Enabled causes a host crash due to one of the following conditions from this exception on the host "System.ArgumentOutOfRangeException"
+		 *		 1. Race condition: Network is attempting to sync the compontent but is unable to
+		 *		 2. VooDoo magic: I hate networking code and yet I write more and more as.
+		 */
 	}
 
 	public void Respawn( Vector3 position )
@@ -44,10 +47,9 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 		var renderer = Components.Get<ModelRenderer>();
 		renderer.Tint = renderer.Tint.WithAlpha( RenderAlpha );
 
-		var physics = Components.Get<Rigidbody>();
-		physics.AngularVelocity = Vector3.Zero;
-		physics.Velocity = Vector3.Zero;
-		physics.ClearForces();
+		Physics.AngularVelocity = Vector3.Zero;
+		Physics.Velocity = Vector3.Zero;
+		Physics.ClearForces();
 	}
 
 	public string GetIconClass()
@@ -75,32 +77,35 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 
 	public async Task AnimateIntoPocket()
 	{
+		return;
 		Assert.True( Networking.IsHost );
 		Assert.True( !IsAnimating );
 		
-		var physics = Components.Get<Rigidbody>();
-		physics.PhysicsBody.EnableSolidCollisions = false;
-		physics.PhysicsBody.MotionEnabled = false;
-		physics.PhysicsBody.Enabled = false;
+		Physics.PhysicsBody.EnableSolidCollisions = false;
+		Physics.PhysicsBody.MotionEnabled = false;
+		Physics.PhysicsBody.Enabled = false;
 		
 		IsAnimating = true;
 
 		while ( true )
 		{
-			await Task.Delay( 30 );
+			// I don't know why but this causes a crash on the host instantly.
+			await Task.Delay( 30 ); 
 
 			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
-			
+
+			// So does attempting to mutate the position - ladd
 			if ( LastPocket != null && LastPocket.IsValid() )
 				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
 
 			if ( RenderAlpha.AlmostEqual( 0f ) )
 				break;
 		}
+		
 
-		physics.PhysicsBody.EnableSolidCollisions = true;
-		physics.PhysicsBody.MotionEnabled = true;
-		physics.PhysicsBody.Enabled = true;
+		Physics.PhysicsBody.Enabled = true;
+		Physics.PhysicsBody.EnableSolidCollisions = true;
+		Physics.PhysicsBody.MotionEnabled = true;
 		IsAnimating = false;
 	}
 
@@ -108,50 +113,28 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 	{
 		Assert.True( Networking.IsHost );
 		
-		var physics = Components.Get<Rigidbody>();
-		physics.PhysicsBody.EnableSolidCollisions = true;
-		physics.PhysicsBody.MotionEnabled = true;
-		physics.PhysicsBody.Enabled = true;
-		physics.AngularVelocity = Vector3.Zero;
-		physics.Velocity = Vector3.Zero;
-		physics.ClearForces();
+		Physics.Enabled = true;
+		Physics.PhysicsBody.EnableSolidCollisions = true;
+		Physics.PhysicsBody.MotionEnabled = true;
+		Physics.AngularVelocity = Vector3.Zero;
+		Physics.Velocity = Vector3.Zero;
+		Physics.ClearForces();
 	}
 	
 	[Broadcast]
 	public void TryMoveTo( Vector3 position )
 	{
 		if ( !Networking.IsHost ) return;
-		
-		/*
-		var worldOBB = CollisionBounds + worldPos;
 
-		foreach ( var ball in All.OfType<PoolBall>() )
-		{
-			if ( ball != this )
-			{
-				var ballOBB = ball.CollisionBounds + ball.Position;
+		// TODO: Prevent collisions with other balls. ;)
 
-				// We can't place on other balls.
-				if ( ballOBB.Overlaps( worldOBB ) )
-					return;
-			}
-		}
-		*/
-
-		//if ( within.ContainsXY( worldOBB ) )
-		//{
 		Transform.Position = position.WithZ( Transform.Position.z );
-		
-		var rigidbody = Components.Get<Rigidbody>();
-		rigidbody.PhysicsBody.Position = Transform.Position;
-		//}
 	}
 
 	protected override void OnStart()
 	{
-		var physics = Components.Get<Rigidbody>();
-		physics.AngularDamping = 0.6f;
-		physics.LinearDamping = 0.6f;
+		Physics.AngularDamping = 0.6f;
+		Physics.LinearDamping = 0.6f;
 
 		StartUpPosition = Transform.Position.z;
 		RenderAlpha = 1f;
@@ -172,9 +155,8 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 		if ( Network.IsOwner )
 		{
 			// Constantly set our Z velocity to zero.
-			var body = Components.Get<Rigidbody>();
-			body.Velocity = body.Velocity.WithZ( 0f );
-		
+			Physics.Velocity = Physics.Velocity.WithZ( 0f );
+
 			// Constantly keep up at the correct Z position.
 			Transform.Position = Transform.Position.WithZ( StartUpPosition );
 		}
@@ -192,7 +174,8 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 			_ => "default"
 		};
 	}
-	
+
+	/* OBSOLETE
 	void INetworkSerializable.Write( ref ByteStream stream )
 	{
 		stream.Write( RenderAlpha );
@@ -201,7 +184,7 @@ public class PoolBall : Component, Component.ICollisionListener, INetworkSeriali
 	void INetworkSerializable.Read( ByteStream stream )
 	{
 		RenderAlpha = stream.Read<float>();
-	}
+	} */
 
 	void ICollisionListener.OnCollisionStart( Collision info )
 	{
