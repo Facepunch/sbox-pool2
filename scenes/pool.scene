@@ -715,7 +715,7 @@
         {
           "__guid": "35ebb3b4-d544-4abc-801b-1ee3c9d58ab8",
           "Name": "pool_ball_spawn",
-          "Position": "-24.99424,-46.42825,10.40567",
+          "Position": "-2.693955,-33.02078,10.40563",
           "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
           "NetworkMode": 2,
@@ -827,7 +827,7 @@
         {
           "__guid": "4b38563e-d646-4904-9b55-043440e0f6c5",
           "Name": "pool_ball_spawn",
-          "Position": "-2.766725,26.37038,10.40563",
+          "Position": "-2.767,26,10.40559",
           "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1134,6 +1134,13 @@
           ]
         }
       ]
+    },
+    {
+      "__guid": "71dd6d31-ba87-454f-9fb5-e71590ea5259",
+      "Name": "MEASURE TOOL :)",
+      "Position": "-12.16643,-47.26309,12.20527",
+      "Enabled": true,
+      "NetworkMode": 2
     }
   ],
   "SceneProperties": {
@@ -1159,7 +1166,7 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-04-10T21:42:00.9622265-06:00",
+  "LastSaved": "2024-04-15T22:53:26.2027048-06:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

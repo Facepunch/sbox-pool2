@@ -67,19 +67,23 @@ public class GameState : Component
 
 		ball.PlayPocketSound();
 
-		if ( !ball.LastStriker.IsValid() )
-		{ return; }
-
 		switch ( ball.Type )
 		{
+			// Respawning the ball places us in a uncertain game state 
 			case PoolBallType.White:
-				_ = GameManager.Instance.RespawnBallAsync( ball ); // Don't care about animating right now
+				_ = GameManager.Instance.RespawnBallAsync( ball );
+				CurrentPlayer.Foul( FoulReason.PotWhiteBall );	
 				return;
 			case PoolBallType.Black:
 				_ = GameManager.Instance.RespawnBallAsync( ball );
+				CurrentPlayer.Foul( FoulReason.PotBlackTooEarly );
 				return;
 		}
 		
+
+		if ( !ball.LastStriker.IsValid() )
+		{ return; }
+
 		var player = GetBallPlayer( ball );
 
 		if ( player != null && player.IsValid() )
