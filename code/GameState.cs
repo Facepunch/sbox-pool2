@@ -38,6 +38,7 @@ public class GameState : Component
 	
 	[Sync] public int TimeLeftSeconds { get; private set; }
 	[Sync] public RoundState State { get; private set; }
+	[Sync] public int RoundCount { get; private set; }
 	
 	private bool DidClaimThisTurn { get; set; }
 	private bool HasPlayedFastForwardSound { get; set; }
@@ -159,10 +160,13 @@ public class GameState : Component
 
 		if ( ball.LastStriker.BallType == PoolBallType.White )
 		{
+			/* Questioning if this Foul should be here.
+			 * If the 8 ball gets potted, the player should lose according to 8-ball pool rules.
+			 * If the player pots the 8-ball on first strike, a re-rack should happen. */
 			if ( other.Type == PoolBallType.Black )
 			{
 				// The player has somehow hit the black as their first strike.
-				ball.LastStriker.Foul( FoulReason.HitOtherBall );
+				//ball.LastStriker.Foul( FoulReason.HitOtherBall );
 			}
 		}
 		else if ( other.Type == PoolBallType.Black )
@@ -186,6 +190,10 @@ public class GameState : Component
 		{
 			ball.LastStriker.DidHitOwnBall = true;
 		}
+	}
+	public void IncrementRoundCount()
+	{
+		RoundCount += 1;
 	}
 
 	protected override void OnFixedUpdate()
@@ -242,7 +250,7 @@ public class GameState : Component
 	private void EndTurn()
 	{
 		Assert.True( Networking.IsHost );
-
+		IncrementRoundCount();
 		var currentPlayer = CurrentPlayer;
 
 		foreach ( var ball in GameManager.Instance.Balls )
@@ -355,6 +363,7 @@ public class GameState : Component
 	public void StartGame()
 	{
 		Assert.True( Networking.IsHost );
+		IncrementRoundCount();
 		var players = GameManager.Instance.Players.ToList();
 		PlayerOneId = players[0].GameObject.Id;
 		PlayerTwoId = players[1].GameObject.Id;

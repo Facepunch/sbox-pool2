@@ -33,6 +33,7 @@ public class GameManager : Component, Component.INetworkListener
 		
 		GameState.Instance.StartGame();
 	}
+
 	
 	[Broadcast]
 	public void AddToast( ulong steamId, string text, string iconClass = "" )

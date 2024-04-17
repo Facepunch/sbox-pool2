@@ -10,6 +10,12 @@
 @if ( !GameState.Instance.IsValid() ) return;
 
 <root class="@GetRootClass()">
+	<div>
+		<h1 style="color: white;">
+			@GameState.Instance.RoundCount
+		</h1>
+	</div>
+	<div>
     @for (var i = 0; i < 15; i++)
     {
         if ( i < GameState.Instance.PotHistory.Count ) {
@@ -18,13 +24,14 @@
             <BallHistoryItem BallType=@PoolBallType.White></BallHistoryItem>
         }
     }
+	</div>
 </root>
 
 @code
 {
     protected override int BuildHash()
     {
-        return HashCode.Combine( GameState.Instance?.PotHistory.Count ?? 0,  GameState.Instance?.State );
+        return HashCode.Combine( GameState.Instance?.PotHistory.Count ?? 0,  GameState.Instance?.State, GameState.Instance?.RoundCount);
     }
 
     private string GetRootClass()

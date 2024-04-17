@@ -84,6 +84,7 @@ public class PoolCue : Component
 	private void FadeTo( float opacity, float speed )
 	{
 		var renderer = Components.Get<ModelRenderer>( true );
+		// TODO: Disable shadow rendering as ghost cues are weird
 		renderer.Tint = renderer.Tint.WithAlpha( renderer.Tint.a.LerpTo( opacity, Time.Delta * speed ) );
 	}
 	

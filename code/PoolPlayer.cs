@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Sandbox;
 using Sandbox.Diagnostics;
@@ -39,7 +40,7 @@ public class PoolPlayer : Component
 	public void StartTurn( bool hasSecondShot = false, bool showMessage = true )
 	{
 		Assert.True( Networking.IsHost );
-		
+
 		if ( showMessage )
 			GameManager.Instance.AddToast( SteamId, $"{ SteamName } has started their turn" );
 
@@ -132,6 +133,12 @@ public class PoolPlayer : Component
 			 ballPosition.x <= -25 ||
 			 ballPosition.y >= 46 ||
 			 ballPosition.y <= -48)
+		{
+			return false;
+		}
+
+		if (GameState.Instance.RoundCount == 1 &&
+			ballPosition.y < 15)
 		{
 			return false;
 		}
