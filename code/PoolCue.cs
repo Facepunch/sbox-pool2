@@ -34,9 +34,15 @@ public class PoolCue : Component
 		var renderer = Components.Get<ModelRenderer>( true );
 
 		if ( !currentPlayer.IsValid() || currentPlayer.IsPlacingWhiteBall || currentPlayer.HasStruckWhiteBall )
+		{ 
+			renderer.RenderType = ModelRenderer.ShadowRenderType.Off;
 			FadeTo( 0f, 4f );
-		else
+		}
+		else 
+		{ 
+			renderer.RenderType = ModelRenderer.ShadowRenderType.On;
 			FadeTo( 1f, 8f );
+		}
 		
 		// Don't render entirely if we're placing the white ball.
 		renderer.SceneObject.RenderingEnabled = !currentPlayer.IsPlacingWhiteBall;
@@ -84,7 +90,6 @@ public class PoolCue : Component
 	private void FadeTo( float opacity, float speed )
 	{
 		var renderer = Components.Get<ModelRenderer>( true );
-		// TODO: Disable shadow rendering as ghost cues are weird
 		renderer.Tint = renderer.Tint.WithAlpha( renderer.Tint.a.LerpTo( opacity, Time.Delta * speed ) );
 	}
 	
