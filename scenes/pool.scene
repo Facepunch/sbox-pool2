@@ -39,7 +39,7 @@
       "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Name": "Floor",
       "Position": "0,0,-17.00842",
-      "Scale": "2,2,5",
+      "Scale": "3,3,5",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
@@ -1126,14 +1126,14 @@
     {
       "__guid": "fe88c45c-f359-4271-85df-08a8f8d9b321",
       "Name": "Overhead Lights",
-      "Position": "68.44164,-26.14725,-10.3055",
+      "Position": "0,0,-4.58015",
       "Enabled": true,
       "NetworkMode": 2,
       "Children": [
         {
           "__guid": "6ec51a59-9697-4d50-a902-6ffb0d3ae5b1",
           "Name": "Spot Light",
-          "Position": "-63.99995,-12.51118,103.8447",
+          "Position": "0,-20,103.8447",
           "Rotation": "0,0.7071068,0,0.7071068",
           "Tags": "light_spot,light",
           "Enabled": true,
@@ -1156,7 +1156,7 @@
         {
           "__guid": "d5b60232-542d-42dd-923f-ebac02e2ab30",
           "Name": "Spot Light",
-          "Position": "-63.99994,48.08683,103.8447",
+          "Position": "0.00001672611,20,103.8447",
           "Rotation": "0,0.7071068,0,0.7071068",
           "Tags": "light_spot,light",
           "Enabled": true,
@@ -1202,7 +1202,7 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-04-16T20:42:37.9513599-06:00",
+  "LastSaved": "2024-04-16T21:04:20.3991216-06:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [
