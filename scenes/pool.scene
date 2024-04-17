@@ -1,25 +1,6 @@
 {
-  "__guid": "cf44dc2c-69a3-421b-b722-97c726633f22",
+  "__guid": "a4b3ccb5-caf0-4478-b0d3-5c2a3a6a7935",
   "GameObjects": [
-    {
-      "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
-      "Name": "Sun",
-      "Rotation": "-0.0000000377291,0.6329893,0.0000000000000005185386,0.774161",
-      "Tags": "light_directional,light",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "Sandbox.DirectionalLight",
-          "__guid": "6807bdbd-7e4a-4ef0-91a8-52081e8695a3",
-          "FogMode": "Enabled",
-          "FogStrength": 1,
-          "LightColor": "0.91373,0.98039,1,1",
-          "Shadows": true,
-          "SkyColor": "0.05882,0.07451,0.08235,1"
-        }
-      ]
-    },
     {
       "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
       "Name": "2D Skybox",
@@ -58,7 +39,7 @@
       "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Name": "Floor",
       "Position": "0,0,-17.00842",
-      "Scale": "5,5,5",
+      "Scale": "2,2,5",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
@@ -1141,6 +1122,61 @@
       "Position": "-12.16643,-47.26309,12.20527",
       "Enabled": true,
       "NetworkMode": 2
+    },
+    {
+      "__guid": "fe88c45c-f359-4271-85df-08a8f8d9b321",
+      "Name": "Overhead Lights",
+      "Position": "68.44164,-26.14725,-10.3055",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Children": [
+        {
+          "__guid": "6ec51a59-9697-4d50-a902-6ffb0d3ae5b1",
+          "Name": "Spot Light",
+          "Position": "-63.99995,-12.51118,103.8447",
+          "Rotation": "0,0.7071068,0,0.7071068",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "30c375c2-5956-4f2e-8cfb-6e0827769fa9",
+              "Attenuation": 1.35,
+              "ConeInner": 20,
+              "ConeOuter": 35,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.97209,0.88498,0.66464,1",
+              "Radius": 150,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "d5b60232-542d-42dd-923f-ebac02e2ab30",
+          "Name": "Spot Light",
+          "Position": "-63.99994,48.08683,103.8447",
+          "Rotation": "0,0.7071068,0,0.7071068",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "91513e9a-4f83-40cf-8c7d-cef414d74267",
+              "Attenuation": 1.35,
+              "ConeInner": 20,
+              "ConeOuter": 35,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.97209,0.88498,0.66464,1",
+              "Radius": 150,
+              "Shadows": true
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -1166,7 +1202,7 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-04-15T22:59:47.220586-06:00",
+  "LastSaved": "2024-04-16T20:42:37.9513599-06:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [
