@@ -255,6 +255,9 @@ public class GameState : Component
 
 		foreach ( var ball in GameManager.Instance.Balls )
 		{
+			// Physics component is disabled, this means it's properties aren't set to a reference!
+			if (currentPlayer.IsPlacingWhiteBall)
+			{ break; }
 			var physics = ball.Components.Get<Rigidbody>();
 			physics.AngularVelocity = Vector3.Zero;
 			physics.Velocity = Vector3.Zero;
