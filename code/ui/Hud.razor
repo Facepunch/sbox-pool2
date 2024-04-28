@@ -22,6 +22,19 @@
     	left: 0;
     	right: 0;
     }
+
+	.left-side-bar {
+		background-color: red;
+		display: flex;
+		left: 50px;
+		top: 100px;
+		width: 5%;
+		height: 80%;
+
+		ShotPower {
+			align-items: flex-end;
+		}
+	}
     
     .footer {
     	display: flex;
@@ -41,6 +54,9 @@
     <div class="header">
          <PlayerDisplay></PlayerDisplay>
     </div>
+	<div class="left-side-bar">
+		<ShotPower></ShotPower>
+	</div>
 
     <div class="footer">
 	    <ToastList></ToastList>

@@ -1,0 +1,45 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System;
+
+@namespace Facepunch.Pool
+@inherits Panel
+<style>
+	.power-bar {
+		background-color: pink;
+		width: 100%;
+		height: 20%;
+	}
+</style>
+<root>
+	<div @ref="PowerBar" class="power-bar"></div>
+</root>
+
+@code
+{
+	private Panel PowerBar { get; set; }
+
+	private float GetPowerBarHeightPercent()
+	{
+		if (PoolCue.Instance == null)
+			return 0f;
+
+		return PoolCue.Instance.ShotPower / 1f; 	
+	}
+
+	public override void Tick ()
+	{
+		PowerBar.Style.Height = Length.Percent(GetPowerBarHeightPercent());
+		base.Tick();	
+	}
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash()
+	{
+		if (PoolCue.Instance == null)
+			return 0;
+
+		return PoolCue.Instance.GameObject.IsValid ? HashCode.Combine(PoolCue.Instance.ShotPower) : 0;
+	}
+}

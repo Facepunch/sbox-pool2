@@ -8,6 +8,7 @@ namespace Facepunch.Pool;
 public class PoolCue : Component
 {
 	public static PoolCue Instance { get; private set; }
+	public float ShotPower { get; private set; }
 	
 	private TimeSince TimeSinceWhiteStruck { get; set; }
 	private Vector3 LastWhiteBallPosition { get; set; }
@@ -18,7 +19,6 @@ public class PoolCue : Component
 	private bool IsMakingShot { get; set; }
 	private float CuePitch { get; set; }
 	private float CueYaw { get; set; }
-	private float ShotPower { get; set; }
 
 	protected override void OnEnabled()
 	{
