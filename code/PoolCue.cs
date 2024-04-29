@@ -67,7 +67,7 @@ public class PoolCue : Component
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
 
-		if ( Input.Down( "attack1" ) )
+		if ( Input.Down( "attack1" ) && !GameState.Instance.CurrentPlayer.IsPlacingWhiteBall )
 		{
 			UpdatePowerSelection();
 		}
