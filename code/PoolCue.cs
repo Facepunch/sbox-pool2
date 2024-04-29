@@ -143,9 +143,9 @@ public class PoolCue : Component
 			cuePullBackDelta = 0f;
 		}
 
-		CuePullBackOffset = Math.Clamp( CuePullBackOffset + cuePullBackDelta, 0f, 8f );
+		CuePullBackOffset = Math.Clamp( CuePullBackOffset + cuePullBackDelta, 0f, 5f );
 		LastPowerDistance = distanceToCue;
-		ShotPower = CuePullBackOffset.AsPercentMinMax( 0f, 8f );
+		ShotPower = CuePullBackOffset.AsPercentMinMax( 0f, 5f );
 		IsMakingShot = true;
 	}
 
