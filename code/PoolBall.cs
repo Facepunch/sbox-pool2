@@ -155,10 +155,10 @@ public class PoolBall : Component, Component.ICollisionListener
 		if ( Network.IsOwner )
 		{
 			// Constantly set our Z velocity to zero.
-			Physics.Velocity = Physics.Velocity.WithZ( 0f );
+			//Physics.Velocity = Physics.Velocity.WithZ( 0f );
 
 			// Constantly keep up at the correct Z position.
-			Transform.Position = Transform.Position.WithZ( StartUpPosition );
+			//Transform.Position = Transform.Position.WithZ( StartUpPosition );
 		}
 		
 		base.OnUpdate();
