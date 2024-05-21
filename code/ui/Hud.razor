@@ -1,66 +1,12 @@
-﻿@using Sandbox;
+@using Sandbox;
 
 @namespace Facepunch.Pool
 @inherits PanelComponent
-
-<style>
-	.hud {
-    	transition: background-color 0.2s ease-in;
-    	pointer-events: none;
-    	position: absolute;
-    	left: 0px;
-    	top: 0px;
-    	width: 100%;
-    	height: 100%;
-    }
-    
-    .header {
-    	align-items: center;
-    	justify-content: center;
-    	position: absolute;
-    	top: 64px;
-    	left: 0;
-    	right: 0;
-    }
-
-	.left-side-bar {
-		display: flex;
-		width: 2.5%;
-		height: 60%;
-		left: 100px;
-		top: 20%;
-
-		h1 {
-			color: white;
-			position: absolute;
-			top: 101%;
-			left: -35px;
-			font-size: 50px;
-		}
-	}
-    
-    .footer {
-    	display: flex;
-    	flex-direction: row;
-    	justify-content: flex-end;
-    	padding-left: 10%;
-    	padding-right: 10%;
-    	position: absolute;
-    	bottom: 64px;
-    	left: 0;
-    	right: 0;
-    	height: 60px;
-    }
-</style>
 
 <root class="hud">
     <div class="header">
          <PlayerDisplay></PlayerDisplay>
     </div>
-	<div class="left-side-bar">
-		<ShotPower></ShotPower>
-		<h1>Power</h1>
-	</div>
 
     <div class="footer">
 	    <ToastList></ToastList>
