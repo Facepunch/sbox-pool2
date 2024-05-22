@@ -28,7 +28,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void StartPlacing()
 	{
 		Physics.PhysicsBody.EnableSolidCollisions = false;
-		Physics.PhysicsBody.MotionEnabled = false;
+		Physics.MotionEnabled = false;
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
@@ -81,14 +81,14 @@ public class PoolBall : Component, Component.ICollisionListener
 	private void DisableCollisions()
 	{
 		Physics.PhysicsBody.EnableSolidCollisions = false;
-		Physics.PhysicsBody.MotionEnabled = false;
+		Physics.MotionEnabled = false;
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
 	private void EnableCollisions()
 	{
 		Physics.PhysicsBody.EnableSolidCollisions = true;
-		Physics.PhysicsBody.MotionEnabled = true;
+		Physics.MotionEnabled = true;
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
@@ -131,10 +131,8 @@ public class PoolBall : Component, Component.ICollisionListener
 		{
 			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
 			
-			/*
 			if ( LastPocket != null && LastPocket.IsValid() )
 				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
-			*/
 			
 			if ( RenderAlpha.AlmostEqual( 0f ) )
 			{

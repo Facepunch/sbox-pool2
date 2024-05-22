@@ -67,22 +67,35 @@ public class GameState : Component
 
 		ball.PlayPocketSound();
 
-		if ( !ball.LastStriker.IsValid() )
-			return;
-		
-		var player = GetBallPlayer( ball );
-
-		if ( player != null && player.IsValid() )
+		if ( ball.LastStriker == null || !ball.LastStriker.IsValid() )
 		{
-			var currentPlayer = Instance.CurrentPlayer;
+			if ( ball.Type == PoolBallType.White )
+			{
+				_ = GameManager.Instance.RespawnBallAsync( ball, true );
+			}
+			else if ( ball.Type == PoolBallType.Black )
+			{
+				_ = GameManager.Instance.RespawnBallAsync( ball, true );
+			}
+			else
+			{
+				var player = GetBallPlayer( ball );
 
-			if ( currentPlayer == player )
-				player.HasSecondShot = true;
+				if ( player != null && player.IsValid() )
+				{
+					var currentPlayer = Instance.CurrentPlayer;
 
-			DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
+					if ( currentPlayer == player )
+						player.HasSecondShot = true;
+
+					DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
+				}
+
+				_ = GameManager.Instance.RemoveBallAsync( ball, true );
+			}
+
+			return;
 		}
-		
-		_ = GameManager.Instance.RemoveBallAsync( ball, true );
 
 		if ( ball.Type == PoolBallType.White )
 		{
@@ -373,7 +386,6 @@ public class GameState : Component
 	{
 		if ( PotHistory.Count != 0 && PotHistory[^1].Number == ball.Number )
 			return;
-		
 
 		player.DidPotBall = true;
 
