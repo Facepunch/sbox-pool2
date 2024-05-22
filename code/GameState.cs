@@ -71,6 +71,7 @@ public class GameState : Component
 		{
 			if ( ball.Type == PoolBallType.White )
 			{
+				ball.LastStriker.Foul( FoulReason.PotWhiteBall );
 				_ = GameManager.Instance.RespawnBallAsync( ball, true );
 			}
 			else if ( ball.Type == PoolBallType.Black )
@@ -135,7 +136,6 @@ public class GameState : Component
 					(ball.Type == PoolBallType.Spots ? PoolBallType.Stripes : PoolBallType.Spots);
 
 				DoPlayerPotBall( ball.LastStriker, ball, BallPotType.Claim );
-
 				DidClaimThisTurn = true;
 			}
 			else

@@ -14,8 +14,6 @@ public class BallPocket : Component, Component.ITriggerListener
 		
 		var ball = other.GameObject.Components.GetInParentOrSelf<PoolBall>();
 		if ( !ball.IsValid() ) return;
-		if ( ball.IsAnimating ) return;
-		if ( !ball.Physics.MotionEnabled ) return;
 	
 		EnteredQueue.Enqueue( ball );
 	}
@@ -29,6 +27,10 @@ public class BallPocket : Component, Component.ITriggerListener
 	{
 		while ( EnteredQueue.TryDequeue( out var ball ) )
 		{
+			if ( !ball.IsValid() ) continue;
+			if ( !ball.Physics.MotionEnabled ) continue;
+			if ( ball.IsAnimating ) continue;
+			
 			ball.OnEnterPocket( this );
 		}
 		
