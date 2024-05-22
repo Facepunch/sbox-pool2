@@ -95,7 +95,7 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void StopPlacing()
 	{
 		Physics.PhysicsBody.EnableSolidCollisions = true;
-		Physics.PhysicsBody.MotionEnabled = true;
+		Physics.MotionEnabled = true;
 		Physics.AngularVelocity = Vector3.Zero;
 		Physics.Velocity = Vector3.Zero;
 		Physics.ClearForces();

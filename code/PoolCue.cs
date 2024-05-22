@@ -50,7 +50,7 @@ public class PoolCue : Component
 		if ( TimeSinceWhiteStruck < 2f )
 		{
 			// We recently struck the white ball so let's just interpolate the cue forward.
-			Transform.Position = LastWhiteBallPosition - Transform.Rotation.Forward * (1f + (CuePitch * 0.04f));
+			Transform.Position = LastWhiteBallPosition + Transform.Rotation.Forward * (ShotPower + (CuePitch * 0.04f));
 			return;
 		}
 

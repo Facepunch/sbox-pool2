@@ -1,29 +1,31 @@
 {
   "RootObject": {
-    "Id": "60e03606-2247-46a2-bb4f-47a44b968488",
-    "Name": "Cue",
-    "Position": "-1.40999,27.73989,10.44003",
-    "Rotation": "-0.05216909,-0.05216918,0.705179,-0.7051804",
+    "__guid": "ccd696f4-8716-42ed-8f84-0bd4badf3813",
+    "Flags": 0,
+    "Name": "cue",
     "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
     "Components": [
       {
-        "__type": "ModelRenderer",
-        "__enabled": true,
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "47848215-c0d5-4997-81a4-017ba22f8add",
         "BodyGroups": 18446744073709551615,
-        "MaterialGroup": null,
-        "MaterialOverride": null,
         "Model": "models/pool/pool_cue_b.vmdl",
-        "ShouldCastShadows": true,
+        "RenderType": "Off",
         "Tint": "1,1,1,1"
       },
       {
-        "__type": "PoolCue",
-        "__enabled": true
+        "__type": "Facepunch.Pool.PoolCue",
+        "__guid": "c1be74ea-3811-420a-bdde-f250ff4cf352"
       }
-    ]
+    ],
+    "Children": []
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
-  "__references": []
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
 }

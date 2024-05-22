@@ -67,11 +67,12 @@ public class GameState : Component
 
 		ball.PlayPocketSound();
 
-		if ( ball.LastStriker == null || !ball.LastStriker.IsValid() )
+		if ( !ball.LastStriker.IsValid() )
 		{
 			if ( ball.Type == PoolBallType.White )
 			{
-				ball.LastStriker.Foul( FoulReason.PotWhiteBall );
+				var currentPlayer = Instance.CurrentPlayer;
+				currentPlayer?.Foul( FoulReason.PotWhiteBall );
 				_ = GameManager.Instance.RespawnBallAsync( ball, true );
 			}
 			else if ( ball.Type == PoolBallType.Black )
