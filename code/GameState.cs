@@ -68,36 +68,37 @@ public class GameState : Component
 
 		ball.PlayPocketSound();
 
-		switch ( ball.Type )
-		{
-			// Respawning the ball places us in a uncertain game state 
-			case PoolBallType.White:
-				_ = GameManager.Instance.RespawnBallAsync( ball );
-				CurrentPlayer.Foul( FoulReason.PotWhiteBall );	
-				return;
-			case PoolBallType.Black:
-				_ = GameManager.Instance.RespawnBallAsync( ball );
-				CurrentPlayer.Foul( FoulReason.PotBlackTooEarly );
-				return;
-		}
-		
-
 		if ( !ball.LastStriker.IsValid() )
-		{ return; }
-
-		var player = GetBallPlayer( ball );
-
-		if ( player != null && player.IsValid() )
 		{
-			var currentPlayer = GameState.Instance.CurrentPlayer;
+			if ( ball.Type == PoolBallType.White )
+			{
+				var currentPlayer = Instance.CurrentPlayer;
+				currentPlayer?.Foul( FoulReason.PotWhiteBall );
+				_ = GameManager.Instance.RespawnBallAsync( ball, true );
+			}
+			else if ( ball.Type == PoolBallType.Black )
+			{
+				_ = GameManager.Instance.RespawnBallAsync( ball, true );
+			}
+			else
+			{
+				var player = GetBallPlayer( ball );
 
-			if ( currentPlayer == player )
-				player.HasSecondShot = true;
+				if ( player != null && player.IsValid() )
+				{
+					var currentPlayer = Instance.CurrentPlayer;
 
-			DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
+					if ( currentPlayer == player )
+						player.HasSecondShot = true;
+
+					DoPlayerPotBall( currentPlayer, ball, BallPotType.Silent );
+				}
+
+				_ = GameManager.Instance.RemoveBallAsync( ball, true );
+			}
+
+			return;
 		}
-		
-		_ = GameManager.Instance.RemoveBallAsync( ball, true );
 
 		if ( ball.Type == PoolBallType.White )
 		{
@@ -137,7 +138,6 @@ public class GameState : Component
 					(ball.Type == PoolBallType.Spots ? PoolBallType.Stripes : PoolBallType.Spots);
 
 				DoPlayerPotBall( ball.LastStriker, ball, BallPotType.Claim );
-
 				DidClaimThisTurn = true;
 			}
 			else
@@ -259,6 +259,8 @@ public class GameState : Component
 			if (currentPlayer.IsPlacingWhiteBall)
 			{ break; }
 			var physics = ball.Components.Get<Rigidbody>();
+			if ( !physics.IsValid() ) continue;
+			
 			physics.AngularVelocity = Vector3.Zero;
 			physics.Velocity = Vector3.Zero;
 			physics.ClearForces();
@@ -366,7 +368,9 @@ public class GameState : Component
 	public void StartGame()
 	{
 		Assert.True( Networking.IsHost );
+
 		IncrementRoundCount();
+    
 		var players = GameManager.Instance.Players.ToList();
 		PlayerOneId = players[0].GameObject.Id;
 		PlayerTwoId = players[1].GameObject.Id;
@@ -394,12 +398,8 @@ public class GameState : Component
 
 	private void DoPlayerPotBall( PoolPlayer player, PoolBall ball, BallPotType type )
 	{
-		// Prevents duplication bug
-		if ( PotHistory.Count != 0 && PotHistory[PotHistory.Count-1].Number == ball.Number)
-		{
+		if ( PotHistory.Count != 0 && PotHistory[^1].Number == ball.Number )
 			return;
-		}
-		
 
 		player.DidPotBall = true;
 

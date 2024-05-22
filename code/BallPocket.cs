@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Collections.Concurrent;
+using Sandbox;
 using Sandbox.Network;
 
 namespace Facepunch.Pool;
@@ -11,8 +12,10 @@ public class BallPocket : Component, Component.ITriggerListener
 		
 		var ball = other.GameObject.Components.GetInParentOrSelf<PoolBall>();
 		if ( !ball.IsValid() ) return;
+		if ( !ball.IsValid() ) return;
+		if ( !ball.Physics.MotionEnabled ) return;
 		if ( ball.IsAnimating ) return;
-		
+			
 		ball.OnEnterPocket( this );
 	}
 

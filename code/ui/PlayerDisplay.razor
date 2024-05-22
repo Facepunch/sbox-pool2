@@ -55,7 +55,11 @@
 
     public override void Tick()
     {
-        Bar.Style.Width = Length.Percent(GetBarWidthPercent());
+	    if ( Bar.IsValid() )
+	    {
+		    Bar.Style.Width = Length.Percent( GetBarWidthPercent() );
+	    }
+        
         base.Tick();
     }
 

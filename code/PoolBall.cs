@@ -15,7 +15,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	public bool IsAnimating { get; private set; }
 	
 	private BallPocket LastPocket { get; set; }
-	private float StartUpPosition { get; set; }
 	[Sync] private float RenderAlpha { get; set; }
 
 	public void OnEnterPocket( BallPocket pocket )
@@ -25,19 +24,14 @@ public class PoolBall : Component, Component.ICollisionListener
 		GameState.Instance.OnBallEnterPocket( this, pocket );
 	}
 
+	[Broadcast( NetPermission.HostOnly )]
 	public void StartPlacing()
 	{
-		Assert.True( Networking.IsHost );
 		Physics.PhysicsBody.EnableSolidCollisions = false;
-		Physics.PhysicsBody.MotionEnabled = false;
-		Physics.Enabled = false;
-		/* TODO: Disable collisions for pool ball so user doesn't activate penalties on collisions
-		 *		 mutating physics.PhysicsBody.Enabled causes a host crash due to one of the following conditions from this exception on the host "System.ArgumentOutOfRangeException"
-		 *		 1. Race condition: Network is attempting to sync the compontent but is unable to
-		 *		 2. VooDoo magic: I hate networking code and yet I write more and more as.
-		 */
+		Physics.MotionEnabled = false;
 	}
 
+	[Broadcast( NetPermission.HostOnly )]
 	public void Respawn( Vector3 position )
 	{
 		RenderAlpha = 1f;
@@ -75,47 +69,33 @@ public class PoolBall : Component, Component.ICollisionListener
 		return Type == PoolBallType.Black && player.BallsLeft == 0;
 	}
 
-	public async Task AnimateIntoPocket()
+	public void StartAnimating()
 	{
-		return;
+		if ( IsAnimating ) return;
 		Assert.True( Networking.IsHost );
-		Assert.True( !IsAnimating );
-		
-		Physics.PhysicsBody.EnableSolidCollisions = false;
-		Physics.PhysicsBody.MotionEnabled = false;
-		Physics.PhysicsBody.Enabled = false;
-		
 		IsAnimating = true;
-
-		while ( true )
-		{
-			// I don't know why but this causes a crash on the host instantly.
-			await Task.Delay( 30 ); 
-
-			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
-
-			// So does attempting to mutate the position - ladd
-			if ( LastPocket != null && LastPocket.IsValid() )
-				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
-
-			if ( RenderAlpha.AlmostEqual( 0f ) )
-				break;
-		}
-		
-
-		Physics.PhysicsBody.Enabled = true;
-		Physics.PhysicsBody.EnableSolidCollisions = true;
-		Physics.PhysicsBody.MotionEnabled = true;
-		IsAnimating = false;
+		DisableCollisions();
 	}
 
+	[Broadcast( NetPermission.HostOnly )]
+	private void DisableCollisions()
+	{
+		Physics.PhysicsBody.EnableSolidCollisions = false;
+		Physics.MotionEnabled = false;
+	}
+
+	[Broadcast( NetPermission.HostOnly )]
+	private void EnableCollisions()
+	{
+		Physics.PhysicsBody.EnableSolidCollisions = true;
+		Physics.MotionEnabled = true;
+	}
+
+	[Broadcast( NetPermission.HostOnly )]
 	public void StopPlacing()
 	{
-		Assert.True( Networking.IsHost );
-		
-		Physics.Enabled = true;
 		Physics.PhysicsBody.EnableSolidCollisions = true;
-		Physics.PhysicsBody.MotionEnabled = true;
+		Physics.MotionEnabled = true;
 		Physics.AngularVelocity = Vector3.Zero;
 		Physics.Velocity = Vector3.Zero;
 		Physics.ClearForces();
@@ -125,9 +105,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void TryMoveTo( Vector3 position )
 	{
 		if ( !Networking.IsHost ) return;
-
-		// TODO: Prevent collisions with other balls. ;)
-
 		Transform.Position = position.WithZ( Transform.Position.z );
 	}
 
@@ -135,8 +112,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	{
 		Physics.AngularDamping = 0.6f;
 		Physics.LinearDamping = 0.6f;
-
-		StartUpPosition = Transform.Position.z;
 		RenderAlpha = 1f;
 		
 		base.OnStart();
@@ -152,16 +127,19 @@ public class PoolBall : Component, Component.ICollisionListener
 			renderer.Tint = renderer.Tint.WithAlpha( RenderAlpha );
 		}
 
-		if ( Network.IsOwner )
+		if ( IsAnimating )
 		{
-			// Constantly set our Z velocity to zero.
-			//Physics.Velocity = Physics.Velocity.WithZ( 0f );
-
-			// Constantly keep up at the correct Z position.
-			//Transform.Position = Transform.Position.WithZ( StartUpPosition );
+			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
+			
+			if ( LastPocket != null && LastPocket.IsValid() )
+				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
+			
+			if ( RenderAlpha.AlmostEqual( 0f ) )
+			{
+				IsAnimating = false;
+				EnableCollisions();	
+			}
 		}
-		
-		base.OnUpdate();
 	}
 	
 	private string GetMaterialGroup()
@@ -182,6 +160,8 @@ public class PoolBall : Component, Component.ICollisionListener
 		var otherObject = info.Other.GameObject;
 		var otherBall = otherObject.Components.GetInDescendantsOrSelf<PoolBall>();
 		if ( !otherBall.IsValid() ) return;
+		if ( !Physics.MotionEnabled ) return;
+		if ( !otherBall.Physics.MotionEnabled ) return;
 
 		LastStriker = GameState.Instance.CurrentPlayer;
 		GameState.Instance.OnBallHitOtherBall( this, otherBall );

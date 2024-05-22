@@ -3,7 +3,6 @@
 @using System;
 
 @namespace Facepunch.Pool
-@attribute [StyleSheet( "/ui/PlayerDisplay.scss" )]
 @inherits Panel
 
 @if (!Player.IsValid()) { return; }
@@ -13,9 +12,11 @@
 		<img class="avatar" src="avatar:@(Player.SteamId)" />
 		<label class="name">@Player.SteamName</label>
 
+		<!--
 		<div class="division @GetRankClass() @(IsRankHidden() ? "hidden" : string.Empty)">
 			<label class="rank @GetRankClass()">@Player.Elo.GetLevel()</label>
 		</div>
+		-->
 	</div>
 
 	<div class="score-container">

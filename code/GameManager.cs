@@ -60,9 +60,16 @@ public class GameManager : Component, Component.INetworkListener
 	public async Task RespawnBallAsync( PoolBall ball, bool shouldAnimate = false )
 	{
 		Assert.True( Networking.IsHost );
-		
+
 		if ( shouldAnimate )
-			await ball.AnimateIntoPocket();
+		{
+			ball.StartAnimating();
+
+			while ( ball.IsAnimating )
+			{
+				await Task.Delay( 30 );
+			}
+		}
 
 		var spawns = Scene.GetAllComponents<PoolBallSpawn>();
 
@@ -79,9 +86,16 @@ public class GameManager : Component, Component.INetworkListener
 	public async Task RemoveBallAsync( PoolBall ball, bool shouldAnimate = false )
 	{
 		Assert.True( Networking.IsHost );
-		
+
 		if ( shouldAnimate )
-			await ball.AnimateIntoPocket();
+		{
+			ball.StartAnimating();
+
+			while ( ball.IsAnimating )
+			{
+				await Task.Delay( 30 );
+			}
+		}
 
 		ball.GameObject.Destroy();
 	}
@@ -117,7 +131,7 @@ public class GameManager : Component, Component.INetworkListener
 			stateObject.NetworkSpawn();
 		}
 		
-		//Scene.PhysicsWorld.SubSteps = 10;
+		Scene.PhysicsWorld.SubSteps = 10;
 		
 		base.OnStart();
 	}
