@@ -244,6 +244,8 @@ public class GameState : Component
 		foreach ( var ball in GameManager.Instance.Balls )
 		{
 			var physics = ball.Components.Get<Rigidbody>();
+			if ( !physics.IsValid() ) continue;
+			
 			physics.AngularVelocity = Vector3.Zero;
 			physics.Velocity = Vector3.Zero;
 			physics.ClearForces();
