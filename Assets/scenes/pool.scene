@@ -786,7 +786,7 @@
           "__guid": "35ebb3b4-d544-4abc-801b-1ee3c9d58ab8",
           "Flags": 0,
           "Name": "pool_ball_spawn",
-          "Position": "-24.99424,-46.42825,10.40567",
+          "Position": "-2.669246,-33.00526,10.40563",
           "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1277,7 +1277,7 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-05-21T17:16:41.5607797\u002B01:00",
+  "LastSaved": "2024-05-22T13:54:58.9767858\u002B01:00",
   "ResourceVersion": 1,
   "__references": [
     "tridge.carpet_pattern02"

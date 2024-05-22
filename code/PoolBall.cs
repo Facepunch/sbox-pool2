@@ -25,19 +25,15 @@ public class PoolBall : Component, Component.ICollisionListener
 		GameState.Instance.OnBallEnterPocket( this, pocket );
 	}
 
+	[Broadcast( NetPermission.HostOnly )]
 	public void StartPlacing()
 	{
-		Assert.True( Networking.IsHost );
 		Physics.PhysicsBody.EnableSolidCollisions = false;
 		Physics.PhysicsBody.MotionEnabled = false;
 		Physics.Enabled = false;
-		/* TODO: Disable collisions for pool ball so user doesn't activate penalties on collisions
-		 *		 mutating physics.PhysicsBody.Enabled causes a host crash due to one of the following conditions from this exception on the host "System.ArgumentOutOfRangeException"
-		 *		 1. Race condition: Network is attempting to sync the compontent but is unable to
-		 *		 2. VooDoo magic: I hate networking code and yet I write more and more as.
-		 */
 	}
 
+	[Broadcast( NetPermission.HostOnly )]
 	public void Respawn( Vector3 position )
 	{
 		RenderAlpha = 1f;
@@ -109,10 +105,9 @@ public class PoolBall : Component, Component.ICollisionListener
 		IsAnimating = false;
 	}
 
+	[Broadcast( NetPermission.HostOnly )]
 	public void StopPlacing()
 	{
-		Assert.True( Networking.IsHost );
-		
 		Physics.Enabled = true;
 		Physics.PhysicsBody.EnableSolidCollisions = true;
 		Physics.PhysicsBody.MotionEnabled = true;
@@ -125,9 +120,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	public void TryMoveTo( Vector3 position )
 	{
 		if ( !Networking.IsHost ) return;
-
-		// TODO: Prevent collisions with other balls. ;)
-
 		Transform.Position = position.WithZ( Transform.Position.z );
 	}
 
@@ -150,15 +142,6 @@ public class PoolBall : Component, Component.ICollisionListener
 		{
 			renderer.MaterialGroup = GetMaterialGroup();
 			renderer.Tint = renderer.Tint.WithAlpha( RenderAlpha );
-		}
-
-		if ( Network.IsOwner )
-		{
-			// Constantly set our Z velocity to zero.
-			//Physics.Velocity = Physics.Velocity.WithZ( 0f );
-
-			// Constantly keep up at the correct Z position.
-			//Transform.Position = Transform.Position.WithZ( StartUpPosition );
 		}
 		
 		base.OnUpdate();

@@ -351,6 +351,7 @@ public class GameState : Component
 	public void StartGame()
 	{
 		Assert.True( Networking.IsHost );
+		
 		var players = GameManager.Instance.Players.ToList();
 		PlayerOneId = players[0].GameObject.Id;
 		PlayerTwoId = players[1].GameObject.Id;
@@ -378,11 +379,8 @@ public class GameState : Component
 
 	private void DoPlayerPotBall( PoolPlayer player, PoolBall ball, BallPotType type )
 	{
-		// Prevents duplication bug
-		if ( PotHistory.Count != 0 && PotHistory[PotHistory.Count-1].Number == ball.Number)
-		{
+		if ( PotHistory.Count != 0 && PotHistory[^1].Number == ball.Number )
 			return;
-		}
 		
 
 		player.DidPotBall = true;

@@ -116,7 +116,7 @@ public class GameManager : Component, Component.INetworkListener
 			stateObject.NetworkSpawn();
 		}
 		
-		//Scene.PhysicsWorld.SubSteps = 10;
+		Scene.PhysicsWorld.SubSteps = 10;
 		
 		base.OnStart();
 	}

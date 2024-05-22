@@ -80,10 +80,9 @@ public class PoolPlayer : Component
 		
 		var whiteBall = GameManager.Instance.WhiteBall;
 		
-		if ( whiteBall != null && whiteBall.IsValid() )
-		{
+		if ( whiteBall.IsValid() )
 			whiteBall.StartPlacing();
-		}
+		
 		_ = GameManager.Instance.RespawnBallAsync( whiteBall );
 
 		IsPlacingWhiteBall = true;
@@ -130,7 +129,6 @@ public class PoolPlayer : Component
 	{
 		if ( IsLocalPlayer && IsPlacingWhiteBall )
 		{
-			//Log.Info( "Why do we wanna move the white ball?" ); // what a philosophical question - ladd
 			var whiteBall = GameManager.Instance.WhiteBall;
 			if ( whiteBall.IsValid() )
 			{
