@@ -73,24 +73,18 @@ public class PoolBall : Component, Component.ICollisionListener
 
 	public async Task AnimateIntoPocket()
 	{
-		return;
 		Assert.True( Networking.IsHost );
 		Assert.True( !IsAnimating );
-		
-		Physics.PhysicsBody.EnableSolidCollisions = false;
-		Physics.PhysicsBody.MotionEnabled = false;
-		Physics.PhysicsBody.Enabled = false;
-		
+
+		DisableCollisions();
 		IsAnimating = true;
 
 		while ( true )
 		{
-			// I don't know why but this causes a crash on the host instantly.
-			await Task.Delay( 30 ); 
+			await Task.Frame();
 
 			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
-
-			// So does attempting to mutate the position - ladd
+			
 			if ( LastPocket != null && LastPocket.IsValid() )
 				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
 
@@ -98,11 +92,24 @@ public class PoolBall : Component, Component.ICollisionListener
 				break;
 		}
 		
+		EnableCollisions();
+		IsAnimating = false;
+	}
 
+	[Broadcast( NetPermission.HostOnly )]
+	private void DisableCollisions()
+	{
+		Physics.PhysicsBody.EnableSolidCollisions = false;
+		Physics.PhysicsBody.MotionEnabled = false;
+		Physics.PhysicsBody.Enabled = false;
+	}
+
+	[Broadcast( NetPermission.HostOnly )]
+	private void EnableCollisions()
+	{
 		Physics.PhysicsBody.Enabled = true;
 		Physics.PhysicsBody.EnableSolidCollisions = true;
 		Physics.PhysicsBody.MotionEnabled = true;
-		IsAnimating = false;
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
