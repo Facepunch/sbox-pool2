@@ -68,23 +68,13 @@ public class GameState : Component
 		ball.PlayPocketSound();
 
 		if ( !ball.LastStriker.IsValid() )
-		{ return; }
-
-		switch ( ball.Type )
-		{
-			case PoolBallType.White:
-				_ = GameManager.Instance.RespawnBallAsync( ball ); // Don't care about animating right now
-				return;
-			case PoolBallType.Black:
-				_ = GameManager.Instance.RespawnBallAsync( ball );
-				return;
-		}
+			return;
 		
 		var player = GetBallPlayer( ball );
 
 		if ( player != null && player.IsValid() )
 		{
-			var currentPlayer = GameState.Instance.CurrentPlayer;
+			var currentPlayer = Instance.CurrentPlayer;
 
 			if ( currentPlayer == player )
 				player.HasSecondShot = true;

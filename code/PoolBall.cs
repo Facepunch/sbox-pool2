@@ -15,7 +15,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	public bool IsAnimating { get; private set; }
 	
 	private BallPocket LastPocket { get; set; }
-	private float StartUpPosition { get; set; }
 	[Sync] private float RenderAlpha { get; set; }
 
 	public void OnEnterPocket( BallPocket pocket )
@@ -30,7 +29,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	{
 		Physics.PhysicsBody.EnableSolidCollisions = false;
 		Physics.PhysicsBody.MotionEnabled = false;
-		Physics.Enabled = false;
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
@@ -71,29 +69,12 @@ public class PoolBall : Component, Component.ICollisionListener
 		return Type == PoolBallType.Black && player.BallsLeft == 0;
 	}
 
-	public async Task AnimateIntoPocket()
+	public void StartAnimating()
 	{
+		if ( IsAnimating ) return;
 		Assert.True( Networking.IsHost );
-		Assert.True( !IsAnimating );
-
-		DisableCollisions();
 		IsAnimating = true;
-
-		while ( true )
-		{
-			await Task.Frame();
-
-			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
-			
-			if ( LastPocket != null && LastPocket.IsValid() )
-				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
-
-			if ( RenderAlpha.AlmostEqual( 0f ) )
-				break;
-		}
-		
-		EnableCollisions();
-		IsAnimating = false;
+		DisableCollisions();
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
@@ -101,13 +82,11 @@ public class PoolBall : Component, Component.ICollisionListener
 	{
 		Physics.PhysicsBody.EnableSolidCollisions = false;
 		Physics.PhysicsBody.MotionEnabled = false;
-		Physics.PhysicsBody.Enabled = false;
 	}
 
 	[Broadcast( NetPermission.HostOnly )]
 	private void EnableCollisions()
 	{
-		Physics.PhysicsBody.Enabled = true;
 		Physics.PhysicsBody.EnableSolidCollisions = true;
 		Physics.PhysicsBody.MotionEnabled = true;
 	}
@@ -115,7 +94,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	[Broadcast( NetPermission.HostOnly )]
 	public void StopPlacing()
 	{
-		Physics.Enabled = true;
 		Physics.PhysicsBody.EnableSolidCollisions = true;
 		Physics.PhysicsBody.MotionEnabled = true;
 		Physics.AngularVelocity = Vector3.Zero;
@@ -134,8 +112,6 @@ public class PoolBall : Component, Component.ICollisionListener
 	{
 		Physics.AngularDamping = 0.6f;
 		Physics.LinearDamping = 0.6f;
-
-		StartUpPosition = Transform.Position.z;
 		RenderAlpha = 1f;
 		
 		base.OnStart();
@@ -150,8 +126,22 @@ public class PoolBall : Component, Component.ICollisionListener
 			renderer.MaterialGroup = GetMaterialGroup();
 			renderer.Tint = renderer.Tint.WithAlpha( RenderAlpha );
 		}
-		
-		base.OnUpdate();
+
+		if ( IsAnimating )
+		{
+			RenderAlpha = RenderAlpha.LerpTo( 0f, Time.Delta * 5f );
+			
+			/*
+			if ( LastPocket != null && LastPocket.IsValid() )
+				Transform.Position = Transform.Position.LerpTo( LastPocket.Transform.Position, Time.Delta * 16f );
+			*/
+			
+			if ( RenderAlpha.AlmostEqual( 0f ) )
+			{
+				IsAnimating = false;
+				EnableCollisions();	
+			}
+		}
 	}
 	
 	private string GetMaterialGroup()
@@ -172,6 +162,8 @@ public class PoolBall : Component, Component.ICollisionListener
 		var otherObject = info.Other.GameObject;
 		var otherBall = otherObject.Components.GetInDescendantsOrSelf<PoolBall>();
 		if ( !otherBall.IsValid() ) return;
+		if ( !Physics.MotionEnabled ) return;
+		if ( !otherBall.Physics.MotionEnabled ) return;
 
 		LastStriker = GameState.Instance.CurrentPlayer;
 		GameState.Instance.OnBallHitOtherBall( this, otherBall );
