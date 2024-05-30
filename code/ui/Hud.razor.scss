@@ -16,6 +16,21 @@ Hud {
         right: 0;
     }
 
+	.left-side-bar {
+		display: flex;
+		width: 2.5%;
+		height: 60%;
+		left: 100px;
+		top: 20%;
+		h1 {
+			color: white;
+			position: absolute;
+			top: 101%;
+			left: -35px;
+			font-size: 50px;
+		}
+	}
+
     .footer {
         display: flex;
         flex-direction: row;

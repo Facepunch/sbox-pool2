@@ -1,40 +1,18 @@
 {
-  "__guid": "cf44dc2c-69a3-421b-b722-97c726633f22",
+  "__guid": "a4b3ccb5-caf0-4478-b0d3-5c2a3a6a7935",
   "GameObjects": [
-    {
-      "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
-      "Flags": 0,
-      "Name": "Sun",
-      "Rotation": "-0.0000000377291,0.6329893,0.0000000000000005185386,0.774161",
-      "Tags": "light_directional,light",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "Components": [
-        {
-          "__type": "Sandbox.DirectionalLight",
-          "__guid": "6807bdbd-7e4a-4ef0-91a8-52081e8695a3",
-          "FogMode": "Enabled",
-          "FogStrength": 1,
-          "LightColor": "0.91373,0.98039,1,1",
-          "Shadows": true,
-          "SkyColor": "0.05882,0.07451,0.08235,1"
-        }
-      ]
-    },
     {
       "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
       "Flags": 0,
       "Name": "2D Skybox",
       "Tags": "skybox",
-      "Enabled": true,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "Sandbox.SkyBox2D",
           "__guid": "46e47f2b-9a2e-4195-b145-f7bc9780d48b",
-          "SkyMaterial": "materials/error.vmat",
+          "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
           "Tint": "1,1,1,1"
         },
         {
@@ -63,7 +41,7 @@
       "Flags": 0,
       "Name": "Floor",
       "Position": "0,0,-17.00842",
-      "Scale": "5,5,5",
+      "Scale": "3,3,5",
       "Enabled": true,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
@@ -92,7 +70,7 @@
         {
           "__type": "Sandbox.CameraComponent",
           "__guid": "d8266e58-fa8c-47cb-b9e0-3f4c01fe88ab",
-          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "BackgroundColor": "0,0,0,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
           "IsMainCamera": true,
@@ -786,7 +764,7 @@
           "__guid": "35ebb3b4-d544-4abc-801b-1ee3c9d58ab8",
           "Flags": 0,
           "Name": "pool_ball_spawn",
-          "Position": "-2.669246,-33.00526,10.40563",
+          "Position": "-2.693955,-33.02078,10.40563",
           "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
           "NetworkMode": 2,
@@ -912,7 +890,7 @@
           "__guid": "4b38563e-d646-4904-9b55-043440e0f6c5",
           "Flags": 0,
           "Name": "pool_ball_spawn",
-          "Position": "-2.766725,26.37038,10.40563",
+          "Position": "-2.767,26,10.40559",
           "Rotation": "0,0.7071061,0,-0.7071075",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1081,7 +1059,7 @@
       "Flags": 0,
       "Name": "GameManager",
       "Enabled": true,
-      "NetworkMode": 1,
+      "NetworkMode": 2,
       "NetworkInterpolation": true,
       "Components": [
         {
@@ -1111,7 +1089,7 @@
           "__guid": "bef30778-3ae5-46fe-a999-55709dad2bd3",
           "Flags": 0,
           "Name": "Pocket",
-          "Position": "24.19886,-50.21625,11.67107",
+          "Position": "23.89012,-50.51053,8.090955",
           "Tags": "pocket",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1135,7 +1113,7 @@
           "__guid": "cd3d8681-3393-43f2-af8a-dbf3ddee2c8e",
           "Flags": 0,
           "Name": "Pocket",
-          "Position": "-26.45412,-50.08778,11.88762",
+          "Position": "-26.45412,-50.08778,8.090955",
           "Tags": "pocket",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1159,7 +1137,7 @@
           "__guid": "2a6c3028-6210-43b4-92ec-b76bd897a396",
           "Flags": 0,
           "Name": "Pocket",
-          "Position": "-28.90631,-0.6329605,11.47598",
+          "Position": "-28.68695,-0.6329605,8.090955",
           "Tags": "pocket",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1183,7 +1161,7 @@
           "__guid": "138a8366-9085-45c8-b94a-344177620a2b",
           "Flags": 0,
           "Name": "Pocket",
-          "Position": "-26.72132,48.79945,11.39129",
+          "Position": "-26.72132,48.79945,8.090955",
           "Tags": "pocket",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1207,7 +1185,7 @@
           "__guid": "ac5f112b-87fe-4cb7-8383-75ad60104f23",
           "Flags": 0,
           "Name": "Pocket",
-          "Position": "24.25116,48.79945,11.46605",
+          "Position": "24.25116,48.79945,8.090955",
           "Tags": "pocket",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1231,7 +1209,7 @@
           "__guid": "a135435a-50fb-45c3-8e9c-c75960113233",
           "Flags": 0,
           "Name": "Pocket",
-          "Position": "26.61688,-0.8635703,11.69627",
+          "Position": "26.61688,-0.8635703,8.090955",
           "Tags": "pocket",
           "Enabled": true,
           "NetworkMode": 2,
@@ -1252,10 +1230,80 @@
           ]
         }
       ]
+    },
+    {
+      "__guid": "71dd6d31-ba87-454f-9fb5-e71590ea5259",
+      "Flags": 0,
+      "Name": "MEASURE TOOL :)",
+      "Position": "-12.16643,-47.26309,12.20527",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true
+    },
+    {
+      "__guid": "fe88c45c-f359-4271-85df-08a8f8d9b321",
+      "Flags": 0,
+      "Name": "Overhead Lights",
+      "Position": "0,0,-4.58015",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "Children": [
+        {
+          "__guid": "6ec51a59-9697-4d50-a902-6ffb0d3ae5b1",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "0,-20,103.8447",
+          "Rotation": "0,0.7071068,0,0.7071068",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "30c375c2-5956-4f2e-8cfb-6e0827769fa9",
+              "Attenuation": 1.35,
+              "ConeInner": 20,
+              "ConeOuter": 35,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.73256,0.46512,1",
+              "Radius": 150,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "d5b60232-542d-42dd-923f-ebac02e2ab30",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "0.00001672611,20,103.8447",
+          "Rotation": "0,0.7071068,0,0.7071068",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "91513e9a-4f83-40cf-8c7d-cef414d74267",
+              "Attenuation": 1.35,
+              "ConeInner": 20,
+              "ConeOuter": 35,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.73256,0.46512,1",
+              "Radius": 150,
+              "Shadows": true
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {
-    "FixedUpdateFrequency": 100,
+    "FixedUpdateFrequency": 50,
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 60,
     "NetworkInterpolation": true,
@@ -1277,7 +1325,7 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-05-22T16:13:43.9274966\u002B01:00",
+  "LastSaved": "2024-05-29T21:07:41.0793809-06:00",
   "ResourceVersion": 1,
   "__references": [
     "tridge.carpet_pattern02"

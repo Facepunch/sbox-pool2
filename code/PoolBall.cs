@@ -179,6 +179,46 @@ public class PoolBall : Component, Component.ICollisionListener
 		
 	}
 
+	public bool IsBallPlacementValid( Vector3 possiblePosition = default )
+	{
+		if ( possiblePosition == default )
+			possiblePosition = GameObject.Transform.Position;
+	
+		bool isPlacementValid = IsInBounds( possiblePosition );
+
+		if ( GameState.Instance.RoundCount == 1 )
+			isPlacementValid = IsInKitchen( possiblePosition );
+
+		return isPlacementValid;
+	}
+
+	public bool IsInBounds( Vector3 possiblePosition = default )
+	{
+		if ( possiblePosition == default )
+			possiblePosition = GameObject.Transform.Position;
+
+		if ( possiblePosition.x >= 22 ||
+			 possiblePosition.x <= -25 ||
+			 possiblePosition.y >= 46 ||
+			 possiblePosition.y <= -48 )
+			return false;
+
+		return true;
+	}
+
+	public bool IsInKitchen( Vector3 possiblePosition = default )
+	{
+		if ( possiblePosition == default )
+			possiblePosition = GameObject.Transform.Position;
+
+		if ( possiblePosition.y < 15 )
+			return false;
+
+		return true;
+	}
+
+
+
 	[Broadcast]
 	public void PlayPocketSound()
 	{
