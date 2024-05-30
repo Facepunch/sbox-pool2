@@ -126,24 +126,6 @@ public class PoolPlayer : Component
 		IsTurn = false;
 	}
 
-	bool IsValidBallPlacement(Vector3 ballPosition)
-	{
-		if ( ballPosition.x >= 22 ||
-			 ballPosition.x <= -25 ||
-			 ballPosition.y >= 46 ||
-			 ballPosition.y <= -48)
-		{
-			return false;
-		}
-
-		if (GameState.Instance.RoundCount == 1 &&
-			ballPosition.y < 15)
-		{
-			return false;
-		}
-
-		return true;
-	}
 
 	protected override void OnUpdate()
 	{
@@ -161,12 +143,13 @@ public class PoolPlayer : Component
 				var whiteAreaWorldOBB = whiteArea.CollisionBounds.ToWorldSpace( whiteArea );
 				*/
 
-				if ( IsValidBallPlacement( cursorTrace.EndPosition ) )
+				if ( whiteBall.IsBallPlacementValid( cursorTrace.EndPosition ) )
 				{
 					whiteBall.TryMoveTo( cursorTrace.EndPosition );
 				}
 				else
 				{
+					Log.Info( "Not valid" );
 					// maybe we can draw some kind of indicator to inform the player that their placement is invalid
 				}
 
