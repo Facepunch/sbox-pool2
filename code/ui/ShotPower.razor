@@ -51,6 +51,6 @@
 		if (PoolCue.Instance == null)
 			return 0;
 
-		return PoolCue.Instance.GameObject.IsValid ? HashCode.Combine(PoolCue.Instance.ShotPower) : 0;
+		return PoolCue.Instance.GameObject != null ? HashCode.Combine(PoolCue.Instance?.ShotPower) : 0;
 	}
 }
