@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Sandbox;
 using Sandbox.Diagnostics;
@@ -39,7 +40,7 @@ public class PoolPlayer : Component
 	public void StartTurn( bool hasSecondShot = false, bool showMessage = true )
 	{
 		Assert.True( Networking.IsHost );
-		
+
 		if ( showMessage )
 			GameManager.Instance.AddToast( SteamId, $"{ SteamName } has started their turn" );
 
@@ -125,6 +126,7 @@ public class PoolPlayer : Component
 		IsTurn = false;
 	}
 
+
 	protected override void OnUpdate()
 	{
 		if ( IsLocalPlayer && IsPlacingWhiteBall )
@@ -140,8 +142,16 @@ public class PoolPlayer : Component
 				var whiteArea = PoolGame.Entity.WhiteArea;
 				var whiteAreaWorldOBB = whiteArea.CollisionBounds.ToWorldSpace( whiteArea );
 				*/
-				
-				whiteBall.TryMoveTo( cursorTrace.EndPosition );
+
+				if ( whiteBall.IsBallPlacementValid( cursorTrace.EndPosition ) )
+				{
+					whiteBall.TryMoveTo( cursorTrace.EndPosition );
+				}
+				else
+				{
+					Log.Info( "Not valid" );
+					// maybe we can draw some kind of indicator to inform the player that their placement is invalid
+				}
 
 				if ( Input.Released( "attack1" ) )
 					StopPlacingWhiteBall();

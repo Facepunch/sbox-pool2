@@ -1,13 +1,15 @@
 {
   "RootObject": {
-    "__guid": "4343e712-2bf9-4cc1-9c75-07ab5b669327",
+    "__guid": "1715055f-5b0e-4d96-963a-213b7a678ab7",
+    "Flags": 0,
     "Name": "pool_ball",
     "Enabled": true,
     "NetworkMode": 1,
+    "NetworkInterpolation": true,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
-        "__guid": "24a79087-f28c-488d-8bc5-dc22936f24cb",
+        "__guid": "e40ab9eb-6891-4a47-86da-47d3a7149ad3",
         "BodyGroups": 18446744073709551615,
         "Model": "models/pool/pool_ball.vmdl",
         "RenderType": "On",
@@ -15,7 +17,7 @@
       },
       {
         "__type": "Sandbox.ModelCollider",
-        "__guid": "d3f7320f-8244-4486-928e-fd330165f447",
+        "__guid": "8053d720-61c1-4f66-9623-21d402ce21ba",
         "IsTrigger": false,
         "Model": "models/pool/pool_ball.vmdl",
         "Static": false,
@@ -23,7 +25,7 @@
       },
       {
         "__type": "Sandbox.Rigidbody",
-        "__guid": "834f5e10-3ea0-4ad2-93be-dfb13c27cba5",
+        "__guid": "ce4da952-16cb-4b35-96d5-ef7b795e9027",
         "AngularDamping": 0,
         "Gravity": true,
         "LinearDamping": 0,
@@ -35,12 +37,12 @@
       },
       {
         "__type": "Facepunch.Pool.PoolBall",
-        "__guid": "1cdd5a66-efda-4917-b928-635b6b1e4d21",
+        "__guid": "9fb41dfc-f7b9-4b1e-a871-8bcf6472b3c4",
         "Number": "One",
         "Physics": {
           "_type": "component",
-          "component_id": "834f5e10-3ea0-4ad2-93be-dfb13c27cba5",
-          "go": "4343e712-2bf9-4cc1-9c75-07ab5b669327",
+          "component_id": "ce4da952-16cb-4b35-96d5-ef7b795e9027",
+          "go": "1715055f-5b0e-4d96-963a-213b7a678ab7",
           "component_type": "Rigidbody"
         },
         "Type": "Spots"
@@ -52,6 +54,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "ResourceVersion": 1,
-  "__version": 1,
-  "__references": []
+  "__references": [],
+  "__version": 1
 }

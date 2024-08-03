@@ -1,0 +1,56 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System;
+
+@namespace Facepunch.Pool
+@inherits Panel
+<style>
+	.power-bar-wrapper {
+		border-radius: 20px;
+		background-color: rgba(#1A202B,0.5);
+		width: 100%;
+		height: 100%;
+		align-items: flex-end;
+	}
+
+	.power-bar {
+		background: linear-gradient(90deg, rgba(9,255,0,1) 0%, rgba(255,252,0,1) 50%, rgba(255,0,0,1) 100%);
+		border-radius: 20px;
+		width: 100%;
+		height: 20%;
+	}
+</style>
+
+<root>
+	<div class="power-bar-wrapper">
+		<div @ref="PowerBar" class="power-bar"></div>
+	</div>
+</root>
+
+@code
+{
+	private Panel PowerBar { get; set; }
+
+	private float GetPowerBarHeightPercent()
+	{
+		if (PoolCue.Instance == null)
+			return 0f;
+		return PoolCue.Instance.ShotPower / 1f; 	
+	}
+
+	public override void Tick ()
+	{
+		PowerBar.Style.Height = Length.Percent(GetPowerBarHeightPercent());
+		base.Tick();	
+	}
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash()
+	{
+		if (PoolCue.Instance == null)
+			return 0;
+
+		return PoolCue.Instance.GameObject != null ? HashCode.Combine(PoolCue.Instance?.ShotPower) : 0;
+	}
+}
