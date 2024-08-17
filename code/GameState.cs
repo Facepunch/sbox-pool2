@@ -420,6 +420,7 @@ public class GameState : Component
 	{
 		var cueObject = GameManager.Instance.CuePrefab.Clone();
 		var cue = cueObject.Components.Get<PoolCue>();
+		cueObject.Network.SetOrphanedMode( NetworkOrphaned.Host );
 		cueObject.BreakFromPrefab();
 		cueObject.NetworkSpawn();
 		return cue;
