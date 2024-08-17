@@ -120,6 +120,7 @@ public class GameManager : Component, Component.INetworkListener
 				ball.Number = spawn.Number;
 				ball.Type = spawn.Type;
 
+				ballObject.Network.SetOrphanedMode( NetworkOrphaned.Host );
 				ballObject.BreakFromPrefab();
 				ballObject.NetworkSpawn();
 			}
@@ -127,6 +128,7 @@ public class GameManager : Component, Component.INetworkListener
 			var stateObject = new GameObject();
 			stateObject.Name = "State";
 			stateObject.Components.Create<GameState>();
+			stateObject.Network.SetOrphanedMode( NetworkOrphaned.Host );
 			stateObject.NetworkSpawn();
 		}
 		
