@@ -46,6 +46,7 @@ public class GameManager : Component, Component.INetworkListener
 		
 		GameState.Instance.StartGame();
 	}
+
 	
 	[Broadcast]
 	public void AddToast( ulong steamId, string text, string iconClass = "" )
@@ -70,14 +71,14 @@ public class GameManager : Component, Component.INetworkListener
 			}
 		}
 
-		var spawners = Scene.GetAllComponents<PoolBallSpawn>();
+		var spawns = Scene.GetAllComponents<PoolBallSpawn>();
 
-		foreach ( var spawner in spawners )
+		foreach ( PoolBallSpawn spawn in spawns )
 		{
-			if ( spawner.Type != ball.Type || spawner.Number != ball.Number )
+			if ( spawn.Type != ball.Type || spawn.Number != ball.Number )
 				continue;
 
-			ball.Respawn( spawner.Transform.Position );
+			ball.Respawn( spawn.Transform.Position );
 			return;
 		}
 	}

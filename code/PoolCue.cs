@@ -8,6 +8,7 @@ namespace Facepunch.Pool;
 public class PoolCue : Component
 {
 	public static PoolCue Instance { get; private set; }
+	public float ShotPower { get; private set; }
 	
 	private TimeSince TimeSinceWhiteStruck { get; set; }
 	private Vector3 LastWhiteBallPosition { get; set; }
@@ -18,7 +19,6 @@ public class PoolCue : Component
 	private bool IsMakingShot { get; set; }
 	private float CuePitch { get; set; }
 	private float CueYaw { get; set; }
-	private float ShotPower { get; set; }
 
 	protected override void OnEnabled()
 	{
@@ -34,9 +34,15 @@ public class PoolCue : Component
 		var renderer = Components.Get<ModelRenderer>( true );
 
 		if ( !currentPlayer.IsValid() || currentPlayer.IsPlacingWhiteBall || currentPlayer.HasStruckWhiteBall )
+		{ 
+			renderer.RenderType = ModelRenderer.ShadowRenderType.Off;
 			FadeTo( 0f, 4f );
-		else
+		}
+		else 
+		{ 
+			renderer.RenderType = ModelRenderer.ShadowRenderType.On;
 			FadeTo( 1f, 8f );
+		}
 		
 		// Don't render entirely if we're placing the white ball.
 		renderer.SceneObject.RenderingEnabled = !currentPlayer.IsPlacingWhiteBall;
@@ -61,7 +67,7 @@ public class PoolCue : Component
 		var whiteBall = Scene.GetAllComponents<PoolBall>().FirstOrDefault( b => b.Type == PoolBallType.White );
 		if ( !whiteBall.IsValid() ) return;
 
-		if ( Input.Down( "attack1" ) )
+		if ( Input.Down( "attack1" ) && !GameState.Instance.CurrentPlayer.IsPlacingWhiteBall )
 		{
 			UpdatePowerSelection();
 		}
@@ -137,9 +143,9 @@ public class PoolCue : Component
 			cuePullBackDelta = 0f;
 		}
 
-		CuePullBackOffset = Math.Clamp( CuePullBackOffset + cuePullBackDelta, 0f, 8f );
+		CuePullBackOffset = Math.Clamp( CuePullBackOffset + cuePullBackDelta, 0f, 5f );
 		LastPowerDistance = distanceToCue;
-		ShotPower = CuePullBackOffset.AsPercentMinMax( 0f, 8f );
+		ShotPower = CuePullBackOffset.AsPercentMinMax( 0f, 5f );
 		IsMakingShot = true;
 	}
 
